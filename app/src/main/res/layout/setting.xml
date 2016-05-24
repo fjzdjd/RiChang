@@ -1,0 +1,171 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ddw.com.richang.Activity.banner.Setting">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <!--top-->
+        <RelativeLayout
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:background="#ffffff"
+            android:layout_centerVertical="true"
+            android:layout_alignParentTop="true"
+            android:layout_width="fill_parent"
+            android:layout_height="56dp">
+            <TextView
+                android:text="设置"
+                android:textColor="@color/rorange"
+                android:gravity="center_vertical"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent" />
+            <ImageView
+                android:id="@+id/cancelsetting"
+                android:layout_centerVertical="true"
+                android:src="@drawable/leftgo"
+                android:paddingTop="15sp"
+                android:paddingBottom="15sp"
+                android:paddingRight="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="46sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginTop="7dp"
+            android:id="@+id/changenotice"
+            android:background="#ffffff"
+            android:padding="16dp"
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="新消息通知"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textColor="#8c8c8c"
+                    android:layout_marginRight="3dp"
+                    android:id="@+id/changenoticetv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/goright"
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:layout_height="12dp" />
+            </LinearLayout>
+        </RelativeLayout>
+        <ImageView
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:background="@color/light"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp" />
+
+        <RelativeLayout
+            android:id="@+id/changeshake"
+            android:background="#ffffff"
+            android:padding="16dp"
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="摇一摇反馈"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textColor="#8c8c8c"
+                    android:layout_marginRight="3dp"
+                    android:id="@+id/changeshaketv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/goright"
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:layout_height="12dp" />
+            </LinearLayout>
+        </RelativeLayout>
+        <ImageView
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:background="@color/light"
+            android:layout_width="fill_parent"
+            android:layout_height="1dp" />
+
+
+        <RelativeLayout
+            android:id="@+id/clear"
+            android:background="#ffffff"
+            android:padding="16dp"
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="清除缓存"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textColor="#8c8c8c"
+                    android:layout_marginRight="3dp"
+                    android:id="@+id/clearsum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/goright"
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:layout_height="12dp" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginTop="7dp"
+            android:id="@+id/exit"
+            android:background="#ffffff"
+            android:padding="16dp"
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_centerInParent="true"
+                android:text="退出登录"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

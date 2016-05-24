@@ -1,0 +1,24 @@
+<head>
+	<meta charset="utf-8" />
+	<script type="text/javascript" src="js/team.js"></script>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+</head>
+<body>
+	<div>
+		<img class="profile" />
+		<div class="name"></div>
+		<div class="position"></div>
+		<div class="word"></div>
+	</div>
+</body>
+<script type="text/javascript">
+$(window).ready(function(){
+	var team=getTeam();
+	for(var i=0;i<team.length;i++){
+		$(".profile")[i].src="profile/"+team[i].profile;
+		$(".name")[i].innerText=team[i].name;
+		$(".position")[i].innerText=team[i].position;
+		$(".word")[i].innerText=team[i].word;
+	}
+});
+</script>

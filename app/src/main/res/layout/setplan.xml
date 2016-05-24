@@ -1,0 +1,400 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ddw.com.richang.Activity.banner.SetPlan">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <!--top-->
+        <RelativeLayout
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:background="#ffffff"
+            android:layout_centerVertical="true"
+            android:layout_alignParentTop="true"
+            android:layout_width="fill_parent"
+            android:layout_height="56dp">
+            <TextView
+                android:id="@+id/plantoptitle"
+                android:text="xingcheng"
+                android:textColor="@color/rorange"
+                android:gravity="center_vertical"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent" />
+            <ImageView
+                android:id="@+id/cancelsetplan"
+                android:layout_centerVertical="true"
+                android:src="@drawable/leftgo"
+                android:paddingTop="15sp"
+                android:paddingBottom="15sp"
+                android:paddingRight="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="46sp" />
+            <TextView
+                android:id="@+id/submitaplan"
+                android:paddingLeft="12dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                android:textSize="16sp"
+                android:text="确定"
+                android:textColor="@color/rorange"
+                android:gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+        <!--theme-->
+        <RelativeLayout
+            android:id="@+id/chooseTheme"
+            android:padding="12dp"
+            android:gravity="center_vertical"
+            android:background="#ffffff"
+            android:layout_marginTop="7dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="行程主题"
+                android:textColor="#8c8c8c"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_alignParentRight="true"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/chosenthemepic"
+                    android:layout_marginRight="5dp"
+                    android:src="@drawable/meeting_select"
+                    android:layout_width="18sp"
+                    android:layout_height="18sp" />
+                <TextView
+                    android:id="@+id/chosentheme"
+                    android:textColor="#000000"
+                    android:text="会议"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:layout_marginLeft="7dp"
+                    android:src="@drawable/goright"
+                    android:layout_width="wrap_content"
+                    android:layout_height="18sp" />
+            </LinearLayout>
+        </RelativeLayout>
+        <LinearLayout
+            android:id="@+id/chooseThemeList"
+            android:background="#ffffff"
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_marginLeft="12dp"
+                android:background="#8c8c8c"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp" />
+            <LinearLayout
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:weightSum="4"
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:id="@+id/chooseMeeting"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:gravity="center_horizontal"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_marginBottom="3dp"
+                        android:src="@drawable/meeting_select"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp" />
+                    <TextView
+                        android:text="会议"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/chooseDating"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:gravity="center_horizontal"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_marginBottom="3dp"
+                        android:src="@drawable/dating_select"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp" />
+                    <TextView
+                        android:text="约会"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/chooseOutbusiness"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:gravity="center_horizontal"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_marginBottom="3dp"
+                        android:src="@drawable/outbusiness_select"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp" />
+                    <TextView
+                        android:text="出差"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/chooseSport"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:gravity="center_horizontal"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_marginBottom="3dp"
+                        android:src="@drawable/sport_select"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp" />
+                    <TextView
+                        android:text="运动"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:weightSum="4"
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:id="@+id/chooseShopping"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:gravity="center_horizontal"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_marginBottom="3dp"
+                        android:src="@drawable/shopping_select"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp" />
+                    <TextView
+                        android:text="购物"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/chooseEntertain"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:gravity="center_horizontal"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_marginBottom="3dp"
+                        android:src="@drawable/entertain_select"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp" />
+                    <TextView
+                        android:text="娱乐"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/chooseParty"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:gravity="center_horizontal"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_marginBottom="3dp"
+                        android:src="@drawable/party_select"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp" />
+                    <TextView
+                        android:text="聚会"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/chooseOthertheme"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:gravity="center_horizontal"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_marginBottom="3dp"
+                        android:src="@drawable/otherplan_select"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp" />
+                    <TextView
+                        android:text="其他"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+        
+        <!--info-->
+        <EditText
+            android:id="@+id/plancontent"
+            android:layout_marginTop="7dp"
+            android:gravity="top"
+            android:hint="请输入行程地点+内容（40字以内）"
+            android:singleLine="true"
+            android:maxLength="72"
+            android:padding="12dp"
+            android:background="#ffffff"
+            android:layout_width="fill_parent"
+            android:layout_height="80dp" />
+
+        <!--time-->
+        <RelativeLayout
+            android:id="@+id/setplandatetime"
+            android:layout_marginTop="7dp"
+            android:background="#ffffff"
+            android:padding="12dp"
+            android:gravity="center_vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="行程时间"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_alignParentRight="true"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/datetimeres"
+                    android:text="2015年12月22日 12:00"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:layout_marginLeft="7dp"
+                    android:src="@drawable/goright"
+                    android:layout_width="wrap_content"
+                    android:layout_height="16sp" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <!--hint-->
+        <RelativeLayout
+            android:id="@+id/planhint"
+            android:layout_marginTop="7dp"
+            android:background="#ffffff"
+            android:padding="12dp"
+            android:gravity="center_vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="需要提醒"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_alignParentRight="true"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/hintres"
+                    android:text="不提醒"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:layout_marginLeft="7dp"
+                    android:src="@drawable/goright"
+                    android:layout_width="wrap_content"
+                    android:layout_height="16sp" />
+            </LinearLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <!--timepicker-->
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/datetimepicker"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <RelativeLayout
+            android:background="#000000"
+            android:alpha="0.75"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"></RelativeLayout>
+        <LinearLayout
+            android:layout_alignParentBottom="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:background="#ffffff"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="vertical"
+                android:padding="12dp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="日期："
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+                <DatePicker
+                    android:padding="0dp"
+                    android:clickable="false"
+                    android:id="@+id/datePicker"
+                    android:calendarViewShown="false"
+                    android:spinnersShown="true"
+                    android:datePickerMode="spinner"
+                    android:startYear="2016"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"></DatePicker>
+                <TextView
+                    android:text="时间："
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" />
+                <TimePicker
+                    android:padding="0dp"
+                    android:clickable="false"
+                    android:id="@+id/timePicker"
+                    android:timePickerMode="spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"></TimePicker>
+            </LinearLayout>
+            <Button
+                android:id="@+id/submitplantime"
+                android:background="@color/rorange"
+                android:textColor="#ffffff"
+                android:layout_marginTop="7dp"
+                android:padding="0dp"
+                android:textSize="18sp"
+                android:text="确  定"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,197 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="ddw.com.richang.Activity.pre.Login">
+
+    <!--top-->
+    <RelativeLayout
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:background="#ffffff"
+        android:layout_centerVertical="true"
+        android:layout_alignParentTop="true"
+        android:layout_width="fill_parent"
+        android:layout_height="56dp">
+        <TextView
+            android:text="重置密码"
+            android:textColor="@color/rorange"
+            android:gravity="center_vertical"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent" />
+        <ImageView
+            android:id="@+id/cancelresetpasswd"
+            android:layout_centerVertical="true"
+            android:src="@drawable/leftgo"
+            android:paddingTop="15sp"
+            android:paddingBottom="15sp"
+            android:paddingRight="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="46sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="7dp"
+        android:background="#fff"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <LinearLayout
+            android:layout_marginLeft="36dp"
+            android:layout_marginRight="36dp"
+            android:layout_marginTop="21dp"
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="fill_parent"
+                        android:layout_height="32dp">
+                        <ImageView
+                            android:id="@+id/imgresetphone"
+                            android:layout_marginRight="13dp"
+                            android:src="@drawable/phone2"
+                            android:layout_width="20dp"
+                            android:layout_height="26dp" />
+                        <EditText
+                            android:hint="输入手机号"
+                            android:textSize="15sp"
+                            android:maxLength="11"
+                            android:background="@null"
+                            android:inputType="phone"
+                            android:id="@+id/resetphone"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent" />
+                    </LinearLayout>
+                    <ImageView
+                        android:id="@+id/lineresetphone"
+                        android:layout_marginBottom="18dp"
+                        android:background="@color/rorange"
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp" />
+
+                    <RelativeLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_marginRight="120dp"
+                            android:orientation="horizontal"
+                            android:layout_width="fill_parent"
+                            android:layout_height="32dp">
+                            <ImageView
+                                android:id="@+id/imgresetcheck"
+                                android:layout_marginRight="13dp"
+                                android:src="@drawable/pencil2"
+                                android:layout_width="20dp"
+                                android:layout_height="26dp" />
+                            <EditText
+                                android:hint="短信验证码"
+                                android:textSize="15sp"
+                                android:inputType="number"
+                                android:maxLength="6"
+                                android:background="@null"
+                                android:id="@+id/resetcheckphone"
+                                android:layout_width="fill_parent"
+                                android:layout_height="fill_parent" />
+                        </LinearLayout>
+                        <Button
+                            android:text="获取验证码"
+                            android:textColorHint="#ffffff"
+                            android:textColor="#ffffff"
+                            android:background="@color/rorange"
+                            android:id="@+id/resetsendcheckphone"
+                            android:layout_width="110dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_height="32dp" />
+                    </RelativeLayout>
+                    <ImageView
+                        android:id="@+id/lineresetcheck"
+                        android:layout_marginRight="120dp"
+                        android:layout_marginBottom="18dp"
+                        android:background="@color/rorange"
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp" />
+
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="fill_parent"
+                        android:layout_height="32dp">
+                        <ImageView
+                            android:id="@+id/imgresetpasswd"
+                            android:layout_marginRight="13dp"
+                            android:src="@drawable/password2"
+                            android:layout_width="20dp"
+                            android:layout_height="26dp" />
+                        <EditText
+                            android:hint="输入新密码"
+                            android:textSize="15sp"
+                            android:background="@null"
+                            android:inputType="textPassword"
+                            android:id="@+id/resetpassword1"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent" />
+
+                    </LinearLayout>
+                    <ImageView
+                        android:id="@+id/lineresetpasswd"
+                        android:layout_marginBottom="18dp"
+                        android:background="@color/rorange"
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp" />
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="fill_parent"
+                        android:layout_height="32dp">
+                        <ImageView
+                            android:id="@+id/imgresetpasswd2"
+                            android:layout_marginRight="13dp"
+                            android:src="@drawable/password2"
+                            android:layout_width="20dp"
+                            android:layout_height="26dp" />
+                        <EditText
+                            android:hint="再次输入新密码"
+                            android:textSize="15sp"
+                            android:background="@null"
+                            android:inputType="textPassword"
+                            android:id="@+id/resetpassword2"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent" />
+                    </LinearLayout>
+                    <ImageView
+                        android:id="@+id/lineresetpasswd2"
+                        android:layout_marginBottom="18dp"
+                        android:background="@color/rorange"
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dp" />
+                    <Button
+                        android:textColor="#ffffff"
+                        android:background="@color/rorange"
+                        android:text="重置密码"
+                        android:id="@+id/submitreset"
+                        android:textSize="18sp"
+                        android:layout_marginTop="28dp"
+                        android:layout_width="fill_parent"
+                        android:layout_height="45dp" />
+                </LinearLayout>
+            </RelativeLayout>
+
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+
+
+
+</LinearLayout>

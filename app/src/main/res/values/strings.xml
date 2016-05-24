@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name" translatable="false">日常讲座</string>
+    <string name="hello_world" translatable="false">Hello world!</string>
+    <string name="action_settings" translatable="false">Settings</string>
+    <string name="title_activity_login" translatable="false">Login</string>
+    <string name="title_activity_main" translatable="false">mainActivity</string>
+    <string name="title_activity_choose_city" translatable="false">ChooseCity</string>
+    <string name="title_activity_choose_tag" translatable="false">ChooseTag</string>
+    <string name="title_activity_set_plan" translatable="false">SetPlan</string>
+    <string name="title_activity_setting" translatable="false">Setting</string>
+    <string name="title_activity_search" translatable="false">Search</string>
+    <string name="title_activity_content" translatable="false">Content</string>
+    <string name="title_activity_more_content" translatable="false">MoreContent</string>
+    <string name="title_activity_activity_list" translatable="false">ActivityList</string>
+    <string name="title_activity_about" translatable="false">About</string>
+    <string name="title_activity_feed_back" translatable="false">FeedBack</string>
+    <string name="title_activity_my_account" translatable="false">MyAccount</string>
+    <string name="title_activity_change_something" translatable="false">ChangeSomething</string>
+    <string name="title_activity_planhint" translatable="false">Planhint</string>
+    <string name="title_activity_plan_info" translatable="false">PlanInfo</string>
+    <string name="title_activity_on_shake" translatable="false">OnShake</string>
+    <string name="title_activity_photo" translatable="false">Photo</string>
+    <string name="title_activity_logo_egg" translatable="false">LogoEgg</string>
+    <string name="title_activity_resetpasswd" translatable="false">Resetpasswd</string>
+    <string name="title_activity_welcome" translatable="false">Welcome</string>
+
+    <!--2.0添加-->
+    <string name="smoothlistview_header_hint_normal" translatable="false">下拉刷新</string>
+    <string name="smoothlistview_header_hint_ready" translatable="false">松开刷新数据</string>
+    <string name="smoothlistview_header_hint_loading" translatable="false">正在加载...</string>
+    <string name="smoothlistview_header_last_time" translatable="false">上次更新时间：</string>
+    <string name="smoothlistview_footer_hint_normal" translatable="false">查看更多</string>
+    <string name="smoothlistview_footer_hint_ready" translatable="false">松开载入更多</string>
+
+</resources>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ssdk_weibo_oauth_regiseter" translatable="false">应用授权</string>
+    <string name="ssdk_website" translatable="false">http://www.mob.com</string>
+    <string name="ssdk_weibo_upload_content" translatable="false">分享图片</string>
+    <string name="ssdk_wechat_client_inavailable" translatable="false">目前您的微信版本过低或未安装微信，需要安装微信才能使用</string>
+    <string name="ssdk_google_plus_client_inavailable" translatable="false">Google+ 版本过低或者没有安装，需要升级或安装Google+才能使用！</string>
+    <string name="ssdk_qq_client_inavailable" translatable="false">QQ 版本过低或者没有安装，需要升级或安装QQ才能使用！</string>
+    <string name="ssdk_pinterest_client_inavailable" translatable="false">Pinterest版本过低或者没有安装，需要升级或安装Pinterest才能使用！</string>
+    <string name="ssdk_instagram_client_inavailable" translatable="false">Instagram版本过低或者没有安装，需要升级或安装Instagram才能使用！</string>
+    <string name="ssdk_yixin_client_inavailable" translatable="false">目前您的易信版本过低或未安装，需要安装易信才能使用</string>
+    <string name="ssdk_line_client_inavailable" translatable="false">目前您的Line版本过低或未安装，需要安装Line才能使用</string>
+    <string name="ssdk_kakaotalk_client_inavailable" translatable="false">目前您的KakaoTalk版本过低或未安装，需要安装KakaoTalk才能使用</string>
+    <string name="ssdk_kakaostory_client_inavailable" translatable="false">目前您的KakaoStory版本过低或未安装，需要安装KakaoStory才能使用</string>
+    <string name="ssdk_whatsapp_client_inavailable" translatable="false">目前您的WhatsApp版本过低或未安装，需要安装WhatsApp才能使用</string>
+    <string name="ssdk_baidutieba_client_inavailable" translatable="false">目前您的百度贴吧版本过低或未安装，需要安装百度贴吧才能使用</string>
+    <string name="ssdk_laiwang_client_inavailable" translatable="false">目前您的来往版本过低或未安装，需要安装来往才能使用</string>
+    <string name="ssdk_alipay_client_inavailable" translatable="false">目前您的支付宝版本过低或未安装，需要安装支付宝才能使用</string>
+    
+	<string name="ssdk_sinaweibo" translatable="false">新浪微博</string>
+	<string name="ssdk_tencentweibo" translatable="false">腾讯微博</string>
+	<string name="ssdk_qzone" translatable="false">QQ空间</string>
+	<string name="ssdk_wechat" translatable="false">微信好友</string>
+	<string name="ssdk_wechatmoments" translatable="false">微信朋友圈</string>
+	<string name="ssdk_wechatfavorite" translatable="false">微信收藏</string>
+	<string name="ssdk_facebook" translatable="false">Facebook</string>
+	<string name="ssdk_twitter" translatable="false">Twitter</string>
+	<string name="ssdk_renren" translatable="false">人人网</string>
+	<string name="ssdk_kaixin" translatable="false">开心网</string>
+	<string name="ssdk_email" translatable="false">邮件</string>
+	<string name="ssdk_shortmessage" translatable="false">信息</string>
+	<string name="ssdk_sohumicroblog" translatable="false">搜狐微博</string>
+	<string name="ssdk_sohusuishenkan" translatable="false">搜狐随身看</string>
+	<string name="ssdk_neteasemicroblog" translatable="false">网易微博</string>
+	<string name="ssdk_douban" translatable="false">豆瓣</string>
+	<string name="ssdk_youdao" translatable="false">有道云笔记</string>
+	<string name="ssdk_evernote" translatable="false">印象笔记</string>
+	<string name="ssdk_linkedin" translatable="false">领英</string>
+	<string name="ssdk_googleplus" translatable="false">Google+</string>
+	<string name="ssdk_foursquare" translatable="false">FourSquare</string>
+	<string name="ssdk_qq" translatable="false">QQ</string>
+	<string name="ssdk_pinterest" translatable="false">Pinterest</string>
+	<string name="ssdk_flickr" translatable="false">Flickr</string>
+	<string name="ssdk_tumblr" translatable="false">Tumblr</string>
+	<string name="ssdk_dropbox" translatable="false">Dropbox</string>
+	<string name="ssdk_vkontakte" translatable="false">VK</string>
+	<string name="ssdk_instagram" translatable="false">Instagram</string>
+	<string name="ssdk_yixin" translatable="false">易信</string>
+	<string name="ssdk_yixinmoments" translatable="false">易信朋友圈</string>
+	<string name="ssdk_mingdao" translatable="false">明道</string>
+	<string name="ssdk_kakaotalk" translatable="false">KakaoTalk</string>
+	<string name="ssdk_kakaostory" translatable="false">KakaoStory</string>
+	<string name="ssdk_line" translatable="false">Line</string>
+	<string name="ssdk_bluetooth" translatable="false">蓝牙</string>
+	<string name="ssdk_whatsapp" translatable="false">WhatsApp</string>
+	<string name="ssdk_pocket" translatable="false">Pocket</string>
+	<string name="ssdk_instapaper" translatable="false">Instapaper</string>
+	<string name="ssdk_instapaper_email" translatable="false">邮箱</string>
+	<string name="ssdk_instapaper_pwd" translatable="false">密码</string>
+	<string name="ssdk_instapaper_login" translatable="false">登录</string>
+	<string name="ssdk_instapaper_logining" translatable="false">登录中…</string>
+	<string name="ssdk_instapager_email_or_password_incorrect" translatable="false">Email或密码不正确</string>
+    <string name="ssdk_facebookmessenger" translatable="false">Facebook Messenger</string>
+    <string name="ssdk_baidutieba" translatable="false">百度贴吧</string>
+    <string name="ssdk_laiwang" translatable="false">来往</string>
+    <string name="ssdk_laiwangmoments" translatable="false">来往动态</string>
+    <string name="ssdk_alipay" translatable="false">支付宝好友</string>
+
+	<string name="ssdk_share_to_baidutieba" translatable="false">分享到百度贴吧</string>
+	<string name="ssdk_share_to_qzone" translatable="false">分享到QQ空间</string>
+	<string name="ssdk_share_to_qq" translatable="false">分享到QQ</string>
+	<string name="ssdk_mingdao_share_content" translatable="false">网页分享</string>
+	<string name="ssdk_share_to_mingdao" translatable="false">分享到明道</string>
+	<string name="ssdk_share_to_qzone_default" translatable="false">来自%s的分享</string>
+	<string name="ssdk_use_login_button" translatable="false">请改用“登录”按钮</string>
+</resources>

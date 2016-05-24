@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/background"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="39dp"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="50dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/everyday_header_txt_acRecommend1"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:gravity="center"
+                android:padding="6dp"
+                android:text="  活动推荐  "
+                android:textColor="@color/mainColor"
+                android:textSize="15dp"/>
+
+            <TextView
+                android:id="@+id/everyday_header_txt_acRecommend2"
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:background="@color/mainColor"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="50dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/everyday_header_txt_ptRecommend1"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:gravity="center"
+                android:padding="6dp"
+                android:text="发布者推荐"
+                android:textColor="@color/font_black_4"
+                android:textSize="15dp"/>
+
+            <TextView
+                android:id="@+id/everyday_header_txt_ptRecommend2"
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:background="@color/white"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <!--图片轮播-->
+    <com.bigkoo.convenientbanner.ConvenientBanner
+        android:id="@+id/everyday_header_banner"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        app:canLoop="true"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:padding="13dp">
+
+        <TextView
+            android:id="@+id/everyday_header_txt_hot"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@mipmap/hotactivity_icon"
+            android:gravity="center"
+            android:text="热门"
+            android:textColor="@color/font_black_1"
+            android:textSize="15dp"/>
+
+        <TextView
+            android:id="@+id/everyday_header_txt_university"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@mipmap/university_icon"
+            android:gravity="center"
+            android:text="大学"
+            android:textColor="@color/font_black_1"
+            android:textSize="15dp"/>
+
+
+        <TextView
+            android:id="@+id/everyday_header_txt_nearby"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@mipmap/nearby_icon"
+            android:gravity="center"
+            android:text="附近"
+            android:textColor="@color/font_black_1"
+            android:textSize="15dp"/>
+
+        <TextView
+            android:id="@+id/everyday_header_txt_selection"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@mipmap/careselect_icon"
+            android:gravity="center"
+            android:text="精选"
+            android:textColor="@color/font_black_1"
+            android:textSize="15dp"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/background"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="为你推荐"
+        android:paddingStart="12dp"
+        android:background="@color/white"
+        android:drawableStart="@mipmap/recommend"
+        android:textColor="@color/mainColor"
+        android:textSize="15dp"/>
+
+
+</LinearLayout>

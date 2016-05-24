@@ -1,0 +1,36 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ddw.com.richang.Activity.activities.MoreContent">
+    <!--top-->
+
+    <RelativeLayout
+        android:background="#fff"
+        android:layout_width="fill_parent"
+        android:layout_height="56dp">
+        <ImageView
+            android:id="@+id/morecontent_back"
+            android:paddingTop="12dp"
+            android:paddingBottom="15dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="12dp"
+            android:src="@drawable/leftgo"
+            android:layout_width="wrap_content"
+            android:paddingRight="18dp"
+            android:layout_height="46dp" />
+        <TextView
+            android:layout_centerInParent="true"
+            android:textSize="20sp"
+            android:text="活动详情"
+            android:textColor="@color/rorange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <WebView
+        android:layout_marginTop="56dp"
+        android:id="@+id/acthtml"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+    </WebView>
+
+</RelativeLayout>

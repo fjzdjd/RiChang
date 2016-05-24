@@ -1,0 +1,73 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ddw.com.richang.Activity.myAccount.FeedBack">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <RelativeLayout
+            android:background="#ffffff"
+            android:layout_marginBottom="7dp"
+            android:layout_width="fill_parent"
+            android:layout_height="56dp">
+            <TextView
+                android:layout_centerInParent="true"
+                android:textSize="20sp"
+                android:text="建议反馈"
+                android:textColor="@color/rorange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:id="@+id/cancelfeed"
+                android:layout_marginLeft="12dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/leftgo"
+                android:paddingTop="15sp"
+                android:paddingBottom="15sp"
+                android:paddingRight="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="46sp" />
+        </RelativeLayout>
+        <EditText
+            android:id="@+id/feedmail"
+            android:background="#ffffff"
+            android:padding="12dp"
+            android:textColor="#000000"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="top"
+            android:layout_marginBottom="7dp"
+            android:hint="请输入您的邮箱"
+            android:singleLine="true"
+            android:maxLength="28"/>
+        <EditText
+            android:id="@+id/etfeed"
+            android:background="#ffffff"
+            android:padding="12dp"
+            android:textColor="#000000"
+            android:layout_width="fill_parent"
+            android:gravity="top"
+            android:hint="请输入您对日常的建议（140字内）"
+            android:maxLength="140"
+            android:focusableInTouchMode="true"
+            android:layout_height="160dp" />
+        <RelativeLayout
+            android:layout_marginTop="7dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/btnfeed"
+                android:text="提交"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="12dp"
+                android:textColor="#ffffff"
+                android:background="@drawable/tagme"
+                android:layout_width="80dp"
+                android:layout_height="35dp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

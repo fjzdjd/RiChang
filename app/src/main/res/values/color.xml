@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="rorange">#FD7110</color>
+    <color name="dark">#8C8C8C</color>
+    <color name="black">#646464</color>
+    <color name="light">#DDDFE0</color>
+    <color name="lightbk">#ecedec</color>
+
+    <!--2.0添加-->
+    <color name="orange">#FD7110</color>
+    <color name="orangeLitter">#FF850E</color>
+    <color name="white">#FFFFFF</color>
+    <color name="mainColor">#FF850E</color>
+    <color name="gray_line">#d2d2d2</color>
+    <color name="transparent">#00000000</color>
+    <color name="half_transparent">#8f000000</color>
+    <color name="background">#f5f5f5</color>
+    <color name="mainGrayTxtColor">#929292</color>
+    <color name="progressBarColor">#00a0ce</color>
+
+
+
+    <!-- material design black font color -->
+    <color name="font_black_0">#212121</color>
+    <color name="font_black_1">#424242</color>
+    <color name="font_black_2">#616161</color>
+    <color name="font_black_3">#757575</color>
+    <color name="font_black_4">#9e9e9e</color>
+    <color name="font_black_5">#bdbdbd</color>
+    <color name="font_black_6">#e0e0e0</color>
+
+    <!-- divider -->
+    <color name="divider_1">#e2e2e2</color>
+    <color name="divider_2">#e6e6e6</color>
+    <!--2.0添加-->
+
+</resources>
+
+

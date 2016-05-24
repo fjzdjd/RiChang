@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="50dp"
+              android:background="@color/white"
+              android:gravity="center"
+              android:orientation="vertical">
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="fill_parent"
+        android:layout_height="0.8dp"
+        android:layout_marginBottom="2dp"
+        android:background="@color/gray_line"/>
+
+    <RadioGroup
+        android:id="@+id/tab_menu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="3dp">
+
+        <RadioButton
+            android:id="@+id/footer_rb_everyday"
+            style="@style/TabMenuText"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:button="@null"
+            android:checked="true"
+            android:drawableTop="@drawable/footer_tab_everyday"
+            android:gravity="center_horizontal"
+            android:text="日常"
+            android:textColor="@drawable/footer_tab_txt_color"
+            android:textSize="11sp"/>
+
+
+        <RadioButton
+            android:id="@+id/footer_rb_column"
+            style="@style/TabMenuText"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/footer_tab_column"
+            android:gravity="center_horizontal"
+            android:text="专栏"
+            android:textColor="@drawable/footer_tab_txt_color"
+            android:textSize="11sp"/>
+
+        <RadioButton
+            android:id="@+id/footer_rb_agenda"
+            style="@style/TabMenuText"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/footer_tab_agenda"
+            android:gravity="center_horizontal"
+            android:text="日程"
+            android:textColor="@drawable/footer_tab_txt_color"
+            android:textSize="11sp"/>
+
+        <RadioButton
+            android:id="@+id/footer_rb_mine"
+            style="@style/TabMenuText"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/footer_tab_mine"
+            android:gravity="center_horizontal"
+            android:text="我的"
+            android:textColor="@drawable/footer_tab_txt_color"
+            android:textSize="11sp"/>
+    </RadioGroup>
+
+
+</LinearLayout>

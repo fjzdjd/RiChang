@@ -1,0 +1,96 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="220dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/shakebg"
+    tools:context="ddw.com.richang.Activity.egg.OnShake">
+
+    <TextView android:text="请问需要帮助吗？"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        style="@style/Base.TextAppearance.AppCompat.Headline"
+        android:lines="1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:background="@color/light"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp" />
+
+    <TextView android:text="反馈意见"
+        android:id="@+id/shakefeed"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        android:textColor="@color/rorange"
+        android:lines="1"
+        android:textSize="15sp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:background="@color/light"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp" />
+
+    <TextView android:text="清除缓存"
+        android:id="@+id/shakeclear"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        android:textColor="@color/rorange"
+        android:lines="1"
+        android:textSize="15sp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:background="@color/light"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp" />
+
+    <TextView android:text="关闭摇一摇反馈"
+        android:id="@+id/shakecancel"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        android:textColor="@color/rorange"
+        android:lines="1"
+        android:textSize="15sp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:background="@color/light"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp" />
+
+    <TextView android:text="没啥事"
+        android:id="@+id/shakenothing"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        android:textColor="@color/rorange"
+        android:lines="1"
+        android:textSize="15sp"
+        style="@style/Base.TextAppearance.AppCompat.Large"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

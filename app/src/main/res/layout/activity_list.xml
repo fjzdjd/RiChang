@@ -1,0 +1,85 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ddw.com.richang.Activity.activities.ActivityList">
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/actlistmore"
+        android:gravity="center"
+        android:text="正在加载"
+        android:layout_alignParentBottom="true"
+        android:layout_width="fill_parent"
+        android:layout_height="64dp" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <RelativeLayout
+            android:background="#ffffff"
+            android:layout_width="fill_parent"
+            android:layout_height="56dp">
+            <TextView
+                android:layout_centerInParent="true"
+                android:textSize="20sp"
+                android:id="@+id/activitylisttitle"
+                android:textColor="@color/rorange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:id="@+id/cancelactivitylist"
+                android:layout_marginLeft="12dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/leftgo"
+                android:paddingTop="15sp"
+                android:paddingBottom="15sp"
+                android:paddingRight="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="46sp" />
+        </RelativeLayout>
+        <LinearLayout
+            android:id="@+id/catalog"
+            android:layout_marginTop="7dp"
+            android:background="#fff"
+            android:weightSum="3"
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp">
+            <TextView
+                android:id="@+id/catalog1"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:textColor="@color/rorange"
+                android:text="已发布"
+                android:layout_weight="1"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" />
+            <TextView
+                android:id="@+id/catalog2"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:text="待审核"
+                android:layout_weight="1"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" />
+            <TextView
+                android:id="@+id/catalog3"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:text="未通过"
+                android:layout_weight="1"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" />
+        </LinearLayout>
+        <ListView
+            android:layout_marginBottom="7dp"
+            android:id="@+id/aclistview"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+        </ListView>
+    </LinearLayout>
+</RelativeLayout>

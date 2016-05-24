@@ -1,0 +1,42 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ddw.com.richang.Activity.egg.LogoEgg">
+    <!--top-->
+    <RelativeLayout
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:background="#ffffff"
+        android:layout_centerVertical="true"
+        android:layout_alignParentTop="true"
+        android:layout_width="fill_parent"
+        android:layout_height="56dp">
+        <TextView
+            android:text="团队展示"
+            android:textColor="@color/rorange"
+            android:gravity="center_vertical"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent" />
+        <ImageView
+            android:id="@+id/cancellogoegg"
+            android:layout_centerVertical="true"
+            android:src="@drawable/leftgo"
+            android:paddingTop="15sp"
+            android:paddingBottom="15sp"
+            android:paddingRight="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="46sp" />
+    </RelativeLayout>
+
+    <WebView
+        android:id="@+id/logoeggweb"
+        android:layout_marginTop="56dp"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+    </WebView>
+
+</RelativeLayout>
