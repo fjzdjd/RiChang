@@ -1,9 +1,12 @@
 package ddw.com.richang.ui.everyday;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.LocalBroadcastManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,6 +61,9 @@ public class EverydayFragment extends BaseFragment {
      */
     private List<String> networkImages = new ArrayList<>();
 
+    /**
+     * 当前界面数据
+     */
     private List<RiActivityRecommend> mJsonDatas = new ArrayList<>();
 
     /**
@@ -82,6 +88,11 @@ public class EverydayFragment extends BaseFragment {
     private int start_id = 0;
     private int num = 0;
     private TextView mChoiceCity;
+    /**
+     * 应用广播
+     */
+    private GetLocalBroadcastToRefresh mGetLocalBroadcastToRefresh;
+    private TextView mChoiceTag;
 
     @Nullable
     @Override
@@ -89,6 +100,8 @@ public class EverydayFragment extends BaseFragment {
     Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.everyday_fragment_layout, container, false);
+
+        registerBroadcastToRefresh();//注册广播
 
         initWidgets(view);
 
@@ -109,7 +122,18 @@ public class EverydayFragment extends BaseFragment {
 
         mChoiceCity = (TextView) view.findViewById(R.id.everyday_fragment_txt_choiceCity);
 
+        mChoiceTag = (TextView) view.findViewById(R.id.everyday_fragment_txt_choiceTag);
+
+        //获取当前用户的城市名称
+        if (!StringUtils.isEmpty(SharePreferenceManager.getInstance().getString(ConstantData
+                .USER_CITY_NAME, ""))) {
+            mChoiceCity.setText(SharePreferenceManager.getInstance().getString(ConstantData
+                    .USER_CITY_NAME, ""));
+
+        }
+
         mChoiceCity.setOnClickListener(new EverydayOnClickListener());
+        mChoiceTag.setOnClickListener(new EverydayOnClickListener());
 
         View mHeaderView = LayoutInflater.from(getActivity()).inflate(R.layout
                 .everyday_header_layout, null);
@@ -162,9 +186,8 @@ public class EverydayFragment extends BaseFragment {
 
             @Override
             public void onLoadMore() {
-                getInitDatas();
 
-
+                getActivityRecommendDatas(String.valueOf(user_id), String.valueOf(ct_id), "", "");
             }
         });
 
@@ -192,7 +215,7 @@ public class EverydayFragment extends BaseFragment {
      */
     private void getInitDatas() {
         if (!StringUtils.isEmpty(SharePreferenceManager.getInstance().getString(ConstantData
-                .USER_ID, ""))) {
+                .USER_CITY_ID, ""))) {
             user_id = Integer.parseInt(SharePreferenceManager.getInstance().getString(ConstantData
                     .USER_ID, ""));
             ct_id = Integer.parseInt(SharePreferenceManager.getInstance().getString(ConstantData
@@ -304,6 +327,10 @@ public class EverydayFragment extends BaseFragment {
         super.onDestroy();
         //停止广告栏切换
         mConvenientBanner.stopTurning();
+
+        //注销广播
+        LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver
+                (mGetLocalBroadcastToRefresh);
     }
 
     /**
@@ -321,6 +348,19 @@ public class EverydayFragment extends BaseFragment {
                 .setPageIndicator(new int[]{R.mipmap.dot_white, R.mipmap
                         .dot_orange});
     }
+
+    /**
+     * 注册广播
+     */
+    private void registerBroadcastToRefresh() {
+        mGetLocalBroadcastToRefresh = new GetLocalBroadcastToRefresh();
+        IntentFilter filter = new IntentFilter();
+        filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
+        filter.addAction(ChoseCityActivity.mBroadcastRegistFlag);
+        LocalBroadcastManager.getInstance(getActivity()).registerReceiver
+                (mGetLocalBroadcastToRefresh, filter);
+    }
+
 
     /**
      * 适配器布局
@@ -352,15 +392,43 @@ public class EverydayFragment extends BaseFragment {
     }
 
     /**
+     * 获取广播信息，针对不同消息进行刷新
+     */
+    private class GetLocalBroadcastToRefresh extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            String message = intent.getStringExtra(ChoseCityActivity.mBroadcastRegistFlag);
+            if (message.equals("choseCity")) {
+
+                mJsonDatas.clear();
+                getInitDatas();
+                mChoiceCity.setText(SharePreferenceManager.getInstance().getString(ConstantData
+                        .USER_CITY_NAME, ""));
+
+            }
+
+        }
+    }
+
+    /**
      * 当前页面点击事件
      */
     private class EverydayOnClickListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
+                //选择城市
                 case R.id.everyday_fragment_txt_choiceCity:
 
                     startActivity(new Intent(getActivity(), ChoseCityActivity.class));
+
+                    break;
+                //选择标签
+                case R.id.everyday_fragment_txt_choiceTag:
+
+                    startActivity(new Intent(getActivity(), ChoseTagActivity.class));
 
                     break;
 
@@ -378,7 +446,6 @@ public class EverydayFragment extends BaseFragment {
         private List<RiActivityRecommend> mList;
 
         private HashMap<Integer, View> viewChache = new HashMap<>();
-
 
         public EverydayAdapter(Context context, List<RiActivityRecommend> list) {
 

@@ -22,7 +22,15 @@ public class InterFace {//单例
      * 获取城市列表
      */
     public String getCities;
+
+    /**
+     * 获取所有标签
+     */
     public String getAllTags;
+
+    /**
+     * 用户设置的标签值
+     */
     public String getMyTags;
     public String getFlash;
     public String getHotSearch;

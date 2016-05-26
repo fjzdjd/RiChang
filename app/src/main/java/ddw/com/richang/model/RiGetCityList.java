@@ -4,7 +4,7 @@ package ddw.com.richang.model;
  * 城市数据，少了图片信息需要另外接口获取
  * Created by zzp on 2016/5/25.
  */
-public class GetCityList {
+public class RiGetCityList {
 
 
     /**

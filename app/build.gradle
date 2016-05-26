@@ -1,14 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    signingConfigs {
-        config {
-            keyAlias 'techddw01'
-            keyPassword 'techddw01'
-            storeFile file('E:/RiChangBackUp/richang.jks')
-            storePassword 'techddw01'
-        }
-    }
+//    signingConfigs {
+//        config {
+//            keyAlias 'techddw01'
+//            keyPassword 'techddw01'
+//            storeFile file('E:/RiChangBackUp/richang.jks')
+//            storePassword 'techddw01'
+//        }
+//    }
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
     defaultConfig {

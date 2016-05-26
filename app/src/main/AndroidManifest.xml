@@ -76,6 +76,12 @@
             android:screenOrientation="portrait"/>
 
         <activity
+            android:name=".ui.everyday.ChoseTagActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
+
+        <activity
             android:name=".ui.login.GuideActivity"
             android:configChanges="keyboardHidden|orientation"
             android:launchMode="singleTask"

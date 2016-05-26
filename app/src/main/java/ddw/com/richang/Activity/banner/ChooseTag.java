@@ -44,6 +44,7 @@ public class ChooseTag extends AppCompatActivity {
                 finish();
             }
         });
+
         //submit
         ((TextView)findViewById(R.id.tagsubmit)).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,6 +53,7 @@ public class ChooseTag extends AppCompatActivity {
                 intent.putExtra("change",changed);
                 setResult(RESULT_OK, intent);
                 finish();
+
             }
         });
     }

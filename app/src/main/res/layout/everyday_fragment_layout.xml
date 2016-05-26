@@ -90,6 +90,7 @@
             </FrameLayout>
 
             <TextView
+                android:id="@+id/everyday_fragment_txt_choiceTag"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"

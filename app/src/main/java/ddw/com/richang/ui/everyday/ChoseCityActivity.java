@@ -1,11 +1,14 @@
 package ddw.com.richang.ui.everyday;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -28,8 +31,11 @@ import java.util.List;
 
 import ddw.com.richang.R;
 import ddw.com.richang.base.BaseActivity;
+import ddw.com.richang.commons.ConstantData;
 import ddw.com.richang.controller.InterFace;
-import ddw.com.richang.model.GetCityList;
+import ddw.com.richang.manager.SharePreferenceManager;
+import ddw.com.richang.model.RiGetCityList;
+import ddw.com.richang.util.StringUtils;
 
 /**
  * 选择城市
@@ -37,11 +43,16 @@ import ddw.com.richang.model.GetCityList;
  */
 public class ChoseCityActivity extends BaseActivity {
 
+    /**
+     * 选择城市 发送广播更新主界面数据
+     */
+    public static String mBroadcastRegistFlag = "choseCityActivity";
+
     private GridView mGridView;
     /**
      * 城市名称
      */
-    private List<GetCityList> mJsonCityData = new ArrayList<>();
+    private List<RiGetCityList> mJsonCityData = new ArrayList<>();
     private ChoseAdapter mChoseAdapter;
 
     @Override
@@ -117,8 +128,8 @@ public class ChoseCityActivity extends BaseActivity {
 
                         if (code.equals("200")) {
 
-                            List<GetCityList> getCityLists = JSON.parseArray(jsonArray.toString()
-                                    , GetCityList.class);
+                            List<RiGetCityList> getCityLists = JSON.parseArray(jsonArray.toString()
+                                    , RiGetCityList.class);
 
                             mJsonCityData.addAll(getCityLists);
 
@@ -132,6 +143,8 @@ public class ChoseCityActivity extends BaseActivity {
             }
         });
     }
+
+
 
     /**
      * 初始化界面
@@ -147,7 +160,29 @@ public class ChoseCityActivity extends BaseActivity {
         });
 
         mGridView = (GridView) findViewById(R.id.chose_city_gdv);
+
+        mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                //更改城市
+                SharePreferenceManager.getInstance().setString(ConstantData.USER_CITY_NAME,
+                        mJsonCityData.get(position).getCt_name());
+
+                SharePreferenceManager.getInstance().setString(ConstantData.USER_CITY_ID,
+                        mJsonCityData.get(position).getCt_id());
+
+                //发送应用内广播更新主界面数据
+                Intent intent = new Intent();
+                intent.setAction(mBroadcastRegistFlag);
+                intent.putExtra(mBroadcastRegistFlag, "choseCity");
+                LocalBroadcastManager.getInstance(ChoseCityActivity.this).sendBroadcast(intent);
+
+                finish();
+            }
+        });
     }
+
 
     /**
      * 适配器布局
@@ -164,7 +199,6 @@ public class ChoseCityActivity extends BaseActivity {
             location = (ImageView) view.findViewById(R.id.chose_item_img_location);
             cityName = (TextView) view.findViewById(R.id.chose_item_txt_cityName);
 
-
         }
 
     }
@@ -176,9 +210,9 @@ public class ChoseCityActivity extends BaseActivity {
 
         private HashMap<Integer, View> viewChache = new HashMap<>();
 
-        private List<GetCityList> mList;
+        private List<RiGetCityList> mList;
 
-        public ChoseAdapter(List<GetCityList> mList) {
+        public ChoseAdapter(List<RiGetCityList> mList) {
             this.mList = mList;
         }
 
@@ -187,7 +221,7 @@ public class ChoseCityActivity extends BaseActivity {
          *
          * @param mList 数据值
          */
-        private void setListData(List<GetCityList> mList) {
+        private void setListData(List<RiGetCityList> mList) {
             this.mList = mList;
             this.notifyDataSetChanged();
         }
@@ -224,7 +258,17 @@ public class ChoseCityActivity extends BaseActivity {
                 viewHolder = (ViewHolder) convertView.getTag();
             }
 
-            x.image().bind(viewHolder.cityPic, InterFace.getInstance().picDomain + "/img/city/" +
+            if (!StringUtils.isEmpty(SharePreferenceManager.getInstance()
+                    .getString(ConstantData.USER_CITY_NAME, ""))) {
+                if (mList.get(position).getCt_name().equals(SharePreferenceManager.getInstance()
+                        .getString(ConstantData.USER_CITY_NAME, ""))) {
+                    viewHolder.location.setVisibility(View.VISIBLE);
+                } else {
+                    viewHolder.location.setVisibility(View.INVISIBLE);
+                }
+            }
+            x.image().bind(viewHolder.cityPic, InterFace.getInstance().picDomain +
+                    "/img/city/" +
                     mList.get(position).getCt_id() + ".png");
             viewHolder.cityName.setText(mList.get(position).getCt_name());
 
