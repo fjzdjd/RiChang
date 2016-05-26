@@ -1,6 +1,7 @@
 package ddw.com.richang.ui.everyday;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -76,10 +77,11 @@ public class EverydayFragment extends BaseFragment {
     private TextView mHotActivity, mUniversity, mSelection, mBearby;
 
     private EverydayAdapter mAdapterEveryday;
-    private int user_id ;
+    private int user_id = 0;
     private int ct_id = 4;
     private int start_id = 0;
     private int num = 0;
+    private TextView mChoiceCity;
 
     @Nullable
     @Override
@@ -104,6 +106,10 @@ public class EverydayFragment extends BaseFragment {
         mFvTopFilter.setFilterData(getActivity(), filterData);
 
         mSoothListView = (SmoothListView) view.findViewById(R.id.everyday_fragment_listView);
+
+        mChoiceCity = (TextView) view.findViewById(R.id.everyday_fragment_txt_choiceCity);
+
+        mChoiceCity.setOnClickListener(new EverydayOnClickListener());
 
         View mHeaderView = LayoutInflater.from(getActivity()).inflate(R.layout
                 .everyday_header_layout, null);
@@ -286,7 +292,6 @@ public class EverydayFragment extends BaseFragment {
 
     }
 
-
     @Override
     public void onResume() {
         super.onResume();
@@ -344,6 +349,25 @@ public class EverydayFragment extends BaseFragment {
 
         }
 
+    }
+
+    /**
+     * 当前页面点击事件
+     */
+    private class EverydayOnClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                case R.id.everyday_fragment_txt_choiceCity:
+
+                    startActivity(new Intent(getActivity(), ChoseCityActivity.class));
+
+                    break;
+
+                default:
+                    break;
+            }
+        }
     }
 
     /**

@@ -48,6 +48,7 @@
 
         <!--2.0修改activity-->
 
+        <!--百度地图定位服务-->
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
@@ -62,10 +63,14 @@
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="aUanWcbe6IgDbNmixncUmKL8uhdsrCAA" />
 
-
-
         <activity
             android:name=".HomeActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".ui.everyday.ChoseCityActivity"
             android:configChanges="keyboardHidden|orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>

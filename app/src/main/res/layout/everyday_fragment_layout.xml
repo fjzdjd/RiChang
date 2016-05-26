@@ -67,21 +67,23 @@
                 android:layout_height="30dp"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="7dp">
+                android:layout_marginStart="9dp">
 
                 <View
                     android:id="@+id/view_action_more_bg"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"
+                    android:visibility="invisible"/>
 
                 <TextView
+                    android:id="@+id/everyday_fragment_txt_choiceCity"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
                     android:layout_gravity="center"
                     android:drawableRight="@mipmap/arrow_down"
                     android:gravity="center"
-                    android:text="上海 "
+                    android:text="上海"
                     android:textColor="@color/white"
                     android:textSize="16dp"/>
 

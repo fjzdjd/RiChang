@@ -13,13 +13,24 @@ public class InterFace {//单例
      * 图片
      */
     public String picDomain = "http://img.myrichang.com";
+
+    /**
+     * 用户登录
+     */
     public String getUSRInfo;
+    /**
+     * 获取城市列表
+     */
     public String getCities;
     public String getAllTags;
     public String getMyTags;
     public String getFlash;
     public String getHotSearch;
     public String getSearch;
+
+    /**
+     * 获取推荐列表
+     */
     public String getRecommendActivity;
     public String getActivityContent;
     public String getIndustry;
@@ -47,7 +58,7 @@ public class InterFace {//单例
 
     private InterFace() {
         String domain = "http://app.myrichang.com";
-        this.getUSRInfo = domain + "/home/Person/login/";
+        this.getUSRInfo = domain + "/home/Person/login";
         this.getCities = domain + "/Home/PersonalInfo/getCityList";
         this.getAllTags = domain + "/Home/PersonalInfo/getAllTags";
         this.getMyTags = domain + "/Home/PersonalInfo/getUsrTags";
@@ -62,8 +73,8 @@ public class InterFace {//单例
         this.getUsrActivity = domain + "/Home/Person/getUserActivity";
         this.getUsrPlan = domain + "/Home/Plan/getPlan";
 
-        this.setCity = domain + "/Home/PersonalInfo/SetCity/";
-        this.setTags = domain + "/Home/PersonalInfo/setTags/";
+        this.setCity = domain + "/Home/PersonalInfo/SetCity";
+        this.setTags = domain + "/Home/PersonalInfo/setTags";
         this.setCollection = domain + "/Home/Activity/setActivityCollect";
         this.setAccount = domain + "/Home/Person/modifyAccount";
 
