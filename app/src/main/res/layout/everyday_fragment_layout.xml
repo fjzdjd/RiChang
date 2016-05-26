@@ -12,6 +12,7 @@
         android:divider="@null"
         android:dividerHeight="0dp"
         android:fadingEdge="none"
+        android:background="@color/white"
         android:footerDividersEnabled="false"
         android:headerDividersEnabled="false"
         android:overScrollMode="never"

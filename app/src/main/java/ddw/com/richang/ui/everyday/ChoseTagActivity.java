@@ -4,7 +4,12 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +25,7 @@ import org.xutils.http.RequestParams;
 import org.xutils.x;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import ddw.com.richang.R;
@@ -28,7 +34,9 @@ import ddw.com.richang.commons.ConstantData;
 import ddw.com.richang.controller.InterFace;
 import ddw.com.richang.controller.view.layout.HLView;
 import ddw.com.richang.manager.SharePreferenceManager;
+import ddw.com.richang.model.RiGetCityList;
 import ddw.com.richang.model.RiGetTagList;
+import ddw.com.richang.util.StringUtils;
 
 /**
  * 选择标签
@@ -36,8 +44,12 @@ import ddw.com.richang.model.RiGetTagList;
  */
 public class ChoseTagActivity extends BaseActivity {
 
-    private HLView mMineTags;
-    private HLView mAllTags;
+//    private HLView mMineTags;
+//    private HLView mAllTags;
+
+    private GridView mGridViewMineTags;
+    private GridView mGridViewAllTags;
+
     private TextView mPreserve;
 
     /**
@@ -55,7 +67,8 @@ public class ChoseTagActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
-        setContentView(R.layout.everyday_tag_activity_layout);
+//        setContentView(R.layout.everyday_tag_activity_layout);
+        setContentView(R.layout.everyday_tag_activity_layout_copy);
 
         initWidgets();
 
@@ -67,11 +80,16 @@ public class ChoseTagActivity extends BaseActivity {
      * 初始化界面
      */
     private void initWidgets() {
-        mMineTags = (HLView) findViewById(R.id
-                .chose_tag_cl_mine);
+//        mMineTags = (HLView) findViewById(R.id
+//                .chose_tag_cl_mine);
+//
+//        mAllTags = (HLView) findViewById(R.id
+//                .chose_tag_cl_all);
 
-        mAllTags = (HLView) findViewById(R.id
-                .chose_tag_cl_all);
+        mGridViewAllTags = (GridView) findViewById(R.id
+                .chose_tag_gdw_all);
+        mGridViewMineTags = (GridView) findViewById(R.id
+                .chose_tag_gdw_mine);
 
         mPreserve = (TextView) findViewById(R.id.chose_tag_txt_preserve);
 
@@ -80,14 +98,14 @@ public class ChoseTagActivity extends BaseActivity {
     /**
      * 关闭当前页面
      *
-     * @param v
+     * @param v xml中的点击事件
      */
     public void closeCurrentWin(View v) {
         finish();
     }
 
     /**
-     * 获取所有标签值
+     * 获取所有标签值,在取得我的标签之后执行
      */
     private void initData() {
         RequestParams params = new RequestParams(InterFace.getInstance().getAllTags);
@@ -156,12 +174,18 @@ public class ChoseTagActivity extends BaseActivity {
                                 mAllTagList.remove(i);
                             }
 
-                            dynamicInitWidegts(mAllTags, mAllTagList, new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
+                            ChoseAdapter choseAdapter = new ChoseAdapter(mAllTagList);
+                            mGridViewAllTags.setAdapter(choseAdapter);
+                            choseAdapter.setListData(mAllTagList);
 
-                                }
-                            }, 0);
+
+//                            dynamicInitWidegts(mAllTags, mAllTagList, new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View v) {
+//                                    LinearLayout layout = (LinearLayout) v.getParent();
+//                                    layout.setVisibility(View.GONE);
+//                                }
+//                            }, 0);
 
                         }
 
@@ -232,13 +256,19 @@ public class ChoseTagActivity extends BaseActivity {
 
                                     mMineTagList.addAll(getTagLists);
 
-                                    dynamicInitWidegts(mMineTags, mMineTagList, new View
-                                            .OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
 
-                                        }
-                                    }, 1);
+                                    ChoseAdapter choseAdapter = new ChoseAdapter(mMineTagList);
+                                    mGridViewMineTags.setAdapter(choseAdapter);
+                                    choseAdapter.setListData(mMineTagList);
+
+
+//                                    dynamicInitWidegts(mMineTags, mMineTagList, new View
+//                                            .OnClickListener() {
+//                                        @Override
+//                                        public void onClick(View v) {
+//
+//                                        }
+//                                    }, 1);
 
                                 }
 
@@ -293,6 +323,83 @@ public class ChoseTagActivity extends BaseActivity {
             textView.setOnClickListener(onClickListener);
             llt.addView(textView);
             lyt.addView(llt);
+        }
+    }
+
+    /**
+     * 适配器布局
+     */
+    static class ViewHolder {
+
+        private final TextView tagName;
+
+        ViewHolder(View view) {
+
+
+            tagName = (TextView) view.findViewById(R.id.chose_item_tag_txt);
+
+        }
+
+    }
+
+    /**
+     * 当前item适配器
+     */
+    private class ChoseAdapter extends BaseAdapter {
+
+        private HashMap<Integer, View> viewChache = new HashMap<>();
+
+        private List<RiGetTagList> mList;
+
+        public ChoseAdapter(List<RiGetTagList> mList) {
+            this.mList = mList;
+        }
+
+        /**
+         * 数据更新
+         *
+         * @param mList 数据值
+         */
+        private void setListData(List<RiGetTagList> mList) {
+            this.mList = mList;
+            this.notifyDataSetChanged();
+        }
+
+        @Override
+        public int getCount() {
+            return mList.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return mList.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+
+            ViewHolder viewHolder;
+
+            if (viewChache.get(position) == null) {
+                convertView = LayoutInflater.from(ChoseTagActivity.this).inflate(R.layout
+                        .item_chose_tag_layout, null);
+
+                viewHolder = new ViewHolder(convertView);
+                convertView.setTag(viewHolder);
+                viewChache.put(position, convertView);
+            } else {
+                convertView = viewChache.get(position);
+                viewHolder = (ViewHolder) convertView.getTag();
+            }
+
+            viewHolder.tagName.setText(mList.get(position).getTag_name());
+
+            return convertView;
         }
     }
 
