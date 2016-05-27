@@ -39,7 +39,7 @@ public class WaitingAlertDialog {
         window.setLayout(w_screen, h_screen);
 
         //设置对话框背景色为透明
-        window.setBackgroundDrawableResource(R.color.white);
+        window.setBackgroundDrawableResource(R.color.transparent);
         messageTextView = (TextView) window.findViewById(R.id.loading_text);
     }
 

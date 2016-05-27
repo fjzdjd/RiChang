@@ -178,7 +178,7 @@ public class MainActivity extends BaseActivity {
                     @Override
                     public void run() {
                         //更新
-                        Config.getUSR().setTags();//
+                        Config.getUSR().setTags();
                         //listener:
                         runOnUiThread(new Runnable() {
                             @Override

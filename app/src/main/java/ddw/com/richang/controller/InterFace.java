@@ -9,6 +9,7 @@ public class InterFace {//单例
      * 实现单例
      */
     public static InterFace INTERFACE = new InterFace();
+
     /**
      * 图片
      */
@@ -18,6 +19,7 @@ public class InterFace {//单例
      * 用户登录
      */
     public String getUSRInfo;
+
     /**
      * 获取城市列表
      */
@@ -40,6 +42,12 @@ public class InterFace {//单例
      * 获取推荐列表
      */
     public String getRecommendActivity;
+
+    /**
+     * 设置标签
+     */
+    public String setTags;
+
     public String getActivityContent;
     public String getIndustry;
     public String getIndActivity;
@@ -47,7 +55,8 @@ public class InterFace {//单例
     public String getUsrActivity;
     public String getUsrPlan;
     public String setCity;
-    public String setTags;
+
+
     public String setCollection;
     public String setAccount;
     public String joinPlan;
