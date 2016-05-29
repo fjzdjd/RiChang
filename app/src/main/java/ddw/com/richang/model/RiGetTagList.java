@@ -15,7 +15,7 @@ public class RiGetTagList {
 
     private String tag_id;
     private String tag_name;
-    private String sort_id;
+
 
     public String getTag_id() {
         return tag_id;
@@ -33,11 +33,13 @@ public class RiGetTagList {
         this.tag_name = tag_name;
     }
 
-    public String getSort_id() {
-        return sort_id;
-    }
-
-    public void setSort_id(String sort_id) {
-        this.sort_id = sort_id;
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof RiGetTagList) {
+            RiGetTagList st = (RiGetTagList) obj;
+            return (tag_name.equals(st.tag_name));
+        } else {
+            return super.equals(obj);
+        }
     }
 }

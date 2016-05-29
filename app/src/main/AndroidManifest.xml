@@ -70,6 +70,12 @@
             android:screenOrientation="portrait"/>
 
         <activity
+            android:name=".ui.everyday.ContentDetailActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
+
+        <activity
             android:name=".ui.everyday.ChoseCityActivity"
             android:configChanges="keyboardHidden|orientation"
             android:launchMode="singleTask"

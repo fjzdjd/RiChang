@@ -48,6 +48,9 @@ public class InterFace {//单例
      */
     public String setTags;
 
+    /**
+     * 获取活动详情
+     */
     public String getActivityContent;
     public String getIndustry;
     public String getIndActivity;

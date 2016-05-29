@@ -10,6 +10,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -172,6 +173,7 @@ public class EverydayFragment extends BaseFragment {
         //上下拉刷新
         mSoothListView.setRefreshEnable(true);
         mSoothListView.setLoadMoreEnable(true);
+
         mSoothListView.setSmoothListViewListener(new SmoothListView.ISmoothListViewListener() {
             @Override
             public void onRefresh() {
@@ -192,6 +194,17 @@ public class EverydayFragment extends BaseFragment {
         });
 
 
+        mSoothListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent=new Intent(getActivity(),ContentDetailActivity.class);
+                intent.putExtra("ac_id",mJsonDatas.get(position).getAc_id());
+                startActivity(intent);
+            }
+        });
+
+
+
     }
 
     /**
@@ -201,10 +214,10 @@ public class EverydayFragment extends BaseFragment {
         mScreenHeight = DensityUtil.getWindowHeight(getActivity());
 
         //分类数据
-        filterData = new FilterData();
-        filterData.setCategory(ModelUtil.getCategoryData());
-        filterData.setSorts(ModelUtil.getSortData());
-        filterData.setFilters(ModelUtil.getFilterData());
+//        filterData = new FilterData();
+//        filterData.setCategory(ModelUtil.getCategoryData());
+//        filterData.setSorts(ModelUtil.getSortData());
+//        filterData.setFilters(ModelUtil.getFilterData());
 
         getInitDatas();
 

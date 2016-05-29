@@ -3,15 +3,12 @@ package ddw.com.richang.ui.everyday;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,7 +18,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.xutils.common.Callback;
-import org.xutils.ex.HttpException;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
@@ -33,12 +29,9 @@ import ddw.com.richang.R;
 import ddw.com.richang.base.BaseActivity;
 import ddw.com.richang.commons.ConstantData;
 import ddw.com.richang.controller.InterFace;
-import ddw.com.richang.controller.view.layout.HLView;
 import ddw.com.richang.manager.SharePreferenceManager;
-import ddw.com.richang.model.RiGetCityList;
 import ddw.com.richang.model.RiGetTagList;
 import ddw.com.richang.util.LogN;
-import ddw.com.richang.util.StringUtils;
 
 /**
  * 选择标签
@@ -80,9 +73,18 @@ public class ChoseTagActivity extends BaseActivity {
         initWidgets();
         mUserID = SharePreferenceManager.getInstance().getString(ConstantData.USER_ID, "");
 
+        mAllChoseAdapter = new ChoseAdapter(mAllTagList, 1);
+        mGridViewAllTags.setAdapter(mAllChoseAdapter);
+
+        mMineChoseAdapter = new ChoseAdapter(mMineTagList, 0);
+        mGridViewMineTags.setAdapter(mMineChoseAdapter);
+
         //获取我的标签
         getMineTags(mUserID);
+
+
     }
+
 
     /**
      * 获取需要提交的标签 并转化为数组
@@ -91,6 +93,7 @@ public class ChoseTagActivity extends BaseActivity {
      * @return String[]
      */
     private String getMineTags(List<RiGetTagList> list) {
+
         String postTagId = "[";
         for (int i = 0; i < list.size(); i++) {
             if (i > 0)
@@ -104,6 +107,7 @@ public class ChoseTagActivity extends BaseActivity {
     /**
      * 初始化界面
      */
+
     private void initWidgets() {
 
         mGridViewAllTags = (GridView) findViewById(R.id
@@ -202,25 +206,33 @@ public class ChoseTagActivity extends BaseActivity {
 
                         JSONArray jsonArray = jsonObject.optJSONArray("data");
 
-                        if (code.equals("200")) {
+                        if (code.equals(ConstantData.CODE)) {
 
                             List<RiGetTagList> getTagLists = JSON.parseArray(jsonArray.toString()
                                     , RiGetTagList.class);
 
-                            mAllTagList.addAll(getTagLists);
 
-                            //移除我的标签
-                            for (int i = 0; i < mMineTagList.size(); i++) {
-                                mAllTagList.remove(i);
+                            if (getTagLists.size() == mMineTagList.size()) {
+                                mAllTagList.clear();
+                            } else {
+                                //移除我的标签
+                                for (RiGetTagList s2 : getTagLists) {
+                                    boolean flag = false;
+                                    for (RiGetTagList s1 : mMineTagList) {
+                                        if (s2.equals(s1)) {
+                                            flag = true;
+                                            break;
+                                        }
+                                    }
+                                    if (!flag) {
+                                        mAllTagList.add(s2);
+
+                                    }
+                                }
+
                             }
-
-                            mAllChoseAdapter = new ChoseAdapter(mAllTagList, 1);
-                            mGridViewAllTags.setAdapter(mAllChoseAdapter);
                             mAllChoseAdapter.setListData(mAllTagList);
 
-                        } else {
-                            mAllChoseAdapter = new ChoseAdapter(mAllTagList, 1);
-                            mGridViewAllTags.setAdapter(mAllChoseAdapter);
                         }
 
                     } catch (JSONException e) {
@@ -238,10 +250,11 @@ public class ChoseTagActivity extends BaseActivity {
      * @param postTags tags[]
      */
     private void setTags(String usr_id, String postTags) {
-        showWaitDialog(R.color.transparent);
+        showWaitDialog(R.color.white);
         RequestParams params = new RequestParams(InterFace.getInstance().setTags);
         params.addBodyParameter("usr_id", usr_id);
         params.addBodyParameter("tags[]", postTags);
+        LogN.d(this, params.toString());
         Callback.Cancelable cancelable = x.http().post(params,
                 new Callback.CacheCallback<String>() {
                     private boolean hasError = false;
@@ -280,8 +293,14 @@ public class ChoseTagActivity extends BaseActivity {
                             try {
                                 JSONObject jsonObject = new JSONObject(result);
                                 String code = jsonObject.optString("code");
-                                if (code.equals("200")) {
+                                String msg = jsonObject.optString("msg");
+                                if (code.equals(ConstantData.CODE)) {
 
+                                    finish();
+
+                                } else {
+
+                                    Toast.makeText(ChoseTagActivity.this, msg, Toast.LENGTH_SHORT).show();
 
                                 }
 
@@ -348,23 +367,16 @@ public class ChoseTagActivity extends BaseActivity {
 
                                 JSONArray jsonArray = jsonObject.optJSONArray("data");
 
+
                                 if (code.equals("200")) {
 
                                     List<RiGetTagList> getTagLists = JSON.parseArray(jsonArray
                                                     .toString()
                                             , RiGetTagList.class);
 
+
                                     mMineTagList.addAll(getTagLists);
-
-
-                                    mMineChoseAdapter = new ChoseAdapter(mMineTagList, 0);
-                                    mGridViewMineTags.setAdapter(mMineChoseAdapter);
                                     mMineChoseAdapter.setListData(mMineTagList);
-
-
-                                } else {
-                                    mMineChoseAdapter = new ChoseAdapter(mMineTagList, 0);
-                                    mGridViewMineTags.setAdapter(mMineChoseAdapter);
                                 }
 
                                 initData();

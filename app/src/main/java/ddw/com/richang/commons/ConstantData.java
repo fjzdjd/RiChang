@@ -7,6 +7,11 @@ package ddw.com.richang.commons;
 public class ConstantData {
 
     /**
+     * 返回码200代表成功
+     */
+    public static final String CODE = "200";
+
+    /**
      * 用户ID
      */
     public static final String USER_ID = "user_id";

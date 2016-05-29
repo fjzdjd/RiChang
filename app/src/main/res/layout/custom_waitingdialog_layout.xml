@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="116dp"
-              android:layout_height="116dp"
-              android:layout_gravity="center"
-              android:background="@drawable/corners_bg_htranspare"
-              android:gravity="center"
-              android:orientation="vertical">
+    android:layout_width="96dp"
+    android:layout_height="96dp"
+    android:layout_gravity="center"
+    android:background="@drawable/corners_bg_htranspare"
+    android:gravity="center"
+    android:orientation="vertical">
 
     <android.support.v4.widget.ContentLoadingProgressBar
         style="?android:progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:indeterminate="true"
-        android:indeterminateDrawable="@drawable/rotate_progress_color"/>
+        android:indeterminateDrawable="@drawable/rotate_progress_color" />
 
 
     <TextView
@@ -24,7 +24,8 @@
         android:singleLine="true"
         android:text="正在加载..."
         android:textColor="@color/mainColor"
-        android:textSize="15sp"/>
+        android:textSize="15sp"
+        android:visibility="gone" />
 
 
 </LinearLayout>
