@@ -1,24 +1,22 @@
 package ddw.com.richang.controller.view.layout.scrollview;
 
-import android.app.Activity;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ScrollView;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 /**
  * Created by dingdewen on 16/1/18.
  */
-public class ObScrollView extends ScrollView{
+public class ObScrollView extends ScrollView {
 
     private ScrollViewListener scrollViewListener = null;
+    private boolean scrollable = true;
+
     public ObScrollView(Context context) {
         super(context);
     }
 
-    public ObScrollView(Context context, AttributeSet attrs,int defStyle) {
+    public ObScrollView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 
@@ -38,23 +36,23 @@ public class ObScrollView extends ScrollView{
         }
     }
 
-
-    private boolean scrollable=true;
     @Override
     public void scrollTo(int x, int y) {
-        scrollTo(x, y,scrollable);
-    }
-    public void scrollTo(int x, int y,boolean able) {
-        if(able) super.scrollTo(x, y);
+        scrollTo(x, y, scrollable);
     }
 
-    public void scrollTo(final int x, final int y,int mill) {
-        scrollable=false;
-        final int time=mill/25+1;
-        final int startX=getScrollX();
-        final int startY=getScrollY();
-        final double stepX= (x-startX)*1.0/time;
-        final double stepY= (y-startY)*1.0/time;
+    public void scrollTo(int x, int y, boolean able) {
+        if (able)
+            super.scrollTo(x, y);
+    }
+
+    public void scrollTo(final int x, final int y, int mill) {
+        scrollable = false;
+        final int time = mill / 25 + 1;
+        final int startX = getScrollX();
+        final int startY = getScrollY();
+        final double stepX = (x - startX) * 1.0 / time;
+        final double stepY = (y - startY) * 1.0 / time;
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -62,21 +60,21 @@ public class ObScrollView extends ScrollView{
                     int k = -1;
                     while (++k < time) {
                         scrollTo(
-                                (int)(startX+stepX*k),
-                                (int)(startY+stepY*k),
+                                (int) (startX + stepX * k),
+                                (int) (startY + stepY * k),
                                 true
                         );
                         Thread.sleep(25);
                     }
-                }catch (Exception e){
-                }finally {
+                } catch (Exception e) {
+                } finally {
 //                    activity.runOnUiThread(new Runnable() {
 //                        @Override
 //                        public void run() {
-                            scrollTo(x, y,true);
+                    scrollTo(x, y, true);
 //                        }
 //                    });
-                    scrollable=true;
+                    scrollable = true;
                 }
             }
         }).start();

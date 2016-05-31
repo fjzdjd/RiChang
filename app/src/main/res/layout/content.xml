@@ -1,8 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="ddw.com.richang.Activity.activities.Content">
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="ddw.com.richang.Activity.activities.Content">
 
     <!--main-->
     <RelativeLayout
@@ -17,13 +17,13 @@
                 android:id="@+id/activity_guass"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:scaleType="fitXY" />
+                android:scaleType="fitXY"/>
 
             <ImageView
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:background="#20000000"
-                android:scaleType="fitXY" />
+                android:scaleType="fitXY"/>
 
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -43,7 +43,7 @@
                         android:paddingBottom="15dp"
                         android:paddingRight="18dp"
                         android:paddingTop="12dp"
-                        android:src="@drawable/back_icon" />
+                        android:src="@drawable/back_icon"/>
 
                     <TextView
                         android:id="@+id/contenttoptitle"
@@ -56,7 +56,7 @@
                         android:paddingBottom="3dp"
                         android:text="活动介绍"
                         android:textColor="#ffffff"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"/>
 
                     <ImageView
                         android:id="@+id/sharebtn"
@@ -68,7 +68,7 @@
                         android:paddingLeft="17dp"
                         android:paddingRight="17dp"
                         android:paddingTop="15dp"
-                        android:src="@drawable/share_icon" />
+                        android:src="@drawable/share_icon"/>
                 </RelativeLayout>
 
             </LinearLayout>
@@ -98,7 +98,7 @@
                         android:layout_width="120dp"
                         android:layout_height="120dp"
                         android:layout_marginRight="15dp"
-                        android:scaleType="fitXY" />
+                        android:scaleType="fitXY"/>
 
                     <RelativeLayout
                         android:layout_width="fill_parent"
@@ -111,7 +111,7 @@
                             android:layout_alignParentTop="true"
                             android:maxLines="3"
                             android:textColor="#ffffff"
-                            android:textSize="18sp" />
+                            android:textSize="18sp"/>
 
                         <LinearLayout
                             android:layout_width="fill_parent"
@@ -122,7 +122,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="16sp"
-                                android:src="@drawable/label_icon2" />
+                                android:src="@drawable/label_icon2"/>
 
                             <TextView
                                 android:id="@+id/activity_tag"
@@ -130,7 +130,7 @@
                                 android:layout_height="16sp"
                                 android:gravity="bottom"
                                 android:textColor="#ffffff"
-                                android:textSize="14sp" />
+                                android:textSize="14sp"/>
                         </LinearLayout>
                     </RelativeLayout>
                 </LinearLayout>
@@ -138,7 +138,7 @@
                 <ImageView
                     android:layout_width="fill_parent"
                     android:layout_height="7dp"
-                    android:background="@color/lightbk" />
+                    android:background="@color/lightbk"/>
 
                 <RelativeLayout
                     android:layout_width="fill_parent"
@@ -156,13 +156,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="时间："
-                            android:textSize="16sp" />
+                            android:textSize="16sp"/>
 
                         <TextView
                             android:id="@+id/activity_time"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="16sp" />
+                            android:textSize="16sp"/>
                     </LinearLayout>
 
                     <TextView
@@ -178,7 +178,7 @@
                         android:gravity="center"
                         android:text="提醒我"
                         android:textColor="#ffffff"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"/>
                 </RelativeLayout>
                 <!--详情-->
                 <TextView
@@ -188,7 +188,7 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="12dp"
                     android:text="活动详情"
-                    android:textColor="#8c8c8c" />
+                    android:textColor="#8c8c8c"/>
 
                 <LinearLayout
                     android:layout_width="fill_parent"
@@ -210,12 +210,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="地点："
-                            android:textSize="15dp" />
+                            android:textSize="15dp"/>
 
                         <TextView
                             android:id="@+id/activity_place"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -229,12 +229,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="规模："
-                            android:textSize="15dp" />
+                            android:textSize="15dp"/>
 
                         <TextView
                             android:id="@+id/activity_size"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -248,12 +248,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="费用："
-                            android:textSize="15dp" />
+                            android:textSize="15dp"/>
 
                         <TextView
                             android:id="@+id/activity_fee"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -264,7 +264,7 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="12dp"
                     android:text="发布者"
-                    android:textColor="#8c8c8c" />
+                    android:textColor="#8c8c8c"/>
 
                 <LinearLayout
                     android:layout_width="fill_parent"
@@ -279,14 +279,14 @@
                         android:layout_width="45dp"
                         android:layout_height="45dp"
                         android:layout_marginLeft="6dp"
-                        android:layout_marginRight="15dp" />
+                        android:layout_marginRight="15dp"/>
 
                     <TextView
                         android:id="@+id/publishername"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:maxLines="1"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"/>
                 </LinearLayout>
 
                 <!--活动介绍-->
@@ -297,12 +297,12 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="12dp"
                     android:text="主讲人"
-                    android:textColor="#8c8c8c" />
+                    android:textColor="#8c8c8c"/>
 
                 <ImageView
                     android:layout_width="fill_parent"
                     android:layout_height="1dp"
-                    android:background="@color/light" />
+                    android:background="@color/light"/>
 
                 <TextView
                     android:id="@+id/activity_introduce"
@@ -314,7 +314,7 @@
                     android:paddingLeft="12dp"
                     android:paddingRight="12dp"
                     android:paddingTop="8dp"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"/>
                 <!--<TextView-->
                 <!--android:id="@+id/actmore"-->
                 <!--android:paddingTop="4dp"-->
@@ -345,7 +345,7 @@
                         android:gravity="center_vertical"
                         android:paddingLeft="12dp"
                         android:text="更多内容"
-                        android:textColor="#8c8c8c" />
+                        android:textColor="#8c8c8c"/>
 
                     <WebView
                         android:id="@+id/morecontent"
@@ -378,7 +378,7 @@
                 android:layout_height="20sp"
                 android:layout_marginRight="10dp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/collection_icon" />
+                android:src="@drawable/collection_icon"/>
 
             <TextView
                 android:id="@+id/tvcollect"
@@ -386,7 +386,7 @@
                 android:layout_height="wrap_content"
                 android:text="收藏"
                 android:textColor="#000000"
-                android:textSize="18sp" />
+                android:textSize="18sp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -401,7 +401,7 @@
                 android:layout_height="wrap_content"
                 android:text="加入行程"
                 android:textColor="#ffffff"
-                android:textSize="18sp" />
+                android:textSize="18sp"/>
         </LinearLayout>
     </LinearLayout>
 

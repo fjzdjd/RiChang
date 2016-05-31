@@ -1,7 +1,440 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" xmlns:tools="http://schemas.android.com/tools"
+                android:orientation="vertical">
 
-</LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="48dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+            <ImageView
+                android:id="@+id/detail_img_glass"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/background"
+                android:scaleType="fitXY"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/black">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="46dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="12dp"
+                        android:paddingBottom="15dp"
+                        android:paddingEnd="18dp"
+                        android:paddingStart="1dp"
+                        android:paddingTop="12dp"
+                        android:src="@drawable/back_icon"/>
+
+                    <TextView
+                        android:id="@+id/detail_txt_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:lines="1"
+                        android:paddingBottom="3dp"
+                        android:text="活动介绍"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:orientation="horizontal"
+                        android:paddingEnd="8dp">
+
+                        <ImageView
+                            android:id="@+id/detail_img_collect"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:padding="5dp"
+                            android:src="@mipmap/collect_icon"/>
+
+                        <ImageView
+                            android:id="@+id/detail_img_share"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:padding="5dp"
+                            android:src="@mipmap/share_icon"/>
+
+                    </LinearLayout>
+                </RelativeLayout>
+
+            </LinearLayout>
+        </RelativeLayout>
+
+        <ddw.com.richang.controller.view.layout.scrollview.ObScrollView
+            android:id="@+id/detail_slv_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="50dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/font_black_1"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/detail_img_content_poster"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/imggrey"/>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:layout_marginStart="16dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/detail_txt_content_title"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="2dp"
+                                android:layout_marginTop="5dp"
+                                android:maxLines="3"
+                                android:text="最新互联网走势分析的图很好哈哈"
+                                android:textColor="@color/white"
+                                android:textSize="18sp"/>
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:maxLines="1"
+                                android:text="# 媒体 文学"
+                                android:textColor="@color/white"
+                                android:textSize="16sp"/>
+
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:id="@+id/activity_tag"
+                            android:layout_width="fill_parent"
+                            android:layout_height="16sp"
+                            android:layout_alignParentBottom="true"
+                            android:drawableLeft="@mipmap/eye_white"
+                            android:gravity="bottom"
+                            android:text="  2000"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"/>
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <!--时间-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="16dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="时间:"
+                            android:textColor="@color/black"
+                            android:textSize="16dp"/>
+
+                        <TextView
+                            android:id="@+id/detail_txt_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="5dp"
+                            android:text="2015.12.12 14:00"
+                            android:textColor="@color/black"
+                            android:textSize="16dp"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/detail_txt_reminder"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="12dp"
+                        android:width="65dp"
+                        android:height="30dp"
+                        android:background="@drawable/tagme"
+                        android:gravity="center"
+                        android:text="提醒我"
+                        android:textColor="@color/white"
+                        android:textSize="16dp"/>
+                </RelativeLayout>
+
+                <!--活动详情-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:background="@color/background"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="16dp"
+                        android:text="活动详情"
+                        android:textColor="@color/mainGrayTxtColor"/>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingBottom="10dp"
+                        android:paddingEnd="1dp"
+                        android:paddingStart="16dp"
+                        android:paddingTop="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="地点:"
+                            android:textColor="@color/black"
+                            android:textSize="16dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="10dp"
+                            android:paddingTop="10dp"
+                            android:text="规模:"
+                            android:textColor="@color/black"
+                            android:textSize="16dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="费用:"
+                            android:textColor="@color/black"
+                            android:textSize="16dp"/>
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!--发布者-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:background="@color/background"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="16dp"
+                        android:text="发布者"
+                        android:textColor="@color/mainGrayTxtColor"/>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingBottom="5dp"
+                        android:paddingEnd="1dp"
+                        android:paddingLeft="16dp"
+                        android:paddingRight="1dp"
+                        android:paddingStart="16dp"
+                        android:paddingTop="5dp">
+
+                        <ddw.com.richang.components.ui.CustomUi.CustomCircleImageView
+                            android:id="@+id/detail_img_publisher_pic"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@mipmap/icon"/>
+
+                        <TextView
+                            android:id="@+id/detail_txt_publisher_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="10dp"
+                            android:gravity="center_vertical"
+                            android:maxLines="1"
+                            android:text="国际体验设计协"
+                            android:textColor="@color/black"
+                            android:textSize="16dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <!--活动详情-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:background="@color/background"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="16dp"
+                        android:text="活动详情"
+                        android:textColor="@color/mainGrayTxtColor"/>
+
+
+                    <TextView
+                        android:id="@+id/detail_txt_activity_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="5dp"
+                        android:maxLines="3"
+                        android:paddingBottom="5dp"
+                        android:paddingEnd="16dp"
+                        android:paddingStart="16dp"
+                        android:paddingTop="5dp"
+                        android:text="邓元鋆，诺基亚成长基公司、YY独立董事，曾任AMD全球高级副总裁兼大中华区总裁，曾任诺基亚全球副总裁兼大中华地区副董事长及销售副总裁，诺基亚在华的合资企业诺基亚通信有限公司董事长。"
+                        android:textColor="@color/black"/>
+
+
+                    <!--更多内容-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:gravity="center_vertical|end"
+                            android:paddingEnd="10dp"
+                            android:text="查看更多"
+                            android:textColor="@color/black"
+                            android:textSize="16dp"
+                            android:textStyle="italic"/>
+
+                        <WebView
+                            android:id="@+id/detail_web_more_information"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <!--用户评论-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:background="@color/background"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="16dp"
+                        android:text="用户评价"
+                        android:textColor="@color/mainGrayTxtColor"/>
+
+                    <ListView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:divider="@color/background"
+                        android:dividerHeight="1dp"
+                        android:paddingEnd="16dp"
+                        tools:listitem="@layout/item_detail_evaluate_layout"
+                        android:paddingStart="16dp"/>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </ddw.com.richang.controller.view.layout.scrollview.ObScrollView>
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/detail_txt_add_agenda"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:gravity="center"
+            android:text="加入行程"
+            android:textColor="@color/mainGrayTxtColor"
+            android:textSize="18dp"/>
+
+
+        <TextView
+            android:id="@+id/detail_txt_enroll"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/mainColor"
+            android:gravity="center"
+            android:text="我要报名"
+            android:textColor="@color/white"
+            android:textSize="18dp"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
