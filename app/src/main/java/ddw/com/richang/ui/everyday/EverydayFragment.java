@@ -34,17 +34,14 @@ import java.util.List;
 import ddw.com.richang.R;
 import ddw.com.richang.base.BaseFragment;
 import ddw.com.richang.commons.ConstantData;
-import ddw.com.richang.components.ui.CustomUi.FilterView;
 import ddw.com.richang.components.ui.SmoothListView.SmoothListView;
 import ddw.com.richang.controller.InterFace;
 import ddw.com.richang.manager.SharePreferenceManager;
 import ddw.com.richang.model.RiActivityRecommend;
-import ddw.com.richang.model.filter.FilterData;
 import ddw.com.richang.ui.login.NetworkImageHolderView;
 import ddw.com.richang.util.CommonUtils;
 import ddw.com.richang.util.DensityUtil;
 import ddw.com.richang.util.LogN;
-import ddw.com.richang.util.ModelUtil;
 import ddw.com.richang.util.StringUtils;
 
 /**
@@ -54,7 +51,7 @@ import ddw.com.richang.util.StringUtils;
 public class EverydayFragment extends BaseFragment {
 
     private int mScreenHeight;
-    private FilterData filterData;
+//    private FilterData filterData;
     private SmoothListView mSoothListView;
 
     /**
@@ -115,9 +112,10 @@ public class EverydayFragment extends BaseFragment {
      * 初始化界面
      */
     private void initWidgets(View view) {
-        FilterView mFvTopFilter = (FilterView) view.findViewById(R.id.everyday_fragment_fv_filter);
+//        FilterView mFvTopFilter = (FilterView) view.findViewById(R.id
+// .everyday_fragment_fv_filter);
 
-        mFvTopFilter.setFilterData(getActivity(), filterData);
+//        mFvTopFilter.setFilterData(getActivity(), filterData);
 
         mSoothListView = (SmoothListView) view.findViewById(R.id.everyday_fragment_listView);
 
@@ -197,12 +195,11 @@ public class EverydayFragment extends BaseFragment {
         mSoothListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent=new Intent(getActivity(),ContentDetailActivity.class);
-                intent.putExtra("ac_id",mJsonDatas.get(position).getAc_id());
+                Intent intent = new Intent(getActivity(), ContentDetailActivity.class);
+                intent.putExtra("ac_id", mJsonDatas.get(position - 2).getAc_id());
                 startActivity(intent);
             }
         });
-
 
 
     }
@@ -461,7 +458,6 @@ public class EverydayFragment extends BaseFragment {
         private HashMap<Integer, View> viewChache = new HashMap<>();
 
         public EverydayAdapter(Context context, List<RiActivityRecommend> list) {
-
             this.mList = list;
         }
 
@@ -486,7 +482,7 @@ public class EverydayFragment extends BaseFragment {
          * @param list
          */
         public void setListData(List<RiActivityRecommend> list) {
-
+            this.mList = list;
             notifyDataSetChanged();
 
 

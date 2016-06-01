@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" xmlns:tools="http://schemas.android.com/tools"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent" android:layout_height="match_parent"
                 android:orientation="vertical">
 
 
@@ -23,7 +23,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/background"
+                android:background="#20000000"
                 android:scaleType="fitXY"/>
 
             <LinearLayout
@@ -33,14 +33,14 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="@color/black">
+                    android:layout_height="50dp">
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="46dp"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="12dp"
+                        android:onClick="closeCurrentWin"
                         android:paddingBottom="15dp"
                         android:paddingEnd="18dp"
                         android:paddingStart="1dp"
@@ -88,7 +88,6 @@
 
                     </LinearLayout>
                 </RelativeLayout>
-
             </LinearLayout>
         </RelativeLayout>
 
@@ -107,7 +106,6 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/font_black_1"
                     android:orientation="horizontal"
                     android:padding="16dp">
 
@@ -138,29 +136,31 @@
                                 android:maxLines="3"
                                 android:text="最新互联网走势分析的图很好哈哈"
                                 android:textColor="@color/white"
-                                android:textSize="18sp"/>
+                                android:textSize="16dp"/>
 
                             <TextView
+                                android:id="@+id/detail_txt_tags"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:maxLines="1"
                                 android:text="# 媒体 文学"
                                 android:textColor="@color/white"
-                                android:textSize="16sp"/>
+                                android:textSize="15dp"/>
 
                         </LinearLayout>
 
 
                         <TextView
-                            android:id="@+id/activity_tag"
+                            android:id="@+id/detail_txt_people_watch"
                             android:layout_width="fill_parent"
                             android:layout_height="16sp"
                             android:layout_alignParentBottom="true"
+                            android:layout_centerVertical="true"
                             android:drawableLeft="@mipmap/eye_white"
                             android:gravity="bottom"
                             android:text="  2000"
                             android:textColor="@color/white"
-                            android:textSize="16sp"/>
+                            android:textSize="13dp"/>
 
                     </RelativeLayout>
                 </LinearLayout>
@@ -212,59 +212,6 @@
                         android:textSize="16dp"/>
                 </RelativeLayout>
 
-                <!--活动详情-->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:background="@color/background"
-                        android:gravity="center_vertical"
-                        android:paddingLeft="16dp"
-                        android:text="活动详情"
-                        android:textColor="@color/mainGrayTxtColor"/>
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:paddingBottom="10dp"
-                        android:paddingEnd="1dp"
-                        android:paddingStart="16dp"
-                        android:paddingTop="10dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="地点:"
-                            android:textColor="@color/black"
-                            android:textSize="16dp"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingBottom="10dp"
-                            android:paddingTop="10dp"
-                            android:text="规模:"
-                            android:textColor="@color/black"
-                            android:textSize="16dp"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="费用:"
-                            android:textColor="@color/black"
-                            android:textSize="16dp"/>
-
-
-                    </LinearLayout>
-                </LinearLayout>
-
                 <!--发布者-->
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -312,7 +259,6 @@
                     </LinearLayout>
                 </LinearLayout>
 
-
                 <!--活动详情-->
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -330,40 +276,75 @@
                         android:textColor="@color/mainGrayTxtColor"/>
 
 
-                    <TextView
-                        android:id="@+id/detail_txt_activity_content"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:lineSpacingExtra="5dp"
-                        android:maxLines="3"
-                        android:paddingBottom="5dp"
-                        android:paddingEnd="16dp"
+                        android:orientation="vertical"
+                        android:paddingBottom="10dp"
+                        android:paddingEnd="1dp"
                         android:paddingStart="16dp"
-                        android:paddingTop="5dp"
-                        android:text="邓元鋆，诺基亚成长基公司、YY独立董事，曾任AMD全球高级副总裁兼大中华区总裁，曾任诺基亚全球副总裁兼大中华地区副董事长及销售副总裁，诺基亚在华的合资企业诺基亚通信有限公司董事长。"
-                        android:textColor="@color/black"/>
+                        android:paddingTop="10dp">
 
+                        <TextView
+                            android:id="@+id/detail_txt_location"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="地点:"
+                            android:textColor="@color/black"
+                            android:textSize="16dp"/>
+
+                        <TextView
+                            android:id="@+id/detail_txt_size"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="10dp"
+                            android:paddingTop="10dp"
+                            android:text="规模:"
+                            android:textColor="@color/black"
+                            android:textSize="16dp"/>
+
+                        <TextView
+                            android:id="@+id/detail_txt_fare"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="费用:"
+                            android:textColor="@color/black"
+                            android:textSize="16dp"/>
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <!--活动详情-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="vertical">
 
                     <!--更多内容-->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@color/white"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:paddingEnd="15dp"
+                        android:paddingStart="15dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="end"
-                            android:gravity="center_vertical|end"
-                            android:paddingEnd="10dp"
+                            android:layout_gravity="center"
+                            android:drawableLeft="@mipmap/look_more"
+                            android:gravity="center_vertical|center"
                             android:text="查看更多"
-                            android:textColor="@color/black"
-                            android:textSize="16dp"
+                            android:textColor="@color/mainColor"
+                            android:textSize="14dp"
                             android:textStyle="italic"/>
 
                         <WebView
-                            android:id="@+id/detail_web_more_information"
+                            android:id="@+id/detail_txt_activity_content"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
                     </LinearLayout>
@@ -388,23 +369,31 @@
                         android:textColor="@color/mainGrayTxtColor"/>
 
                     <ListView
+                        android:id="@+id/everyday_ltv_comment_data"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/white"
                         android:divider="@color/background"
                         android:dividerHeight="1dp"
-                        android:paddingEnd="16dp"
-                        tools:listitem="@layout/item_detail_evaluate_layout"
-                        android:paddingStart="16dp"/>
+                        tools:listitem="@layout/item_detail_evaluate_layout"/>
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:gravity="center_vertical|end"
+                        android:paddingEnd="10dp"
+                        android:text="查看更多"
+                        android:textColor="@color/black"
+                        android:textSize="16dp"
+                        android:textStyle="italic"/>
 
                 </LinearLayout>
-
             </LinearLayout>
         </ddw.com.richang.controller.view.layout.scrollview.ObScrollView>
     </RelativeLayout>
 
-
+    <!--底部栏 按钮-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"

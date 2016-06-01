@@ -33,6 +33,7 @@ public class HomeActivity extends BaseActivity {
      * 定义一个变量，来标识是否退出
      */
     private static boolean isExit = false;
+
     /**
      * 监听退出状态
      */
@@ -176,7 +177,6 @@ public class HomeActivity extends BaseActivity {
 
         @Override
         public void onClick(View v) {
-
             switch (v.getId()) {
                 case R.id.footer_rb_everyday:
                     setFootItemSelected(currentFootIndex, 0);

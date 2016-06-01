@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
-              android:layout_height="match_parent"
+              android:layout_height="wrap_content"
               android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:orientation="horizontal"
         android:paddingBottom="5dp"
         android:paddingEnd="1dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="1dp"
         android:paddingStart="16dp"
         android:paddingTop="5dp">
 
@@ -20,30 +19,61 @@
             android:layout_height="60dp"
             android:src="@mipmap/icon"/>
 
-        <LinearLayout android:layout_width="match_parent"
-                      android:layout_height="match_parent"
-                      android:layout_marginStart="10dp"
-                      android:gravity="center_vertical"
-                      android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="10dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="5dp"
-                android:text="json"
-                android:textColor="@color/font_black_2"
-                android:textSize="14dp"/>
+                android:paddingBottom="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:text="json"
+                    android:textColor="@color/font_black_2"
+                    android:textSize="13dp"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:paddingEnd="16dp"
+                    android:text="2016/05/01 14:23"
+                    android:textColor="@color/font_black_2"
+                    android:textSize="13dp"/>
+
+            </RelativeLayout>
+
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="国际体验设计协"
                 android:textColor="@color/black"
-                android:textSize="16dp"/>
+                android:textSize="14dp"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:drawableRight="@mipmap/zan_done_icon"
+                android:gravity="center_vertical"
+                android:paddingBottom="5dp"
+                android:paddingEnd="16dp"
+                android:text="88 "
+                android:textColor="@color/mainColor"
+                android:textSize="13dp"/>
+
 
         </LinearLayout>
-
-
     </LinearLayout>
-
 </LinearLayout>

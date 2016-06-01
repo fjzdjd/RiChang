@@ -32,5 +32,7 @@ public class RiChangApplication extends Application {
         locationService = new LocationService(getApplicationContext());
 
 
+
+
     }
 }
