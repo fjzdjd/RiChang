@@ -117,6 +117,7 @@ public class Content extends AppCompatActivity {
         final int hh = title.getMeasuredHeight();
         final TextView toptitle = (TextView) findViewById(R.id.contenttoptitle);
         final String oldtoptitle = toptitle.getText().toString();
+
         scrollView.setScrollViewListener(new ScrollViewListener() {
             @Override
             public void onScrollChanged(ObScrollView scrollView, int x, int y, int oldx, int oldy) {

@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent" android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/background"
                 android:orientation="vertical">
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="48dp">
+        android:layout_marginBottom="48.5dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp">
+            android:layout_height="201dp">
 
             <ImageView
                 android:id="@+id/detail_img_glass"
@@ -23,7 +25,8 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#20000000"
+                android:alpha="0.1"
+                android:background="@color/background"
                 android:scaleType="fitXY"/>
 
             <LinearLayout
@@ -32,12 +35,15 @@
                 android:orientation="vertical">
 
                 <RelativeLayout
+                    android:id="@+id/detail_rlt_header"
                     android:layout_width="match_parent"
                     android:layout_height="50dp">
 
                     <ImageView
+                        android:id="@+id/detail_finish_img"
                         android:layout_width="wrap_content"
                         android:layout_height="46dp"
+                        android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="12dp"
                         android:onClick="closeCurrentWin"
@@ -48,12 +54,14 @@
                         android:src="@drawable/back_icon"/>
 
                     <TextView
-                        android:id="@+id/detail_txt_title"
+                        android:id="@+id/detail_txt_header_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/detail_finish_img"
                         android:lines="1"
+                        android:maxLength="13"
+                        android:maxLines="1"
                         android:paddingBottom="3dp"
                         android:text="活动介绍"
                         android:textColor="@color/white"
@@ -95,7 +103,8 @@
             android:id="@+id/detail_slv_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="50dp">
+            android:layout_marginTop="50dp"
+            android:scrollbars="none">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -152,8 +161,8 @@
 
                         <TextView
                             android:id="@+id/detail_txt_people_watch"
-                            android:layout_width="fill_parent"
-                            android:layout_height="16sp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_alignParentBottom="true"
                             android:layout_centerVertical="true"
                             android:drawableLeft="@mipmap/eye_white"
@@ -169,7 +178,6 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_marginTop="10dp"
                     android:background="@color/white">
 
                     <LinearLayout
@@ -240,7 +248,7 @@
                         android:paddingStart="16dp"
                         android:paddingTop="5dp">
 
-                        <ddw.com.richang.components.ui.CustomUi.CustomCircleImageView
+                        <ddw.com.richang.custom.CustomUi.CustomCircleImageView
                             android:id="@+id/detail_img_publisher_pic"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
@@ -256,6 +264,25 @@
                             android:text="国际体验设计协"
                             android:textColor="@color/black"
                             android:textSize="16dp"/>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+
+                            <TextView
+                                android:id="@+id/detail_txt_focus_publisher"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_alignParentEnd="true"
+                                android:layout_gravity="end|center_horizontal"
+                                android:layout_marginRight="12dp"
+                                android:gravity="center_vertical|end"
+                                android:text="+关注"
+                                android:textColor="@color/mainColor"
+                                android:textSize="15dp"/>
+
+                        </RelativeLayout>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -280,7 +307,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:paddingBottom="10dp"
+                        android:paddingBottom="1dp"
                         android:paddingEnd="1dp"
                         android:paddingStart="16dp"
                         android:paddingTop="10dp">
@@ -297,8 +324,8 @@
                             android:id="@+id/detail_txt_size"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:paddingBottom="10dp"
-                            android:paddingTop="10dp"
+                            android:paddingBottom="7dp"
+                            android:paddingTop="7dp"
                             android:text="规模:"
                             android:textColor="@color/black"
                             android:textSize="16dp"/>
@@ -329,15 +356,15 @@
                         android:layout_height="match_parent"
                         android:background="@color/white"
                         android:orientation="vertical"
-                        android:paddingEnd="15dp"
+                        android:paddingEnd="9dp"
                         android:paddingStart="15dp">
 
                         <TextView
+                            android:id="@+id/detail_txt_more_information"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:drawableLeft="@mipmap/look_more"
-                            android:gravity="center_vertical|center"
+                            android:layout_gravity="center|end"
+                            android:padding="3dp"
                             android:text="查看更多"
                             android:textColor="@color/mainColor"
                             android:textSize="14dp"
@@ -346,7 +373,9 @@
                         <WebView
                             android:id="@+id/detail_txt_activity_content"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:scrollbars="none"
+                            android:visibility="gone"/>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -378,15 +407,16 @@
                         tools:listitem="@layout/item_detail_evaluate_layout"/>
 
                     <TextView
+                        android:id="@+id/detail_txt_comment_more"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="end"
-                        android:gravity="center_vertical|end"
-                        android:paddingEnd="10dp"
+                        android:layout_gravity="center|end"
+                        android:layout_marginEnd="9dp"
+                        android:padding="3dp"
                         android:text="查看更多"
-                        android:textColor="@color/black"
-                        android:textSize="16dp"
-                        android:textStyle="italic"/>
+                        android:textColor="@color/mainColor"
+                        android:textSize="14dp"
+                        android:textStyle="italic"/>/>
 
                 </LinearLayout>
             </LinearLayout>
@@ -396,7 +426,7 @@
     <!--底部栏 按钮-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="48dp"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal">
 

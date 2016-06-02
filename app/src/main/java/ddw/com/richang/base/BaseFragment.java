@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import ddw.com.richang.components.ui.CustomUi.WaitingAlertDialog;
+import ddw.com.richang.custom.CustomUi.WaitingAlertDialog;
 import ddw.com.richang.util.LogN;
 
 /**

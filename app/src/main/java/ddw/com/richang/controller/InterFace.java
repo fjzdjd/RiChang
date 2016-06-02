@@ -34,6 +34,10 @@ public class InterFace {//单例
      * 用户设置的标签值
      */
     public String getMyTags;
+
+    /**
+     * banner images
+     */
     public String getFlash;
     public String getHotSearch;
     public String getSearch;

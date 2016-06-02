@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
 import ddw.com.richang.R;
-import ddw.com.richang.components.ui.CustomUi.WaitingAlertDialog;
+import ddw.com.richang.custom.CustomUi.WaitingAlertDialog;
 import ddw.com.richang.manager.RiChangActivityManager;
 import ddw.com.richang.util.LogN;
 
@@ -25,26 +25,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected RiChangActivityManager riChangActivityManager = RiChangActivityManager.getInstance();
     private WaitingAlertDialog waitDialog;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
-        overridePendingTransition(R.anim.push_right_in, R.anim.push_left_out);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        riChangActivityManager.pushActivity(this);
-
-        LogN.d(this, "onCreate");
-        isActive = true;
-
-
-    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        ActionBar actionBar = getSupportActionBar();
-//        actionBar.hide();
         overridePendingTransition(R.anim.push_right_in, R.anim.push_left_out);
         riChangActivityManager.pushActivity(this);
     }

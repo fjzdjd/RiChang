@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.ListView;
 
 import ddw.com.richang.R;
-import ddw.com.richang.components.ui.CustomUi.FilterView;
+import ddw.com.richang.custom.CustomUi.FilterView;
 
 /**
  * 筛选器

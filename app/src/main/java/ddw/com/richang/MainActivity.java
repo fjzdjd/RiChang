@@ -122,6 +122,7 @@ public class MainActivity extends BaseActivity {
         String dir = Environment.getExternalStorageDirectory().getAbsolutePath().toString() +
                 "/Richang/cache/";
         Log.e("outch", dir);
+
         ImageLoader.getInstance().init(new ImageLoaderConfiguration
                 .Builder(getApplicationContext())
                 .threadPoolSize(10)

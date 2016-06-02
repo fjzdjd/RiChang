@@ -473,10 +473,10 @@ public class ChoseTagActivity extends BaseActivity {
             }
 
             if (mType == 1) {
-                viewHolder.tagName.setBackground(getDrawable(R.drawable.tagall));
+                viewHolder.tagName.setBackground(getResources().getDrawable(R.drawable.tagall));
                 viewHolder.tagName.setTextColor(getResources().getColor(R.color.font_black_1));
             } else {
-                viewHolder.tagName.setBackground(getDrawable(R.drawable.tagme));
+                viewHolder.tagName.setBackground(getResources().getDrawable(R.drawable.tagme));
                 viewHolder.tagName.setTextColor(getResources().getColor(R.color.white));
             }
 

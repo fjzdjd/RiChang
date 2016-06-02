@@ -98,17 +98,8 @@ public class ChoseCityActivity extends BaseActivity {
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
                 hasError = true;
-                if (ex instanceof HttpException) { // 网络错误
-                    HttpException httpEx = (HttpException) ex;
-                    int responseCode = httpEx.getCode();
-                    String responseMsg = httpEx.getMessage();
-                    String errorResult = httpEx.getResult();
-                    // ...
-                } else { // 其他错误
-                    // ...
-                }
 
-                Toast.makeText(x.app(), ex.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(x.app(), "网络访问失败!", Toast.LENGTH_LONG).show();
             }
 
             @Override

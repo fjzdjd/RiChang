@@ -1,14 +1,20 @@
 package ddw.com.richang.ui.everyday;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
+import android.text.Html;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,8 +29,12 @@ import org.xutils.x;
 import ddw.com.richang.R;
 import ddw.com.richang.base.BaseActivity;
 import ddw.com.richang.commons.ConstantData;
-import ddw.com.richang.components.ui.CustomUi.CustomCircleImageView;
 import ddw.com.richang.controller.InterFace;
+import ddw.com.richang.controller.data.imgloader.bitmap.GuassView;
+import ddw.com.richang.controller.data.imgloader.core.ImageLoader;
+import ddw.com.richang.controller.view.layout.scrollview.ObScrollView;
+import ddw.com.richang.controller.view.layout.scrollview.ScrollViewListener;
+import ddw.com.richang.custom.CustomUi.CustomCircleImageView;
 import ddw.com.richang.manager.SharePreferenceManager;
 import ddw.com.richang.model.RiGetActivityDetail;
 import ddw.com.richang.util.StringUtils;
@@ -44,6 +54,7 @@ public class ContentDetailActivity extends BaseActivity {
     private TextView mActivityLocation;
     private TextView mActivitySize;
     private TextView mActivityFare;
+    private TextView mHeaderTitle;
     private WebView mActivityContentHtml;
     private TextView mPublisherName;
     private CustomCircleImageView mPublisherPic;
@@ -52,10 +63,17 @@ public class ContentDetailActivity extends BaseActivity {
      * 组合标签
      */
     private String buildTags = "#";
+    private ObScrollView mScrollViewContent;
+    private RelativeLayout mHeaderBackground;
+    private TextView mViewMoreInformation;
+    /**
+     * 查看更多信息
+     */
+    private boolean loadingMoreInformationFlag = true;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onCreate(Bundle outState) {
+        super.onCreate(outState);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
         setContentView(R.layout.everyday_detail_activity_layout);
@@ -65,6 +83,7 @@ public class ContentDetailActivity extends BaseActivity {
         initWidgets();
 
     }
+
 
     /**
      * 初始化界面
@@ -79,9 +98,45 @@ public class ContentDetailActivity extends BaseActivity {
         mActivityLocation = (TextView) findViewById(R.id.detail_txt_location);
         mActivitySize = (TextView) findViewById(R.id.detail_txt_size);
         mActivityFare = (TextView) findViewById(R.id.detail_txt_fare);
+        mHeaderTitle = (TextView) findViewById(R.id.detail_txt_header_title);
         mPublisherName = (TextView) findViewById(R.id.detail_txt_publisher_name);
+        mHeaderBackground = (RelativeLayout) findViewById(R.id.detail_rlt_header);
         mActivityContentHtml = (WebView) findViewById(R.id.detail_txt_activity_content);
         mPublisherPic = (CustomCircleImageView) findViewById(R.id.detail_img_publisher_pic);
+        mScrollViewContent = (ObScrollView) findViewById(R.id.detail_slv_content);
+        mViewMoreInformation = (TextView) findViewById(R.id.detail_txt_more_information);
+        TextView mViewMoreComment = (TextView) findViewById(R.id.detail_txt_comment_more);
+        mViewMoreComment.setText(Html.fromHtml("<u>" + "查看更多" + "</u>"));
+        mViewMoreInformation.setText(Html.fromHtml("<u>" + "查看更多" + "</u>"));
+        mViewMoreInformation.setOnClickListener(new DetailOnClick());
+
+    }
+
+    /**
+     * 头部栏目标题和颜色渐变
+     *
+     * @param data RiGetActivityDetail
+     */
+    private void changePageHeaderTitleAndColor(final RiGetActivityDetail data) {
+        mContentTitle.measure(0, 0);
+        final int mIntTitleHeight = mContentTitle.getMeasuredHeight();
+        final String mStringHeaderTitle = mHeaderTitle.getText().toString().trim();
+        mScrollViewContent.setScrollViewListener(new ScrollViewListener() {
+            @Override
+            public void onScrollChanged(ObScrollView scrollView, int x, int y, int oldx, int oldy) {
+                if (y > mIntTitleHeight * 0.8) {
+                    if (oldy <= mIntTitleHeight * 0.8)
+                        mHeaderTitle.setGravity(Gravity.START);
+                    mHeaderTitle.setText(data.getData().getAc_title());
+                    mHeaderBackground.setBackgroundResource(R.color.mainColor);
+                } else {
+                    if (oldy > mIntTitleHeight * 0.8)
+                        mHeaderTitle.setText(mStringHeaderTitle);
+                    mHeaderBackground.setBackgroundResource(R.color.transparent);
+                }
+            }
+        });
+
     }
 
     /**
@@ -149,6 +204,8 @@ public class ContentDetailActivity extends BaseActivity {
                                             RiGetActivityDetail.class);
                                     setWidgetDatas(mContentDetail);
 
+                                    changePageHeaderTitleAndColor(mContentDetail);
+
                                 }
 
                             } catch (JSONException e) {
@@ -178,13 +235,11 @@ public class ContentDetailActivity extends BaseActivity {
 
         mActivityHot.setText(" " + data.getData().getAc_read_num());
 
-
-        String headerHtml = "<!DOCTYPE html><html><head><meta charset=\"UTF-8\"><meta\" +\n" + " " +
-                "\" +\n" + "\"name=\\\"viewport\\\" content=\\\"initial-scale=1, " +
-                "maximum-scale=1, user-scalable=no, \" +\n" + " " +
-                "\"width=device-width\\\"> <style>* {  font-size: 35pt;  max-width: 100%;  " +
-                "word-break: break-all;  padding: 0px;  margin: 0px  }  #contentJs {  " +
-                "line-height: 150%;  color: #646464  }</style></head><body>";
+        String headerHtml = "<!DOCTYPE html><html><head><meta charset=\"UTF-8\"><meta " +
+                "name=\"viewport\" content=\"initial-scale=1, maximum-scale=1, user-scalable=no, " +
+                "width=device-width\"> <style>* {  font-size: 12pt;  max-width: 100%;  " +
+                "word-break: break-all;  padding: 0px;  margin: 0px  }  #contentJs { line-height:" +
+                " 150%;  color: #646464  }</style></head><body>";
 
         String JavaScript = "<script>window.onload=function(){content.adjust(document" +
                 ".getElementById(\"contentJs\").offsetHeight);}</script>";
@@ -195,16 +250,17 @@ public class ContentDetailActivity extends BaseActivity {
                 JavaScript + footerHtml);
 
         x.image().bind(mPosterImage, data.getData().getAc_poster());
-        x.image().bind(mGlassImage, data.getData().getAc_poster()+"@!display");
 
+        ImageLoader.getInstance().displayImage(data.getData().getAc_poster() + "@!display",
+                mGlassImage, GuassView.BITMAPDISPLAYER);
 
         mActivityTime.setText(data.getData().getAc_time());
 
-        mActivityLocation.setText("地点: " + data.getData().getAc_place());
+        mActivityLocation.setText("地点: " + data.getData().getAc_place().trim());
 
-        mActivitySize.setText("规模: " + data.getData().getAc_size());
+        mActivitySize.setText("规模: " + data.getData().getAc_size().trim());
 
-        mActivityFare.setText("费用: " + data.getData().getAc_pay());
+        mActivityFare.setText("费用: " + data.getData().getAc_pay().trim());
 
         x.image().bind(mPublisherPic, data.getData().getUsr_pic());
 
@@ -234,9 +290,11 @@ public class ContentDetailActivity extends BaseActivity {
         // * 2、LayoutAlgorithm.SINGLE_COLUMN:适应屏幕，内容将自动缩放
         // */
         ws.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-        ws.setDefaultTextEncodingName("utf-8"); // 设置文本编码
+        ws.setDefaultTextEncodingName("UTF-8"); // 设置文本编码
         ws.setAppCacheEnabled(true);
         ws.setCacheMode(WebSettings.LOAD_DEFAULT);// 设置缓存模式
+
+        //调用自定义JavaScript
         mActivityContentHtml.addJavascriptInterface(this, "content");
 
         mActivityContentHtml.setWebViewClient(new WebViewClientHtml(data));
@@ -244,6 +302,34 @@ public class ContentDetailActivity extends BaseActivity {
         mActivityContentHtml.loadData(data, "text/html; charset=UTF-8", null);
 
 
+    }
+
+
+    /**
+     * 详情点击事件
+     */
+    private class DetailOnClick implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()) {
+                //显示更多信息
+                case R.id.detail_txt_more_information:
+                    if (loadingMoreInformationFlag) {
+                        mActivityContentHtml.setVisibility(View.VISIBLE);
+                        loadingMoreInformationFlag = false;
+                    } else {
+                        mActivityContentHtml.setVisibility(View.GONE);
+                        loadingMoreInformationFlag = true;
+                    }
+                    break;
+
+
+                default:
+                    break;
+            }
+
+
+        }
     }
 
     /**
@@ -262,10 +348,46 @@ public class ContentDetailActivity extends BaseActivity {
             this.data = data;
         }
 
+
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            view.loadData(data, "text/html", "utf-8");
+
+            //文本中包含超链接需要用此方法
+            view.loadDataWithBaseURL(null, data, "text/html", "UTF-8", null);
+
+            Uri uri = Uri.parse(url.toString().trim());
+
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+
+            startActivity(intent);
+
             return true;
+        }
+    }
+
+    /**
+     * 热门评论
+     */
+    private class CommentAdapter extends BaseAdapter {
+
+        @Override
+        public int getCount() {
+            return 0;
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            return null;
         }
     }
 }

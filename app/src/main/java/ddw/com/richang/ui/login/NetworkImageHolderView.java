@@ -21,14 +21,15 @@ public class NetworkImageHolderView implements Holder<String> {
     public View createView(Context context) {
         //你可以通过layout文件来创建，也可以像我一样用代码创建，不一定是Image，任何控件都可以进行翻页
         imageView = new ImageView(context);
-        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+        imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
         return imageView;
     }
 
     @Override
     public void UpdateUI(Context context, int position, String data) {
-        imageView.setImageResource(R.mipmap.ic_launcher);//空白图片
+        imageView.setImageResource(R.mipmap.imggrey);//空白图片
         x.image().bind(imageView, data);
+
 
 
     }

@@ -10,9 +10,11 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,14 +36,14 @@ import java.util.List;
 import ddw.com.richang.R;
 import ddw.com.richang.base.BaseFragment;
 import ddw.com.richang.commons.ConstantData;
-import ddw.com.richang.components.ui.SmoothListView.SmoothListView;
 import ddw.com.richang.controller.InterFace;
+import ddw.com.richang.custom.SmoothListView.SmoothListView;
 import ddw.com.richang.manager.SharePreferenceManager;
 import ddw.com.richang.model.RiActivityRecommend;
+import ddw.com.richang.model.RiBannerData;
+import ddw.com.richang.ui.login.LoginActivity;
 import ddw.com.richang.ui.login.NetworkImageHolderView;
 import ddw.com.richang.util.CommonUtils;
-import ddw.com.richang.util.DensityUtil;
-import ddw.com.richang.util.LogN;
 import ddw.com.richang.util.StringUtils;
 
 /**
@@ -50,8 +52,7 @@ import ddw.com.richang.util.StringUtils;
  */
 public class EverydayFragment extends BaseFragment {
 
-    private int mScreenHeight;
-//    private FilterData filterData;
+
     private SmoothListView mSoothListView;
 
     /**
@@ -112,10 +113,6 @@ public class EverydayFragment extends BaseFragment {
      * 初始化界面
      */
     private void initWidgets(View view) {
-//        FilterView mFvTopFilter = (FilterView) view.findViewById(R.id
-// .everyday_fragment_fv_filter);
-
-//        mFvTopFilter.setFilterData(getActivity(), filterData);
 
         mSoothListView = (SmoothListView) view.findViewById(R.id.everyday_fragment_listView);
 
@@ -208,15 +205,86 @@ public class EverydayFragment extends BaseFragment {
      * 初始化数据
      */
     private void initData() {
-        mScreenHeight = DensityUtil.getWindowHeight(getActivity());
 
-        //分类数据
-//        filterData = new FilterData();
-//        filterData.setCategory(ModelUtil.getCategoryData());
-//        filterData.setSorts(ModelUtil.getSortData());
-//        filterData.setFilters(ModelUtil.getFilterData());
+        //banner数据
+        getBannerImageData();
 
+        //list数据
         getInitDatas();
+
+    }
+
+
+    /**
+     * 获取banner栏数据
+     */
+    private void getBannerImageData() {
+        RequestParams params = new RequestParams(InterFace.getInstance().getFlash);
+        // 默认缓存存活时间, 单位:毫秒.(如果服务没有返回有效的max-age或Expires)
+        params.setCacheMaxAge(1000 * 60);
+        Callback.Cancelable cancelable
+                = x.http().get(params, new Callback.CacheCallback<String>() {
+
+            private boolean hasError = false;
+            private String result = null;
+
+            @Override
+            public boolean onCache(String result) {
+                this.result = result;
+                return true; // true: 信任缓存数据, 不在发起网络请求; false不信任缓存数据.
+            }
+
+            @Override
+            public void onSuccess(String result) {
+                // 注意: 如果服务返回304 或 onCache 选择了信任缓存, 这时result为null.
+                if (result != null) {
+                    this.result = result;
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                hasError = true;
+
+                Toast.makeText(x.app(), "网络访问失败!", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+                Toast.makeText(x.app(), "cancelled", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onFinished() {
+                if (!hasError && result != null) {
+                    try {
+                        JSONObject jsonObject = new JSONObject(result);
+
+                        String code = jsonObject.optString("code");
+
+                        JSONArray jsonArray = jsonObject.optJSONArray("data");
+
+                        if (code.equals(ConstantData.CODE)) {
+
+                            List<RiBannerData> mBannerImages = JSON.parseArray(jsonArray.toString
+                                    (), RiBannerData.class);
+
+                            for (int i = 0; i < mBannerImages.size(); i++) {
+                                networkImages.add(mBannerImages.get(i).getImg());
+                            }
+
+                            initImageLoader(networkImages);
+
+
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
 
     }
 
@@ -225,13 +293,17 @@ public class EverydayFragment extends BaseFragment {
      */
     private void getInitDatas() {
         if (!StringUtils.isEmpty(SharePreferenceManager.getInstance().getString(ConstantData
-                .USER_CITY_ID, ""))) {
+                .USER_ID, ""))) {
             user_id = Integer.parseInt(SharePreferenceManager.getInstance().getString(ConstantData
                     .USER_ID, ""));
+        }
+
+        if (!StringUtils.isEmpty(SharePreferenceManager.getInstance().getString(ConstantData
+                .USER_CITY_ID, ""))) {
             ct_id = Integer.parseInt(SharePreferenceManager.getInstance().getString(ConstantData
                     .USER_CITY_ID, ""));
-
         }
+
         getActivityRecommendDatas(String.valueOf(user_id), String.valueOf(ct_id), "", "");
     }
 
@@ -276,7 +348,7 @@ public class EverydayFragment extends BaseFragment {
                     @Override
                     public void onError(Throwable ex, boolean isOnCallback) {
                         hasError = true;
-                        Toast.makeText(x.app(), ex.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(x.app(), "网络访问失败!", Toast.LENGTH_LONG).show();
 
                     }
 
@@ -294,23 +366,14 @@ public class EverydayFragment extends BaseFragment {
                                 if (code.equals("200")) {
                                     JSONArray jsonArray = jsonObject.optJSONArray("data");
 
-                                    LogN.d(this, "555555" + jsonArray.toString());
-
                                     List<RiActivityRecommend> mJsonRecommends = JSON.parseArray
                                             (jsonArray.toString(), RiActivityRecommend
                                                     .class);
-
-                                    networkImages.clear();
-                                    for (int i = 0; i < mJsonRecommends.size(); i++) {
-                                        networkImages.add(mJsonRecommends.get(i).getAc_poster());
-                                    }
-
 
                                     mJsonDatas.addAll(mJsonRecommends);
 
                                     mAdapterEveryday.setListData(mJsonDatas);
 
-                                    initImageLoader();
                                     mSoothListView.stopRefresh();
                                     mSoothListView.stopLoadMore();
                                 }
@@ -346,21 +409,21 @@ public class EverydayFragment extends BaseFragment {
     /**
      * 初始化网络图片缓存库
      */
-    private void initImageLoader() {
+    private void initImageLoader(List<String> data) {
         mConvenientBanner.setPages(
                 new CBViewHolderCreator<NetworkImageHolderView>() {
                     @Override
                     public NetworkImageHolderView createHolder() {
                         return new NetworkImageHolderView();
                     }
-                }, networkImages)
+                }, data)
                 //设置两个点图片作为翻页指示器，不设置则没有指示器，可以根据自己需求自行配合自己的指示器,不需要圆点指示器可用不设
                 .setPageIndicator(new int[]{R.mipmap.dot_white, R.mipmap
                         .dot_orange});
     }
 
     /**
-     * 注册广播
+     * 注册选择城市广播
      */
     private void registerBroadcastToRefresh() {
         mGetLocalBroadcastToRefresh = new GetLocalBroadcastToRefresh();
@@ -438,7 +501,16 @@ public class EverydayFragment extends BaseFragment {
                 //选择标签
                 case R.id.everyday_fragment_txt_choiceTag:
 
-                    startActivity(new Intent(getActivity(), ChoseTagActivity.class));
+                    if (StringUtils.isEmpty(SharePreferenceManager.getInstance().getString
+                            (ConstantData.USER_ID, ""))) {
+
+                        startActivity(new Intent(getActivity(), LoginActivity.class));
+                        getActivity().finish();
+                    } else {
+
+                        startActivity(new Intent(getActivity(), ChoseTagActivity.class));
+                    }
+
 
                     break;
 
@@ -492,17 +564,17 @@ public class EverydayFragment extends BaseFragment {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             //暂无数据的布局
-//            if (isNoData) {
-//                convertView = LayoutInflater.from(getActivity()).inflate(R.layout
-// .item_no_data_layout, null);
-//                AbsListView.LayoutParams params = new AbsListView.LayoutParams(ViewGroup
-//                        .LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-//                RelativeLayout rootView = (RelativeLayout) convertView.findViewById(R.id
-//                        .rl_root_view);
-//                rootView.setLayoutParams(params);
-//
-//                return convertView;
-//            }
+            if (mList.size() == 0) {
+                convertView = LayoutInflater.from(getActivity()).inflate(R.layout
+                        .item_no_data_layout, null);
+                AbsListView.LayoutParams params = new AbsListView.LayoutParams(ViewGroup
+                        .LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                RelativeLayout rootView = (RelativeLayout) convertView.findViewById(R.id
+                        .rl_root_view);
+                rootView.setLayoutParams(params);
+
+                return convertView;
+            }
 
             ViewHolder viewHolder;
 
