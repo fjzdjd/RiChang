@@ -24,19 +24,19 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
+import org.xutils.image.ImageOptions;
 import org.xutils.x;
 
 import ddw.com.richang.R;
 import ddw.com.richang.base.BaseActivity;
 import ddw.com.richang.commons.ConstantData;
 import ddw.com.richang.controller.InterFace;
-import ddw.com.richang.controller.data.imgloader.bitmap.GuassView;
-import ddw.com.richang.controller.data.imgloader.core.ImageLoader;
 import ddw.com.richang.controller.view.layout.scrollview.ObScrollView;
 import ddw.com.richang.controller.view.layout.scrollview.ScrollViewListener;
 import ddw.com.richang.custom.CustomUi.CustomCircleImageView;
 import ddw.com.richang.manager.SharePreferenceManager;
 import ddw.com.richang.model.RiGetActivityDetail;
+import ddw.com.richang.util.DensityUtil;
 import ddw.com.richang.util.StringUtils;
 
 /**
@@ -251,16 +251,21 @@ public class ContentDetailActivity extends BaseActivity {
 
         x.image().bind(mPosterImage, data.getData().getAc_poster());
 
-        ImageLoader.getInstance().displayImage(data.getData().getAc_poster() + "@!display",
-                mGlassImage, GuassView.BITMAPDISPLAYER);
+        //对背景图片进行裁剪
+        ImageOptions imageOptions = new ImageOptions.Builder()
+                .setSize(DensityUtil.dip2px(this, 2), DensityUtil.dip2px(this, 2))
+                .setImageScaleType(ImageView.ScaleType.FIT_XY)
+                .build();
+
+        x.image().bind(mGlassImage, data.getData().getAc_poster(), imageOptions);
 
         mActivityTime.setText(data.getData().getAc_time());
 
-        mActivityLocation.setText("地点: " + data.getData().getAc_place().trim());
+        mActivityLocation.setText(data.getData().getAc_place().trim());
 
-        mActivitySize.setText("规模: " + data.getData().getAc_size().trim());
+        mActivitySize.setText(data.getData().getAc_size().trim());
 
-        mActivityFare.setText("费用: " + data.getData().getAc_pay().trim());
+        mActivityFare.setText(data.getData().getAc_pay().trim());
 
         x.image().bind(mPublisherPic, data.getData().getUsr_pic());
 

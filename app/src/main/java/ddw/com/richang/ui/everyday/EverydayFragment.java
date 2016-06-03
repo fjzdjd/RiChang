@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
+import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -273,7 +274,7 @@ public class EverydayFragment extends BaseFragment {
                                 networkImages.add(mBannerImages.get(i).getImg());
                             }
 
-                            initImageLoader(networkImages);
+                            initBannerImageLoader(networkImages, mBannerImages);
 
 
                         }
@@ -407,9 +408,9 @@ public class EverydayFragment extends BaseFragment {
     }
 
     /**
-     * 初始化网络图片缓存库
+     * banner广告栏数据加载
      */
-    private void initImageLoader(List<String> data) {
+    private void initBannerImageLoader(final List<String> data, final List<RiBannerData> mObjData) {
         mConvenientBanner.setPages(
                 new CBViewHolderCreator<NetworkImageHolderView>() {
                     @Override
@@ -418,8 +419,16 @@ public class EverydayFragment extends BaseFragment {
                     }
                 }, data)
                 //设置两个点图片作为翻页指示器，不设置则没有指示器，可以根据自己需求自行配合自己的指示器,不需要圆点指示器可用不设
-                .setPageIndicator(new int[]{R.mipmap.dot_white, R.mipmap
-                        .dot_orange});
+                .setPageIndicator(new int[]{R.mipmap.dot_white, R.mipmap.dot_orange})
+                .setOnItemClickListener(new OnItemClickListener() {
+                    @Override
+                    public void onItemClick(int position) {
+                        Intent intent = new Intent(getActivity(), ContentDetailActivity.class);
+                        intent.putExtra("ac_id", mObjData.get(position).getAct_id());
+                        startActivity(intent);
+
+                    }
+                });
     }
 
     /**
@@ -566,7 +575,7 @@ public class EverydayFragment extends BaseFragment {
             //暂无数据的布局
             if (mList.size() == 0) {
                 convertView = LayoutInflater.from(getActivity()).inflate(R.layout
-                        .item_no_data_layout, null);
+                        .item_no_data_layout, parent, false);
                 AbsListView.LayoutParams params = new AbsListView.LayoutParams(ViewGroup
                         .LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
                 RelativeLayout rootView = (RelativeLayout) convertView.findViewById(R.id

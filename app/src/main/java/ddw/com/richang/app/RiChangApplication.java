@@ -43,35 +43,7 @@ public class RiChangApplication extends Application {
          */
         locationService = new LocationService(getApplicationContext());
 
-        initImageCache();
 
     }
 
-    /**
-     * 初始化图片缓存
-     */
-    private void initImageCache() {
-
-        String dir = Environment.getExternalStorageDirectory().getAbsolutePath().toString() +
-                "/Richang/cache/";
-
-        ImageLoader.getInstance().init(new ImageLoaderConfiguration
-                .Builder(getApplicationContext())
-                .threadPoolSize(10)
-                .threadPriority(Thread.NORM_PRIORITY - 2)
-                .denyCacheImageMultipleSizesInMemory()
-                .memoryCacheExtraOptions(500, 500)
-                .memoryCache(new UsingFreqLimitedMemoryCache(5 * 1024 * 1024))
-                .memoryCacheSize(5 * 1024 * 1024)
-                .diskCache(new UnlimitedDiskCache(new File(dir)))
-                .diskCacheSize(64 * 1024 * 1024)//64M
-                .diskCacheFileNameGenerator(new Md5FileNameGenerator())
-                .diskCacheFileCount(8192)
-                .tasksProcessingOrder(QueueProcessingType.LIFO)
-                .defaultDisplayImageOptions(DisplayImageOptions.createSimple())
-                .imageDownloader(new BaseImageDownloader(getApplicationContext(), 30 * 1000, 30 *
-                        1000))
-                .build()
-        );
-    }
 }
