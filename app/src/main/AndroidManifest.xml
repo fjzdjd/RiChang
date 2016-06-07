@@ -52,16 +52,20 @@
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote" >
+            android:process=":remote">
             <intent-filter>
-                <action android:name="com.baidu.location.service_v2.2" >
+                <action android:name="com.baidu.location.service_v2.2">
                 </action>
             </intent-filter>
         </service>
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="aUanWcbe6IgDbNmixncUmKL8uhdsrCAA" />
+            android:value="aUanWcbe6IgDbNmixncUmKL8uhdsrCAA"/>
+
+        <!--三星多屏幕操作-->
+        <meta-data android:name="com.samsung.android.sdk.multiwindow.enable"
+                   android:value="true"/>
 
         <activity
             android:name=".HomeActivity"
@@ -107,6 +111,12 @@
 
         <activity
             android:name=".ui.login.ForgotPasswordActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".ui.mine.ModifyInfoActivity"
             android:configChanges="keyboardHidden|orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>

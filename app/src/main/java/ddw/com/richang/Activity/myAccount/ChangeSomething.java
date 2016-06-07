@@ -342,7 +342,6 @@ public class ChangeSomething extends AppCompatActivity {
             JSONObject obj=new JSONObject(result);
             if(200==obj.getInt("code")){
                 String p=obj.getString("msg");
-                //
                 Config.getUSR().setPROFILE(p,new Storage(ChangeSomething.this.getApplicationContext()));
             }else profile="";
         }catch (Exception e){}

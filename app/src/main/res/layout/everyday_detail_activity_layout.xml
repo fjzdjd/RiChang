@@ -20,13 +20,12 @@
                 android:id="@+id/detail_img_glass"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:alpha="0.8"
                 android:scaleType="fitXY"/>
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:alpha="0.1"
+                android:alpha="0.5"
                 android:background="@color/background"
                 android:scaleType="fitXY"/>
 
@@ -139,11 +138,10 @@
 
                             <TextView
                                 android:id="@+id/detail_txt_content_title"
-                                android:layout_width="match_parent"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="2dp"
                                 android:layout_marginTop="5dp"
-                                android:maxLines="3"
                                 android:text="最新互联网走势分析的图很好哈哈"
                                 android:textColor="@color/white"
                                 android:textSize="16dp"/>

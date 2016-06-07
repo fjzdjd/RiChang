@@ -78,6 +78,7 @@ public class ContentDetailActivity extends BaseActivity {
         actionBar.hide();
         setContentView(R.layout.everyday_detail_activity_layout);
         String ac_id = getIntent().getStringExtra("ac_id");
+        showWaitDialog("",R.color.white);
         getActicityDetail(ac_id,
                 SharePreferenceManager.getInstance().getString(ConstantData.USER_ID, ""));
         initWidgets();
@@ -184,12 +185,13 @@ public class ContentDetailActivity extends BaseActivity {
                     public void onError(Throwable ex, boolean isOnCallback) {
                         hasError = true;
                         Toast.makeText(x.app(), ex.getMessage(), Toast.LENGTH_LONG).show();
-
+                        dismissWaitDialog();
                     }
 
                     @Override
                     public void onCancelled(CancelledException cex) {
                         Toast.makeText(x.app(), "cancelled", Toast.LENGTH_LONG).show();
+                        dismissWaitDialog();
                     }
 
                     @Override
@@ -211,10 +213,13 @@ public class ContentDetailActivity extends BaseActivity {
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
+
+                            dismissWaitDialog();
                         }
                     }
-
                 });
+
+
     }
 
     /**
@@ -249,7 +254,6 @@ public class ContentDetailActivity extends BaseActivity {
         getHtmlCode(headerHtml + "<div id='contentJs'>" + data.getData().getAc_html() + "</div>" +
                 JavaScript + footerHtml);
 
-        x.image().bind(mPosterImage, data.getData().getAc_poster());
 
         //对背景图片进行裁剪
         ImageOptions imageOptions = new ImageOptions.Builder()
@@ -258,6 +262,8 @@ public class ContentDetailActivity extends BaseActivity {
                 .build();
 
         x.image().bind(mGlassImage, data.getData().getAc_poster(), imageOptions);
+
+        x.image().bind(mPosterImage, data.getData().getAc_poster());
 
         mActivityTime.setText(data.getData().getAc_time());
 

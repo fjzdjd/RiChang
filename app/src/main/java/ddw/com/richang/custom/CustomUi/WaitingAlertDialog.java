@@ -16,10 +16,8 @@ import ddw.com.richang.R;
 public class WaitingAlertDialog {
     private android.app.AlertDialog alertDialog;
 
-
     private TextView messageTextView;
 
-    private int backgroundColor;
     private Window window;
 
     public WaitingAlertDialog(Context context) {
@@ -49,7 +47,7 @@ public class WaitingAlertDialog {
      * @param context this
      * @param msgText 显示文本
      */
-    public WaitingAlertDialog(Context context, String msgText,int backgroundColor) {
+    public WaitingAlertDialog(Context context, String msgText, int backgroundColor) {
         this(context);
         setShowText(msgText);
         window.setBackgroundDrawableResource(backgroundColor);

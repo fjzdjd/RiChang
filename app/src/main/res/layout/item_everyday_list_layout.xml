@@ -29,7 +29,7 @@
 
             <TextView
                 android:id="@+id/everyday_adapter_txt_title"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxLines="2"
                 android:paddingTop="1dp"
@@ -79,10 +79,10 @@
 
                     <TextView
                         android:id="@+id/everyday_adapter_txt_place"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:maxLines="1"
                         android:text="安娜经大师傅"
+                        android:maxLines="2"
                         android:textColor="@color/mainGrayTxtColor"
                         android:textSize="13dp"/>
                 </LinearLayout>
