@@ -59,6 +59,7 @@
             </intent-filter>
         </service>
 
+        <!--百度地图服务-->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="aUanWcbe6IgDbNmixncUmKL8uhdsrCAA"/>
@@ -117,6 +118,12 @@
 
         <activity
             android:name=".ui.mine.ModifyInfoActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".ui.mine.EnrollActivity"
             android:configChanges="keyboardHidden|orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>

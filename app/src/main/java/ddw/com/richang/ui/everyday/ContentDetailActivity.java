@@ -76,9 +76,9 @@ public class ContentDetailActivity extends BaseActivity {
         super.onCreate(outState);
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
+        showWaitDialog("", R.color.white);
         setContentView(R.layout.everyday_detail_activity_layout);
         String ac_id = getIntent().getStringExtra("ac_id");
-        showWaitDialog("",R.color.white);
         getActicityDetail(ac_id,
                 SharePreferenceManager.getInstance().getString(ConstantData.USER_ID, ""));
         initWidgets();
@@ -213,7 +213,7 @@ public class ContentDetailActivity extends BaseActivity {
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
-
+                        } else {
                             dismissWaitDialog();
                         }
                     }
@@ -277,7 +277,7 @@ public class ContentDetailActivity extends BaseActivity {
 
         mPublisherName.setText(data.getData().getUsr_name());
 
-
+        dismissWaitDialog();//关闭加载progressBar
     }
 
     /**

@@ -81,7 +81,7 @@ public class MineFragment extends BaseFragment {
 
             //我的报名
             case R.id.mine_lyt_enroll:
-
+                startActivity(new Intent(getActivity(), EnrollActivity.class));
                 break;
 
             //我的发布

@@ -59,6 +59,10 @@ public class InterFace {//单例
     public String getIndustry;
     public String getIndActivity;
     public String getVersion;
+
+    /**
+     * 获取用户发布，参加，收藏，报名活动
+     */
     public String getUsrActivity;
     public String getUsrPlan;
     public String setCity;
