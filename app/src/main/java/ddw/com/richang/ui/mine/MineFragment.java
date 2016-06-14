@@ -3,6 +3,7 @@ package ddw.com.richang.ui.mine;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import ddw.com.richang.R;
 import ddw.com.richang.base.BaseFragment;
 import ddw.com.richang.commons.ConstantData;
 import ddw.com.richang.manager.SharePreferenceManager;
+import ddw.com.richang.model.RiGetTagList;
 
 /**
  * 我的
@@ -33,6 +35,7 @@ public class MineFragment extends BaseFragment {
     @ViewInject(R.id.mine_txt_userName)
     TextView mUserName;
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable
@@ -45,6 +48,7 @@ public class MineFragment extends BaseFragment {
         initWidgets();
 
         setClickEvent(view);
+
         return view;
     }
 
@@ -74,7 +78,6 @@ public class MineFragment extends BaseFragment {
 
             //修改信息
             case R.id.mine_img_header:
-
                 startActivity(new Intent(getActivity(), ModifyInfoActivity.class));
 
                 break;

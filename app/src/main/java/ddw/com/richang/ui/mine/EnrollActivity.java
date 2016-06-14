@@ -23,7 +23,6 @@ import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import ddw.com.richang.R;
@@ -40,11 +39,21 @@ import ddw.com.richang.model.RiGetUserActivity;
 @ContentView(R.layout.mine_enroll_activity_layout)
 public class EnrollActivity extends BaseActivity {
 
+
     @ViewInject(R.id.enroll_slv_list)
     ListView mSwipeListView;
 
+    @ViewInject(R.id.enroll_txt_setting)
+    TextView mDelete;
+
+
     private List<RiGetUserActivity> mRiGetUserActivityData = new ArrayList<>();
     private MineEnrollAdapter mAdapter;
+
+    /**
+     * 初始化编辑参数
+     */
+    private boolean delete = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,9 +67,36 @@ public class EnrollActivity extends BaseActivity {
         mAdapter = new MineEnrollAdapter(mRiGetUserActivityData);
         mSwipeListView.setAdapter(mAdapter);
 
-
     }
 
+    /**
+     * 关闭当前界面
+     *
+     * @param v 布局中的点击事件
+     */
+    public void closeCurrentWin(View v) {
+        finish();
+    }
+
+    /**
+     * 编辑当前活动，删除
+     *
+     * @param v 布局中的点击事件
+     */
+    public void editMyEnroll(View v) {
+
+        if (delete) {
+            delete = false;
+            mDelete.setText("编辑");
+            mDelete.setTextColor(getResources().getColor(R.color.mainGrayTxtColor));
+        } else {
+            delete = true;
+            mDelete.setText("完成");
+            mDelete.setTextColor(getResources().getColor(R.color.red));
+        }
+
+        mAdapter.notifyDataSetChanged();
+    }
 
 
     /**
@@ -132,9 +168,13 @@ public class EnrollActivity extends BaseActivity {
                     }
 
                 });
-
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        delete = false;
+    }
 
     /**
      * 适配器
@@ -143,8 +183,6 @@ public class EnrollActivity extends BaseActivity {
 
         private List<RiGetUserActivity> mList;
 
-
-        private HashMap<Integer, View> viewChache = new HashMap<>();
 
         public MineEnrollAdapter(List<RiGetUserActivity> List) {
             this.mList = List;
@@ -173,21 +211,15 @@ public class EnrollActivity extends BaseActivity {
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            ViewHolder viewHolder;
-            if (viewChache.get(position) == null) {
-                convertView = LayoutInflater.from(EnrollActivity.this).inflate(R.layout
-                        .item_mine_enroll_layout, parent, false);
+        public View getView(final int position, View convertView, ViewGroup parent) {
+            final ViewHolder viewHolder;
 
-                viewHolder = new ViewHolder();
-                x.view().inject(viewHolder, convertView);
-                convertView.setTag(viewHolder);
-                viewChache.put(position, convertView);
+            convertView = LayoutInflater.from(EnrollActivity.this).inflate(R.layout
+                    .item_mine_enroll_layout, parent, false);
 
-            } else {
-                convertView = viewChache.get(position);
-                viewHolder = (ViewHolder) convertView.getTag();
-            }
+            viewHolder = new ViewHolder();
+            x.view().inject(viewHolder, convertView);
+
             RiGetUserActivity dataBean = mList.get(position);
 
             viewHolder.mTitle.setText(dataBean.getAc_title());
@@ -195,12 +227,34 @@ public class EnrollActivity extends BaseActivity {
             viewHolder.mTime.setText(dataBean.getAc_time());
             x.image().bind(viewHolder.mPoster, dataBean.getAc_poster());
 
+            //加入行程
             viewHolder.mAddOrRemove.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
+                    if (viewHolder.mAddOrRemove.getText().toString().equals("加入行程")) {
+
+                        Toast.makeText(EnrollActivity.this, "ddd", Toast.LENGTH_SHORT).show();
+
+                    } else {
+
+                        mList.remove(position);
+                        notifyDataSetChanged();
+
+                    }
+
                 }
             });
+
+            if (delete) {
+
+                viewHolder.mAddOrRemove.setText("删除行程");
+
+            } else {
+
+                viewHolder.mAddOrRemove.setText("加入行程");
+
+            }
 
             return convertView;
         }
@@ -223,9 +277,8 @@ public class EnrollActivity extends BaseActivity {
             @ViewInject(R.id.enroll_item_txt_add)
             TextView mAddOrRemove;
 
-
         }
-
     }
+
 
 }
