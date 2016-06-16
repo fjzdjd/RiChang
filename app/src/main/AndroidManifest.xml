@@ -20,16 +20,15 @@
 
     <!-- GPS定位权限 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <!-- 这个权限用于访问GPS定位-->
+    <!-- 这个权限用于访问GPS定位 -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
-    <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
+    <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
-    <!-- SD卡读取权限，用户写入离线定位数据-->
+    <!-- SD卡读取权限，用户写入离线定位数据 -->
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
 
-    <!--android:theme="@style/Theme.AppCompat.Light.NoActionBar"-->
-
+    <!-- android:theme="@style/Theme.AppCompat.Light.NoActionBar" -->
     <application
         android:name=".app.RiChangApplication"
         android:allowBackup="true"
@@ -46,9 +45,10 @@
             </intent-filter>
         </activity>
 
-        <!--2.0修改activity-->
+        <!-- 2.0修改activity -->
 
-        <!--百度地图定位服务-->
+
+        <!-- 百度地图定位服务 -->
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
@@ -59,106 +59,100 @@
             </intent-filter>
         </service>
 
-        <!--百度地图服务-->
+        <!-- 百度地图服务 -->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="aUanWcbe6IgDbNmixncUmKL8uhdsrCAA"/>
 
-        <!--三星多屏幕操作-->
-        <meta-data android:name="com.samsung.android.sdk.multiwindow.enable"
-                   android:value="true"/>
+        <!-- 三星多屏幕操作 -->
+        <meta-data
+            android:name="com.samsung.android.sdk.multiwindow.enable"
+            android:value="true"/>
 
         <activity
             android:name=".HomeActivity"
             android:configChanges="keyboardHidden|orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
-
         <activity
             android:name=".ui.everyday.ContentDetailActivity"
             android:configChanges="keyboardHidden|orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
-
         <activity
             android:name=".ui.everyday.ChoseCityActivity"
             android:configChanges="keyboardHidden|orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
-
         <activity
             android:name=".ui.everyday.ChoseTagActivity"
             android:configChanges="keyboardHidden|orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
-
         <activity
             android:name=".ui.login.GuideActivity"
             android:configChanges="keyboardHidden|orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
-
         <activity
             android:name=".ui.login.LoginActivity"
             android:configChanges="keyboardHidden|orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
-
         <activity
             android:name=".ui.login.RegisterActivity"
             android:configChanges="keyboardHidden|orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
-
         <activity
             android:name=".ui.login.ForgotPasswordActivity"
             android:configChanges="keyboardHidden|orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
-
         <activity
             android:name=".ui.mine.ModifyInfoActivity"
             android:configChanges="keyboardHidden|orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
-
         <activity
             android:name=".ui.mine.EnrollActivity"
             android:configChanges="keyboardHidden|orientation"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
 
-        <!--2.0modify-->
+        <activity android:name=".ui.mine.PublishActivity"
+                  android:configChanges="keyboardHidden|orientation"
+                  android:launchMode="singleTask"
+                  android:screenOrientation="portrait"/>
+
+        <activity android:name=".ui.mine.AboutUsActivity"
+                  android:configChanges="keyboardHidden|orientation"
+                  android:launchMode="singleTask"
+                  android:screenOrientation="portrait"/>
+
+        <!-- 2.0modify -->
         <activity
             android:name=".Activity.pre.Login"
             android:label="@string/title_activity_login"
             android:screenOrientation="portrait"/>
-
-
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
             android:screenOrientation="portrait"/>
-
-
         <activity
             android:name=".Activity.banner.ChooseCity"
             android:label="@string/title_activity_choose_city"
             android:screenOrientation="portrait"/>
-
-
         <activity
             android:name=".Activity.banner.ChooseTag"
             android:label="@string/title_activity_choose_tag"
             android:screenOrientation="portrait">
         </activity>
-
         <activity
             android:name=".Activity.banner.SetPlan"
             android:label="@string/title_activity_set_plan"
             android:screenOrientation="portrait">
         </activity>
-
         <activity
             android:name=".Activity.banner.Setting"
             android:label="@string/title_activity_setting"
@@ -270,6 +264,8 @@
             android:name=".Activity.pre.Resetpasswd"
             android:label="@string/title_activity_resetpasswd">
         </activity>
+
+
     </application>
 
 </manifest>

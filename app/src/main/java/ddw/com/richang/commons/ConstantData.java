@@ -62,6 +62,40 @@ public class ConstantData {
     public static final String USER_PIC = "user_image";
 
 
+    /**{
+     code: 200,
+     msg: "操作成功！",
+     data: {
+     v_id: "2",
+     app_version: "1.01",
+     app_url: "http://oss.myrichang.com/appinstall/1.01.apk",
+     app_msg: "过期活动变灰",
+     app_type: "1"
+     }
+     }*/
+
+    /**
+     * {
+     * / "url":"http://192.168.205.33:8080/Hello/medtime_v3.0.1_Other_20150116.apk",
+     * / "versionCode":2,
+     * / "updateMessage":"版本更新信息"
+     * }
+     */
+
+    /**
+     * apk下载地址
+     */
+    public static final String APK_DOWNLOAD_URL = "app_url";
+
+    /**
+     * apk更新信息
+     */
+    public static final String APK_UPDATE_CONTENT = "app_msg";
+
+    /**
+     * apk版本号
+     */
+    public static final String APK_VERSION_CODE = "app_version";
 
 
 }

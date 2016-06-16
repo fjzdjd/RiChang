@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +30,7 @@ import ddw.com.richang.R;
 import ddw.com.richang.base.BaseActivity;
 import ddw.com.richang.commons.ConstantData;
 import ddw.com.richang.controller.InterFace;
+import ddw.com.richang.custom.CustomUi.WarmAlertDialog;
 import ddw.com.richang.manager.SharePreferenceManager;
 import ddw.com.richang.model.RiGetUserActivity;
 
@@ -45,7 +47,6 @@ public class EnrollActivity extends BaseActivity {
 
     @ViewInject(R.id.enroll_txt_setting)
     TextView mDelete;
-
 
     private List<RiGetUserActivity> mRiGetUserActivityData = new ArrayList<>();
     private MineEnrollAdapter mAdapter;
@@ -176,6 +177,18 @@ public class EnrollActivity extends BaseActivity {
         delete = false;
     }
 
+    private TextView getTextView(String str) {
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup
+                .LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        TextView txt = new TextView(EnrollActivity.this);
+        txt.setLayoutParams(params);
+        txt.setLines(1);
+        txt.setTextSize(15);
+        txt.setPadding(36, 15, 36, 0);
+        txt.setText(str);
+        return txt;
+    }
+
     /**
      * 适配器
      */
@@ -238,11 +251,20 @@ public class EnrollActivity extends BaseActivity {
 
                     } else {
 
-                        mList.remove(position);
-                        notifyDataSetChanged();
+                        TextView view = getTextView("确定删除此活动吗?");
+                        WarmAlertDialog.getInstance().initDialog(EnrollActivity.this, "提示",
+                                view, new View.OnClickListener() {
+
+                                    @Override
+                                    public void onClick(View v) {
+
+                                        mList.remove(position);
+                                        notifyDataSetChanged();
+
+                                    }
+                                });
 
                     }
-
                 }
             });
 

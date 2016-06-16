@@ -41,6 +41,7 @@
                 android:id="@+id/mine_img_setting"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
+                android:background="?android:attr/selectableItemBackground"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:padding="10dp"
@@ -96,6 +97,7 @@
                 <TextView android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:text="233"
+                          android:background="?android:attr/selectableItemBackground"
                           android:textColor="@color/mainColor"
                           android:textSize="23sp"/>
 
@@ -116,6 +118,7 @@
                 <TextView android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:text="20"
+                          android:background="?android:attr/selectableItemBackground"
                           android:textColor="@color/mainColor"
                           android:textSize="23sp"/>
 
@@ -136,6 +139,7 @@
                 <TextView android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:text="0"
+                          android:background="?android:attr/selectableItemBackground"
                           android:textColor="@color/mainColor"
                           android:textSize="23sp"/>
 

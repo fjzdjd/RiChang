@@ -17,6 +17,7 @@
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:paddingEnd="10dp"
+            android:background="?android:attr/selectableItemBackground"
             android:paddingStart="1dp"
             android:onClick="closeCurrentWin"
             android:src="@mipmap/back_icon_orange"/>
@@ -37,6 +38,8 @@
             android:layout_height="wrap_content"
             android:text="编辑"
             android:onClick="editMyEnroll"
+            android:textSize="15dp"
+            android:background="?android:attr/selectableItemBackground"
             android:textColor="@color/mainGrayTxtColor"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
@@ -52,6 +55,8 @@
         android:layout_gravity="center"
         android:scrollbars="none"
         android:divider="@color/background"
+        android:listSelector="@android:color/transparent"
+        android:background="@color/white"
         android:dividerHeight="10dp"
         tools:listitem="@layout/item_mine_enroll_layout"/>
 

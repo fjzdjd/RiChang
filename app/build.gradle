@@ -40,7 +40,7 @@ dependencies {
     compile files('libs/MobCommons.jar')
     compile files('libs/MobTools.jar')
     compile 'com.bigkoo:convenientbanner:2.0.5'
-    compile 'org.xutils:xutils:3.3.34'
+    compile 'org.xutils:xutils:3.3.36'
     compile files('libs/pinyin4j-2.5.0.jar')
     compile files('libs/fastjson-1.2.9.jar')
     compile files('libs/locSDK_6.23.jar')

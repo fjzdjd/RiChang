@@ -4,7 +4,7 @@ package ddw.com.richang.controller;
  * 接口
  * Created by dingdewen on 15/12/14.
  */
-public class InterFace {//单例
+public class InterFace {
     /**
      * 实现单例
      */
@@ -58,6 +58,10 @@ public class InterFace {//单例
     public String getActivityContent;
     public String getIndustry;
     public String getIndActivity;
+
+    /**
+     * 获取版本信息
+     */
     public String getVersion;
 
     /**

@@ -54,8 +54,6 @@ import ddw.com.richang.util.StringUtils;
 public class EverydayFragment extends BaseFragment {
 
 
-
-
     private SmoothListView mSoothListView;
 
     /**

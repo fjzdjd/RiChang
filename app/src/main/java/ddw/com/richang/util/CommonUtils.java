@@ -1,17 +1,14 @@
 package ddw.com.richang.util;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
-import android.support.v4.app.ActivityCompat;
 import android.text.format.Formatter;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -549,12 +546,12 @@ public class CommonUtils {
     /**
      * 获取当前虚拟高度
      *
-     * @param poCotext
+     * @param context
      * @return
      */
-    public static int getVrtualBtnHeight(Context poCotext) {
-        int location[] = getScreenWH(poCotext);
-        int realHeiht = getDpi((Activity) poCotext);
+    public static int getVrtualBtnHeight(Context context) {
+        int location[] = getScreenWH(context);
+        int realHeiht = getDpi((Activity) context);
         int virvalHeight = realHeiht - location[1];
         return virvalHeight;
     }
@@ -563,12 +560,12 @@ public class CommonUtils {
     /**
      * 获取当前虚拟宽度
      *
-     * @param poCotext
-     * @return
+     * @param context context
+     * @return virvalWidth
      */
-    public static int getVrtualBtnWidth(Context poCotext) {
-        int location[] = getScreenWH(poCotext);
-        int realWidth = getWpi((Activity) poCotext);
+    public static int getVrtualBtnWidth(Context context) {
+        int location[] = getScreenWH(context);
+        int realWidth = getWpi((Activity) context);
         int virvalWidth = realWidth - location[1];
         return virvalWidth;
     }
@@ -576,10 +573,10 @@ public class CommonUtils {
     /**
      * 取得版本号
      *
-     * @param context
-     * @return
+     * @param context context
+     * @return string
      */
-    public static String GetVersion(Context context) {
+    public static String getVersion(Context context) {
         try {
             PackageInfo manager = context.getPackageManager().getPackageInfo(
                     context.getPackageName(), 0);
@@ -588,7 +585,6 @@ public class CommonUtils {
             return "Unknown";
         }
     }
-
 
 
 }

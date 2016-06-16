@@ -3,7 +3,6 @@ package ddw.com.richang.ui.mine;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +17,6 @@ import ddw.com.richang.R;
 import ddw.com.richang.base.BaseFragment;
 import ddw.com.richang.commons.ConstantData;
 import ddw.com.richang.manager.SharePreferenceManager;
-import ddw.com.richang.model.RiGetTagList;
 
 /**
  * 我的
@@ -89,17 +87,19 @@ public class MineFragment extends BaseFragment {
 
             //我的发布
             case R.id.mine_lyt_publish:
+                startActivity(new Intent(getActivity(), PublishActivity.class));
 
                 break;
 
             //我的收藏
             case R.id.mine_lyt_collect:
 
+
                 break;
 
             //关于我们
             case R.id.mine_lyt_us:
-
+                startActivity(new Intent(getActivity(),AboutUsActivity.class));
                 break;
 
             //建议反馈

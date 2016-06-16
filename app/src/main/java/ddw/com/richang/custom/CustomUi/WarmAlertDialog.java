@@ -15,15 +15,19 @@ import ddw.com.richang.R;
  */
 public class WarmAlertDialog {
 
-    protected Context context;
+    public static Context context;
 
-
-    public WarmAlertDialog(Context context) {
-        this.context = context;
+    public WarmAlertDialog() {
 
     }
 
-    public void initDialog(String title, View view, final View.OnClickListener click) {
+    public static WarmAlertDialog getInstance() {
+        return SingletonHolder.sInstance;
+    }
+
+
+    public void initDialog(Context context, String title, View view, final View.OnClickListener
+            click) {
         View layout = LayoutInflater.from(context).inflate(R.layout.custom_dialog_layout, null);
         ((RelativeLayout) layout.findViewById(R.id.dialog_container)).addView(view);
         ((TextView) layout.findViewById(R.id.dialog_title)).setText(title);
@@ -45,6 +49,10 @@ public class WarmAlertDialog {
                 alertDialog.dismiss();
             }
         });
+    }
+
+    private static class SingletonHolder {
+        private static final WarmAlertDialog sInstance = new WarmAlertDialog();
     }
 
 }
