@@ -710,7 +710,7 @@ public class MainActivity extends BaseActivity {
         );
         //viewPager
         final ViewPager viewPager = (ViewPager) findViewById(R.id.maintab1viewpager);
-        final List<View> viewList = new ArrayList<View>();
+        final List<View> viewList = new ArrayList<>();
         final View[] pages = new View[Config.COLUMNS.size() + 1];
         LayoutInflater layoutInflater = getLayoutInflater();
         //动态添加顶部标签和点击切换事件

@@ -31,23 +31,23 @@
     <string name="smoothlistview_header_last_time" translatable="false">上次更新时间：</string>
     <string name="smoothlistview_footer_hint_normal" translatable="false">查看更多</string>
     <string name="smoothlistview_footer_hint_ready" translatable="false">松开载入更多</string>
-    <string name="cube_ptr_pull_down">下拉刷新</string>
-    <string name="cube_ptr_pull_down_to_refresh">下拉刷新</string>
-    <string name="cube_ptr_release_to_refresh">释放刷新</string>
-    <string name="cube_ptr_refreshing">刷新...</string>
-    <string name="cube_ptr_refresh_complete">正在刷新...</string>
-    <string name="cube_ptr_last_update">上次刷新:&#160;</string>
-    <string name="cube_ptr_seconds_ago">&#160;秒钟前</string>
-    <string name="cube_ptr_minutes_ago">&#160;分钟前</string>
-    <string name="cube_ptr_hours_ago">&#160;小时前</string>
 
-    <string name="newUpdateAvailable">发现新版本</string>
-    <string name="dialogPositiveButton">立即下载</string>
-    <string name="dialogNegativeButton">以后再说</string>
-    <string name="app_no_new_update">没有发现新版本</string>
-    <string name="download_progress">正在下载:%1$d%%</string>
-    <string name="download_success">下载完成，点击安装</string>
+    <string name="cube_ptr_pull_down" translatable="false">下拉刷新</string>
+    <string name="cube_ptr_pull_down_to_refresh" translatable="false">下拉刷新</string>
+    <string name="cube_ptr_release_to_refresh" translatable="false">释放刷新</string>
+    <string name="cube_ptr_refreshing" translatable="false">刷新...</string>
+    <string name="cube_ptr_refresh_complete" translatable="false">正在刷新...</string>
+    <string name="cube_ptr_last_update" translatable="false">上次刷新:&#160;</string>
+    <string name="cube_ptr_seconds_ago" translatable="false">&#160;秒钟前</string>
+    <string name="cube_ptr_minutes_ago" translatable="false">&#160;分钟前</string>
+    <string name="cube_ptr_hours_ago" translatable="false">&#160;小时前</string>
 
+    <string name="newUpdateAvailable" translatable="false">发现新版本</string>
+    <string name="dialogPositiveButton" translatable="false">立即下载</string>
+    <string name="dialogNegativeButton" translatable="false">以后再说</string>
+    <string name="app_no_new_update" translatable="false">没有发现新版本</string>
+    <string name="download_progress" translatable="false">正在下载:%1$d%%</string>
+    <string name="download_success" translatable="false">下载完成，点击安装</string>
 
 
 </resources>
