@@ -56,7 +56,11 @@ public class InterFace {
      * 获取活动详情
      */
     public String getActivityContent;
-    public String getIndustry;
+
+    /**
+     * 获取专栏 menu
+     */
+    public String getAllIndustries;
     public String getIndActivity;
 
     /**
@@ -99,7 +103,7 @@ public class InterFace {
         this.getSearch = domain + "/Home/Activity/getActivitySearch";
         this.getRecommendActivity = domain + "/Home/Activity/getActivityRecommend";
         this.getActivityContent = domain + "/Home/Activity/getActivityContent";
-        this.getIndustry = domain + "/Home/Industry/getAllIndustries";
+        this.getAllIndustries = domain + "/Home/Industry/getAllIndustries";
         this.getIndActivity = domain + "/Home/Industry/checkIndustry";
         this.getVersion = domain + "/Home/Person/getVersion?app_type=1";
         this.getUsrActivity = domain + "/Home/Person/getUserActivity";

@@ -676,7 +676,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public void run() {
                 try {
-                    String res = WebHTTP.getStr(Config.getInterface().getIndustry);
+                    String res = WebHTTP.getStr(Config.getInterface().getAllIndustries);
                     JSONObject obj = new JSONObject(res);
                     if (200 == obj.getInt("code")) {
                         Config.COLUMNS.clear();
