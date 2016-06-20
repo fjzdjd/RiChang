@@ -24,6 +24,7 @@ import ddw.com.richang.commons.ConstantData;
 import ddw.com.richang.controller.InterFace;
 import ddw.com.richang.manager.SharePreferenceManager;
 import ddw.com.richang.model.RiGetVersion;
+import ddw.com.richang.update.UpdateHelperHttpUrlConnection;
 import ddw.com.richang.util.CommonUtils;
 
 /**
@@ -153,6 +154,13 @@ public class AboutUsActivity extends BaseActivity {
                                         .LENGTH_SHORT).show();
                             } else {
 
+                                //升级方法
+                                UpdateHelperHttpUrlConnection helper = new
+                                        UpdateHelperHttpUrlConnection.Builder(AboutUsActivity.this)
+                                        .checkUrl(null)
+                                        .isAutoInstall(false)
+                                        .build();
+                                helper.check();
 
                             }
                         }

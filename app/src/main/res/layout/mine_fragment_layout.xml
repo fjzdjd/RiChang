@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:scrollbars="none">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -41,9 +42,9 @@
                 android:id="@+id/mine_img_setting"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:background="?android:attr/selectableItemBackground"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
+                android:background="?android:attr/selectableItemBackground"
                 android:padding="10dp"
                 android:src="@mipmap/set_icon"/>
 
@@ -54,7 +55,7 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:orientation="vertical"
-            android:padding="12dp">
+            android:padding="10dp">
 
             <ddw.com.richang.custom.CustomUi.CustomCircleImageView
                 android:id="@+id/mine_img_header"
@@ -69,7 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_margin="6dp"
+                android:layout_margin="5dp"
                 android:text="ID:123456789"
                 android:textColor="@color/mainGrayTxtColor"/>
 
@@ -94,12 +95,12 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <TextView android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:text="233"
-                          android:background="?android:attr/selectableItemBackground"
-                          android:textColor="@color/mainColor"
-                          android:textSize="23sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="233"
+                    android:textColor="@color/mainColor"
+                    android:textSize="23sp"/>
 
                 <TextView android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
@@ -117,8 +118,8 @@
 
                 <TextView android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
-                          android:text="20"
                           android:background="?android:attr/selectableItemBackground"
+                          android:text="20"
                           android:textColor="@color/mainColor"
                           android:textSize="23sp"/>
 
@@ -138,8 +139,8 @@
 
                 <TextView android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
-                          android:text="0"
                           android:background="?android:attr/selectableItemBackground"
+                          android:text="0"
                           android:textColor="@color/mainColor"
                           android:textSize="23sp"/>
 
@@ -160,7 +161,7 @@
             <LinearLayout
                 android:id="@+id/mine_lyt_enroll"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="45dp"
                 android:background="@color/white"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
@@ -175,7 +176,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="6dp"
+                    android:padding="3.2dp"
                     android:text="我的报名"
                     android:textColor="@color/font_black_1"
                     android:textSize="16sp"/>
@@ -198,7 +199,7 @@
             <LinearLayout
                 android:id="@+id/mine_lyt_publish"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="45dp"
                 android:layout_marginTop="1dp"
                 android:background="@color/white"
                 android:gravity="center_vertical"
@@ -214,7 +215,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="8dp"
+                    android:padding="5dp"
                     android:text="我的发布"
                     android:textColor="@color/font_black_1"
                     android:textSize="16sp"/>
@@ -237,7 +238,7 @@
             <LinearLayout
                 android:id="@+id/mine_lyt_collect"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="45dp"
                 android:layout_marginTop="1dp"
                 android:background="@color/white"
                 android:gravity="center_vertical"
@@ -253,7 +254,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="8dp"
+                    android:padding="5dp"
                     android:text="我的收藏"
                     android:textColor="@color/font_black_1"
                     android:textSize="16sp"/>
@@ -276,7 +277,7 @@
             <LinearLayout
                 android:id="@+id/mine_lyt_us"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="45dp"
                 android:layout_marginTop="1dp"
                 android:background="@color/white"
                 android:gravity="center_vertical"
@@ -292,7 +293,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="8dp"
+                    android:padding="5dp"
                     android:text="关于我们"
                     android:textColor="@color/font_black_1"
                     android:textSize="16sp"/>
@@ -315,7 +316,7 @@
             <LinearLayout
                 android:id="@+id/mine_lyt_feedback"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="45dp"
                 android:layout_marginTop="1dp"
                 android:background="@color/white"
                 android:gravity="center_vertical"
@@ -331,7 +332,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="8dp"
+                    android:padding="5dp"
                     android:text="建议反馈"
                     android:textColor="@color/font_black_1"
                     android:textSize="16sp"/>
