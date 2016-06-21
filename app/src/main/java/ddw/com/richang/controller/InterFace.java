@@ -20,6 +20,14 @@ public class InterFace {
      */
     public String getUSRInfo;
 
+
+
+
+    /**
+     * 获取精选
+     */
+    public String getAlbums;
+
     /**
      * 获取城市列表
      */
@@ -124,6 +132,8 @@ public class InterFace {
         this.sendSMS = domain + "/Home/Person/sendMobileMsg";
         this.isExist = domain + "/Home/Person/isExist";
         this.resetPasswd = domain + "/Home/Person/reset";
+
+        this.getAlbums="http://appv2.myrichang.com/Home/Industry/getAlbums";
     }
 
     public static InterFace getInstance() {

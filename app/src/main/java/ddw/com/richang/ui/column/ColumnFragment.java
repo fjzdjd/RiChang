@@ -22,6 +22,8 @@ import org.xutils.http.RequestParams;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
+import java.util.ArrayList;
+
 import ddw.com.richang.R;
 import ddw.com.richang.base.BaseFragment;
 import ddw.com.richang.commons.ConstantData;
@@ -42,6 +44,11 @@ public class ColumnFragment extends BaseFragment {
 
     private SparseArray<String> mSparseArray = new SparseArray<>();
 
+    /**
+     * viewpager子页面
+     */
+    private ArrayList<BaseFragment> mArrayListFragment = new ArrayList<>();
+
 
     @Nullable
     @Override
@@ -51,9 +58,37 @@ public class ColumnFragment extends BaseFragment {
         x.view().inject(this, view);
         initMenuData();
 
-
+        initChildFragment();
 
         return view;
+    }
+
+    /**
+     * 初始化子页面
+     */
+    private void initChildFragment() {
+        ChoicenessFragment mChoicenessFragment = new ChoicenessFragment();
+
+        ComprehensiveFragment mComprehensiveFragment = new ComprehensiveFragment();
+
+        MediaFragment mMdiaFragment = new MediaFragment();
+
+        ChuangYeFragment mChuangYeFragment = new ChuangYeFragment();
+
+        FinanceFragment mFinanceFragment = new FinanceFragment();
+
+        DesignFragment mDesignFragment = new DesignFragment();
+
+        UniversityFragment mUniversityFragment = new UniversityFragment();
+
+        mArrayListFragment.add(mChoicenessFragment);
+        mArrayListFragment.add(mComprehensiveFragment);
+        mArrayListFragment.add(mMdiaFragment);
+        mArrayListFragment.add(mChuangYeFragment);
+        mArrayListFragment.add(mFinanceFragment);
+        mArrayListFragment.add(mDesignFragment);
+        mArrayListFragment.add(mUniversityFragment);
+
     }
 
     private void initWidgets() {
@@ -146,7 +181,6 @@ public class ColumnFragment extends BaseFragment {
             }
         });
 
-
     }
 
 
@@ -167,25 +201,25 @@ public class ColumnFragment extends BaseFragment {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return new ChoicenessFragment();
+                    return mArrayListFragment.get(position);
 
                 case 1:
-                    return new ComprehensiveFragment();
+                    return mArrayListFragment.get(position);
 
                 case 2:
-                    return new MediaFragment();
+                    return mArrayListFragment.get(position);
 
                 case 3:
-                    return new ChuangYeFragment();
+                    return mArrayListFragment.get(position);
 
                 case 4:
-                    return new FinanceFragment();
+                    return mArrayListFragment.get(position);
 
                 case 5:
-                    return new DesignFragment();
+                    return mArrayListFragment.get(position);
 
                 case 6:
-                    return new UniversityFragment();
+                    return mArrayListFragment.get(position);
 
                 default:
 
