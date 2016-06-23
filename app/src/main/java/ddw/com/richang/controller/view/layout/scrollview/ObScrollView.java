@@ -68,12 +68,7 @@ public class ObScrollView extends ScrollView {
                     }
                 } catch (Exception e) {
                 } finally {
-//                    activity.runOnUiThread(new Runnable() {
-//                        @Override
-//                        public void run() {
                     scrollTo(x, y, true);
-//                        }
-//                    });
                     scrollable = true;
                 }
             }

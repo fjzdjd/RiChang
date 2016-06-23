@@ -6,9 +6,11 @@ import android.widget.ImageView;
 
 import com.bigkoo.convenientbanner.holder.Holder;
 
+import org.xutils.image.ImageOptions;
 import org.xutils.x;
 
 import ddw.com.richang.R;
+import ddw.com.richang.util.DensityUtil;
 
 /**
  * Created by zzp
@@ -28,7 +30,11 @@ public class NetworkImageHolderView implements Holder<String> {
     @Override
     public void UpdateUI(Context context, int position, String data) {
         imageView.setImageResource(R.mipmap.imggrey);//空白图片
-        x.image().bind(imageView, data);
+        //对背景图片进行裁剪
+        ImageOptions imageOptions = new ImageOptions.Builder()
+                .setImageScaleType(ImageView.ScaleType.FIT_XY)
+                .build();
+        x.image().bind(imageView, data,imageOptions);
 
 
 

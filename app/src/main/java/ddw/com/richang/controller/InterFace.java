@@ -21,12 +21,15 @@ public class InterFace {
     public String getUSRInfo;
 
 
-
-
     /**
      * 获取精选
      */
     public String getAlbums;
+
+    /**
+     * 获取精选详情
+     */
+    public String getAlbumAcs;
 
     /**
      * 获取城市列表
@@ -69,6 +72,10 @@ public class InterFace {
      * 获取专栏 menu
      */
     public String getAllIndustries;
+
+    /**
+     * 获取专栏 list
+     */
     public String getIndActivity;
 
     /**
@@ -133,7 +140,8 @@ public class InterFace {
         this.isExist = domain + "/Home/Person/isExist";
         this.resetPasswd = domain + "/Home/Person/reset";
 
-        this.getAlbums="http://appv2.myrichang.com/Home/Industry/getAlbums";
+        this.getAlbums = "http://appv2.myrichang.com/Home/Industry/getAlbums";
+        this.getAlbumAcs="http://appv2.myrichang.com/Home/Industry/getAlbumAcs";
     }
 
     public static InterFace getInstance() {

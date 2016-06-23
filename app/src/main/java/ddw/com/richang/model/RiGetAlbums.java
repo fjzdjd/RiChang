@@ -1,6 +1,7 @@
 package ddw.com.richang.model;
 
 /**
+ * 精选列表
  * Created by zzp on 2016/6/21.
  */
 public class RiGetAlbums {
@@ -68,5 +69,17 @@ public class RiGetAlbums {
 
     public void setRead_num(String read_num) {
         this.read_num = read_num;
+    }
+
+    @Override
+    public String toString() {
+        return "RiGetAlbums{" +
+                "album_id='" + album_id + '\'' +
+                ", album_name='" + album_name + '\'' +
+                ", album_img='" + album_img + '\'' +
+                ", album_desc='" + album_desc + '\'' +
+                ", album_time='" + album_time + '\'' +
+                ", read_num='" + read_num + '\'' +
+                '}';
     }
 }

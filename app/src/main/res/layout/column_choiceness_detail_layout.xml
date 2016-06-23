@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -27,6 +27,7 @@
             android:src="@mipmap/back_icon_orange"/>
 
         <TextView
+            android:id="@+id/choiceness_detail_txt_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -35,34 +36,17 @@
             android:textColor="@color/mainColor"
             android:textSize="18sp"/>
 
-
-        <TextView
-            android:id="@+id/enroll_txt_setting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:background="?android:attr/selectableItemBackground"
-            android:onClick="editMyEnroll"
-            android:padding="10dp"
-            android:text="编辑"
-            android:textColor="@color/mainGrayTxtColor"
-            android:textSize="15dp"/>
-
     </RelativeLayout>
 
 
-    <ListView
-        android:id="@+id/enroll_slv_list"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/choiceness_detail_recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@color/white"
-        android:divider="@color/background"
-        android:dividerHeight="10dp"
-        android:listSelector="@android:color/transparent"
-        android:scrollbars="none"
-        tools:listitem="@layout/item_mine_enroll_layout"/>
+        android:layout_height="match_parent"
+        android:scrollbars="none"/>
 
 </LinearLayout>
+
+
+
+

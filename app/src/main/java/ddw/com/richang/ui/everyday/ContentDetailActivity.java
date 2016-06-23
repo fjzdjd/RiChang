@@ -257,7 +257,7 @@ public class ContentDetailActivity extends BaseActivity {
 
         //对背景图片进行裁剪
         ImageOptions imageOptions = new ImageOptions.Builder()
-                .setSize(DensityUtil.dip2px(this, 2), DensityUtil.dip2px(this, 2))
+                .setSize(DensityUtil.dip2px(this, 2), DensityUtil.dip2px(this, 10))
                 .setImageScaleType(ImageView.ScaleType.FIT_XY)
                 .build();
 

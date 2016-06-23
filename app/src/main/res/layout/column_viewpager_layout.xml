@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ddw.com.richang.custom.refresh.PtrClassicFrameLayout
-    android:id="@+id/choiceness_ptr_refresh"
+    android:id="@+id/comprehensive_ptr_refresh"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/tools"
     xmlns:cube_ptr="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,9 +16,13 @@
     cube_ptr:ptr_resistance="3.5">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/choiceness_recyclerView"
+        android:id="@+id/comprehensive_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="none"/>
+        android:layout_gravity="center"
+        android:fadeScrollbars="true"
+        android:background="@color/background"
+        android:scrollbars="none"
+        card_view:cardCornerRadius="4dp"/>
 
 </ddw.com.richang.custom.refresh.PtrClassicFrameLayout>

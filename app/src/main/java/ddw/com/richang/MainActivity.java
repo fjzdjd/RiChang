@@ -1,8 +1,10 @@
 package ddw.com.richang;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Parcelable;
@@ -1106,6 +1108,7 @@ public class MainActivity extends BaseActivity {
         }).start();
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void showdays() {
         final int itemHeight = 80 * Config.SCALE;
         final ObScrollView days = (ObScrollView) findViewById(R.id.plandays);
