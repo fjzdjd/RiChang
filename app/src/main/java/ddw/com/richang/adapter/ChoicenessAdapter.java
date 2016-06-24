@@ -54,19 +54,16 @@ public class ChoicenessAdapter extends RecyclerView
 
         holder.mTitle.setText(mListData.get(position).getAlbum_name());
 
-
         //跳转详情界面
         holder.mCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent(mContext, ChoicenessDetailActivity.class);
                 intent.putExtra("album_id", mListData.get(position).getAlbum_id());
+                intent.putExtra("album_name", mListData.get(position).getAlbum_name());
                 mContext.startActivity(intent);
-
             }
         });
-
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

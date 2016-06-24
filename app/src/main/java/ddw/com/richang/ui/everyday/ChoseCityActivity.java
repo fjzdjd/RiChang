@@ -49,6 +49,7 @@ public class ChoseCityActivity extends BaseActivity {
     public static String mBroadcastRegistFlag = "choseCityActivity";
 
     private GridView mGridView;
+
     /**
      * 城市名称
      */
@@ -104,7 +105,7 @@ public class ChoseCityActivity extends BaseActivity {
 
             @Override
             public void onCancelled(CancelledException cex) {
-                Toast.makeText(x.app(), "cancelled", Toast.LENGTH_LONG).show();
+                Toast.makeText(x.app(), "网络访问失败", Toast.LENGTH_LONG).show();
             }
 
             @Override

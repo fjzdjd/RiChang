@@ -29,6 +29,7 @@
             android:layout_centerVertical="true"
             android:layout_marginBottom="10dp"
             android:padding="10dp"
+            android:background="?android:attr/selectableItemBackground"
             android:src="@mipmap/close_icon"/>
     </RelativeLayout>
 

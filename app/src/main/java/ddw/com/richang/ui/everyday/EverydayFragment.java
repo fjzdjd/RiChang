@@ -12,9 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
+import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,14 +30,17 @@ import org.xutils.http.RequestParams;
 import org.xutils.x;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import ddw.com.richang.R;
+import ddw.com.richang.adapter.EverydayAdapter;
 import ddw.com.richang.base.BaseFragment;
 import ddw.com.richang.commons.ConstantData;
 import ddw.com.richang.controller.InterFace;
-import ddw.com.richang.custom.SmoothListView.SmoothListView;
+import ddw.com.richang.custom.refresh.PtrClassicFrameLayout;
+import ddw.com.richang.custom.refresh.PtrDefaultHandler;
+import ddw.com.richang.custom.refresh.PtrFrameLayout;
+import ddw.com.richang.custom.refresh.PtrHandler;
 import ddw.com.richang.manager.SharePreferenceManager;
 import ddw.com.richang.model.RiActivityRecommend;
 import ddw.com.richang.model.RiBannerData;
@@ -54,7 +56,7 @@ import ddw.com.richang.util.StringUtils;
 public class EverydayFragment extends BaseFragment {
 
 
-    private SmoothListView mSoothListView;
+    private ListView mListView;
 
     /**
      * 广告栏 banner图片
@@ -84,7 +86,7 @@ public class EverydayFragment extends BaseFragment {
 
     private EverydayAdapter mAdapterEveryday;
     private int user_id = 0;
-    private int ct_id = 4;
+    private int ct_id = 1;
     private int start_id = 0;
     private int num = 0;
     private TextView mChoiceCity;
@@ -93,6 +95,9 @@ public class EverydayFragment extends BaseFragment {
      */
     private GetLocalBroadcastToRefresh mGetLocalBroadcastToRefresh;
     private TextView mChoiceTag;
+    private PtrClassicFrameLayout mRefreshLayout;
+    private TextView mListLoadMore;
+    private ProgressBar mListLoadMorePb;
 
     @Nullable
     @Override
@@ -110,12 +115,15 @@ public class EverydayFragment extends BaseFragment {
         return view;
     }
 
+
     /**
      * 初始化界面
      */
     private void initWidgets(View view) {
 
-        mSoothListView = (SmoothListView) view.findViewById(R.id.everyday_fragment_listView);
+        mListView = (ListView) view.findViewById(R.id.everyday_fragment_listView);
+
+        mRefreshLayout = (PtrClassicFrameLayout) view.findViewById(R.id.everyday_refresh_ptr);
 
         mChoiceCity = (TextView) view.findViewById(R.id.everyday_fragment_txt_choiceCity);
 
@@ -126,14 +134,21 @@ public class EverydayFragment extends BaseFragment {
                 .USER_CITY_NAME, ""))) {
             mChoiceCity.setText(SharePreferenceManager.getInstance().getString(ConstantData
                     .USER_CITY_NAME, ""));
-
         }
 
-        mChoiceCity.setOnClickListener(new EverydayOnClickListener());
-        mChoiceTag.setOnClickListener(new EverydayOnClickListener());
-
+        //listView头部
         View mHeaderView = LayoutInflater.from(getActivity()).inflate(R.layout
                 .everyday_header_layout, null);
+
+        //添加listView底部加载更多
+        View mListFooterView = LayoutInflater.from(getActivity()).inflate(R.layout
+                .listview_footer_loadmore, null);
+
+        mListLoadMore = (TextView) mListFooterView.findViewById(R.id.list_text_loadMore);
+
+        mListLoadMorePb = (ProgressBar) mListFooterView.findViewById(R.id
+                .list_progressBar_loadMore);
+
 
         //活动推荐
         mActivityRecommend1 = (TextView) mHeaderView.findViewById(R.id
@@ -156,51 +171,118 @@ public class EverydayFragment extends BaseFragment {
         mSelection = (TextView) mHeaderView.findViewById(R.id.everyday_header_txt_selection);
         mBearby = (TextView) mHeaderView.findViewById(R.id.everyday_header_txt_nearby);
 
-        mSoothListView.addHeaderView(mHeaderView);
+        mListView.addHeaderView(mHeaderView);
 
-        //分类，下一个版本
-//        HeaderFilterViewView headerFilterViewView = new HeaderFilterViewView(getActivity());
-//        headerFilterViewView.fillView(new Object(), mSoothListView);
+        mListView.addFooterView(mListFooterView);
 
         mAdapterEveryday = new EverydayAdapter(getActivity(), mJsonDatas);
 
-        mSoothListView.setAdapter(mAdapterEveryday);
+        mListView.setAdapter(mAdapterEveryday);
 
-        //上下拉刷新
-        mSoothListView.setRefreshEnable(true);
-        mSoothListView.setLoadMoreEnable(true);
-
-        mSoothListView.setSmoothListViewListener(new SmoothListView.ISmoothListViewListener() {
-            @Override
-            public void onRefresh() {
-
-                mJsonDatas.clear();
-                getInitDatas();
-                //加入刷新时间
-                String time = CommonUtils.getCurrentTime("yyyy-MM-dd  hh:mm:ss");
-                mSoothListView.setRefreshTime(time);
-
-            }
-
-            @Override
-            public void onLoadMore() {
-
-                getActivityRecommendDatas(String.valueOf(user_id), String.valueOf(ct_id), "", "");
-            }
-        });
+        setClickEvent();
 
 
-        mSoothListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+    }
+
+    /**
+     * 设置click and refresh事件
+     */
+    private void setClickEvent() {
+
+        mChoiceCity.setOnClickListener(new EverydayOnClickListener());
+        mChoiceTag.setOnClickListener(new EverydayOnClickListener());
+
+        refreshHandler();
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (!CommonUtils.isNetworkAvailable(getActivity())) {
+                    Toast.makeText(getActivity(), "请检查网络连接", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Intent intent = new Intent(getActivity(), ContentDetailActivity.class);
-                intent.putExtra("ac_id", mJsonDatas.get(position - 2).getAc_id());
+                intent.putExtra("ac_id", mJsonDatas.get(position - 1).getAc_id());
                 startActivity(intent);
             }
         });
 
+        /**
+         * 监听listView滑动,加载更多
+         */
+        mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                switch (scrollState) {
+                    //The view is not scrolling.
+                    case AbsListView.OnScrollListener.SCROLL_STATE_IDLE:
+                        if (view.getLastVisiblePosition() == (view.getCount() - 1)) {
+
+                            mListLoadMore.setVisibility(View.INVISIBLE);
+                            mListLoadMorePb.setVisibility(View.VISIBLE);
+                            getInitDatas();
+
+                        }
+                        break;
+
+                    default:
+                        break;
+                }
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
+                                 int totalItemCount) {
+
+            }
+        });
 
     }
+
+
+    /**
+     * 刷新
+     */
+    private void refreshHandler() {
+        mRefreshLayout.setLastUpdateTimeRelateObject(this);
+        // the following are default settings
+        mRefreshLayout.setResistance(3.5f);
+        mRefreshLayout.setRatioOfHeaderHeightToRefresh(1.2f);
+        mRefreshLayout.setDurationToClose(200);
+        mRefreshLayout.setDurationToCloseHeader(1000);
+        // default is false
+        mRefreshLayout.setPullToRefresh(false);
+        // default is true
+        mRefreshLayout.setKeepHeaderWhenRefresh(true);
+        mRefreshLayout.setPtrHandler(new PtrHandler() {
+            @Override
+            public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
+                return PtrDefaultHandler.checkContentCanBePulledDown(frame, content, header);
+            }
+
+            @Override
+            public void onRefreshBegin(final PtrFrameLayout frame) {
+                frame.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        if (!CommonUtils.isNetworkAvailable(getActivity())) {
+                            Toast.makeText(getActivity(), "请检查网络连接", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        mJsonDatas.clear();
+                        getInitDatas();
+
+                        mRefreshLayout.refreshComplete();
+                    }
+                }, 0);
+            }
+        });
+
+    }
+
 
     /**
      * 初始化数据
@@ -252,7 +334,7 @@ public class EverydayFragment extends BaseFragment {
 
             @Override
             public void onCancelled(CancelledException cex) {
-                Toast.makeText(x.app(), "cancelled", Toast.LENGTH_LONG).show();
+                Toast.makeText(x.app(), "网络访问失败", Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -290,7 +372,7 @@ public class EverydayFragment extends BaseFragment {
     }
 
     /**
-     * 获取初始化数据
+     * 推荐数据
      */
     private void getInitDatas() {
         if (!StringUtils.isEmpty(SharePreferenceManager.getInstance().getString(ConstantData
@@ -355,7 +437,7 @@ public class EverydayFragment extends BaseFragment {
 
                     @Override
                     public void onCancelled(CancelledException cex) {
-                        Toast.makeText(x.app(), "cancelled", Toast.LENGTH_LONG).show();
+                        Toast.makeText(x.app(), "网络访问失败", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -375,8 +457,17 @@ public class EverydayFragment extends BaseFragment {
 
                                     mAdapterEveryday.setListData(mJsonDatas);
 
-                                    mSoothListView.stopRefresh();
-                                    mSoothListView.stopLoadMore();
+                                    //更改底部栏加载更多
+                                    mListLoadMore.setVisibility(View.VISIBLE);
+                                    mListLoadMorePb.setVisibility(View.GONE);
+
+                                } else {
+                                    mAdapterEveryday.setListData(mJsonDatas);
+
+                                    //更改底部栏加载更多
+                                    mListLoadMore.setVisibility(View.VISIBLE);
+                                    mListLoadMorePb.setVisibility(View.GONE);
+
                                 }
 
                             } catch (JSONException e) {
@@ -445,35 +536,6 @@ public class EverydayFragment extends BaseFragment {
 
 
     /**
-     * 适配器布局
-     */
-    static class ViewHolder {
-
-        private final ImageView acPoster;
-        private final TextView acTitle;
-        private final TextView acTime;
-        private final TextView acPlace;
-
-        /**
-         * 字段中暂无此值
-         */
-        private final TextView acCostTags;
-        private final TextView acReadNum;
-
-        ViewHolder(View view) {
-
-            acPoster = (ImageView) view.findViewById(R.id.everyday_adapter_img_item);
-            acTitle = (TextView) view.findViewById(R.id.everyday_adapter_txt_title);
-            acTime = (TextView) view.findViewById(R.id.everyday_adapter_txt_time);
-            acPlace = (TextView) view.findViewById(R.id.everyday_adapter_txt_place);
-            acCostTags = (TextView) view.findViewById(R.id.everyday_adapter_txt_tag);
-            acReadNum = (TextView) view.findViewById(R.id.everyday_adapter_txt_num);
-
-        }
-
-    }
-
-    /**
      * 获取广播信息，针对不同消息进行刷新
      */
     private class GetLocalBroadcastToRefresh extends BroadcastReceiver {
@@ -503,12 +565,20 @@ public class EverydayFragment extends BaseFragment {
             switch (v.getId()) {
                 //选择城市
                 case R.id.everyday_fragment_txt_choiceCity:
+                    if (!CommonUtils.isNetworkAvailable(getActivity())) {
+                        Toast.makeText(getActivity(), "请检查网络连接", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
 
                     startActivity(new Intent(getActivity(), ChoseCityActivity.class));
 
                     break;
                 //选择标签
                 case R.id.everyday_fragment_txt_choiceTag:
+                    if (!CommonUtils.isNetworkAvailable(getActivity())) {
+                        Toast.makeText(getActivity(), "请检查网络连接", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
 
                     if (StringUtils.isEmpty(SharePreferenceManager.getInstance().getString
                             (ConstantData.USER_ID, ""))) {
@@ -529,86 +599,5 @@ public class EverydayFragment extends BaseFragment {
         }
     }
 
-    /**
-     * adapter适配器
-     */
-    private class EverydayAdapter extends BaseAdapter {
 
-        private List<RiActivityRecommend> mList;
-
-        private HashMap<Integer, View> viewChache = new HashMap<>();
-
-        public EverydayAdapter(Context context, List<RiActivityRecommend> list) {
-            this.mList = list;
-        }
-
-        @Override
-        public int getCount() {
-            return mList.size();
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return mList.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        /**
-         * 设置数据
-         *
-         * @param list
-         */
-        public void setListData(List<RiActivityRecommend> list) {
-            this.mList = list;
-            notifyDataSetChanged();
-
-
-        }
-
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            //暂无数据的布局
-            if (mList.size() == 0) {
-                convertView = LayoutInflater.from(getActivity()).inflate(R.layout
-                        .item_no_data_layout, parent, false);
-                AbsListView.LayoutParams params = new AbsListView.LayoutParams(ViewGroup
-                        .LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-                RelativeLayout rootView = (RelativeLayout) convertView.findViewById(R.id
-                        .rl_root_view);
-                rootView.setLayoutParams(params);
-
-                return convertView;
-            }
-
-            ViewHolder viewHolder;
-
-            if (viewChache.get(position) == null) {
-                convertView = LayoutInflater.from(getActivity()).inflate(R.layout
-                        .item_everyday_list_layout, null);
-                viewHolder = new ViewHolder(convertView);
-                convertView.setTag(viewHolder);
-                viewChache.put(position, convertView);
-            } else {
-                convertView = viewChache.get(position);
-                viewHolder = (ViewHolder) convertView.getTag();
-            }
-
-            x.image().bind(viewHolder.acPoster, mList.get(position).getAc_poster());
-            viewHolder.acTitle.setText(mList.get(position).getAc_title());
-            viewHolder.acTime.setText(mList.get(position).getAc_time());
-            viewHolder.acPlace.setText(mList.get(position).getAc_place());
-            viewHolder.acReadNum.setText(" " + mList.get(position).getAc_read_num());
-            viewHolder.acCostTags.setText(" " + "免费活动");
-
-
-            return convertView;
-        }
-
-
-    }
 }

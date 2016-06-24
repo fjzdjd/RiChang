@@ -44,12 +44,17 @@
                         android:layout_width="wrap_content"
                         android:layout_height="46dp"
                         android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="9dp"
+                        android:layout_marginLeft="9dp"
                         android:onClick="closeCurrentWin"
                         android:paddingBottom="15dp"
                         android:paddingEnd="18dp"
+                        android:paddingRight="18dp"
                         android:paddingStart="1dp"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:paddingLeft="1dp"
                         android:paddingTop="12dp"
                         android:src="@drawable/back_icon"/>
 
@@ -59,6 +64,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_toEndOf="@+id/detail_finish_img"
+                        android:layout_toRightOf="@+id/detail_finish_img"
                         android:lines="1"
                         android:maxLength="13"
                         android:maxLines="1"
@@ -74,6 +80,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:orientation="horizontal"
+                        android:paddingRight="8dp"
                         android:paddingEnd="8dp">
 
                         <ImageView
@@ -128,6 +135,7 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="120dp"
+                        android:layout_marginLeft="16dp"
                         android:layout_marginStart="16dp">
 
                         <LinearLayout
@@ -183,6 +191,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
+                        android:layout_marginLeft="13dp"
                         android:layout_marginStart="13dp"
                         android:orientation="horizontal">
 
@@ -198,6 +207,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingStart="5dp"
+                            android:paddingLeft="5dp"
                             android:text="2015.12.12 14:00"
                             android:textColor="@color/black"
                             android:textSize="16dp"/>
@@ -208,6 +218,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="12dp"
                         android:width="65dp"
@@ -258,6 +269,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_marginStart="10dp"
+                            android:layout_marginLeft="10dp"
                             android:gravity="center_vertical"
                             android:maxLines="1"
                             android:text="国际体验设计协"
@@ -274,6 +286,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_alignParentEnd="true"
+                                android:layout_alignParentRight="true"
                                 android:layout_gravity="end|center_horizontal"
                                 android:layout_marginRight="12dp"
                                 android:gravity="center_vertical|end"
@@ -308,6 +321,8 @@
                         android:orientation="vertical"
                         android:paddingBottom="1dp"
                         android:paddingEnd="1dp"
+                        android:paddingRight="1dp"
+                        android:paddingLeft="12dp"
                         android:paddingStart="12dp"
                         android:paddingTop="10dp">
 
@@ -397,6 +412,8 @@
                         android:background="@color/white"
                         android:orientation="vertical"
                         android:paddingEnd="9dp"
+                        android:paddingRight="9dp"
+                        android:paddingLeft="12dp"
                         android:paddingStart="12dp">
 
                         <TextView
@@ -452,6 +469,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center|end"
                         android:layout_marginEnd="9dp"
+                        android:layout_marginRight="9dp"
                         android:padding="3dp"
                         android:text="查看更多"
                         android:textColor="@color/mainColor"

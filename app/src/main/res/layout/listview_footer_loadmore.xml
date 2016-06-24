@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    android:id="@+id/loadmore_footer_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:gravity="center"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/list_text_loadMore"
+        android:layout_width="match_parent"
+        android:layout_height="26dp"
+        android:layout_gravity="center|top"
+        android:gravity="center"
+        android:text="加载更多"
+        android:textSize="16dp"/>
+
+    <ProgressBar
+        android:id="@+id/list_progressBar_loadMore"
+        android:layout_width="wrap_content"
+        android:layout_height="26dp"
+        android:layout_gravity="center|top"
+        android:indeterminate="true"
+        android:visibility="gone"/>
+
+</FrameLayout>

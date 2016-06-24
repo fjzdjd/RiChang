@@ -7,11 +7,12 @@
 
     <ImageView
         android:id="@+id/login_in_img_finish"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
         android:layout_alignParentEnd="true"
+        android:background="?android:attr/selectableItemBackground"
         android:layout_alignParentRight="true"
-        android:layout_margin="10dp"
+        android:padding="10dp"
         android:src="@mipmap/close_square"/>
 
     <LinearLayout
@@ -97,6 +98,7 @@
             android:layout_gravity="end"
             android:layout_marginTop="16dp"
             android:text="找回密码?"
+            android:background="?android:attr/selectableItemBackground"
             android:textColor="@color/orange"
             android:textSize="15sp"/>
 
@@ -127,8 +129,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
             android:padding="2dp"
             android:text="快速注册"
+            android:background="?android:attr/selectableItemBackground"
             android:textColor="@color/rorange"
             android:textSize="16sp"/>
 
@@ -143,7 +147,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
             android:padding="2dp"
+            android:background="?android:attr/selectableItemBackground"
             android:text="随便看看"
             android:textColor="@color/mainGrayTxtColor"
             android:textSize="15sp"/>

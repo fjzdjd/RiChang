@@ -49,7 +49,6 @@ public class RegisterActivity extends BaseActivity {
         actionBar.hide();
         setContentView(R.layout.login_register_activity_layout);
         initWidgets();
-
         initData();
     }
 

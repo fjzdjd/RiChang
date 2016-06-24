@@ -6,11 +6,12 @@
 
     <ImageView
         android:id="@+id/login_register_img_goLogin"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_margin="10dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:padding="10dp"
         android:src="@mipmap/close_square"/>
 
     <LinearLayout
@@ -203,8 +204,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
             android:padding="2dp"
             android:text="返回登录"
+            android:background="?android:attr/selectableItemBackground"
             android:textColor="@color/mainColor"
             android:textSize="16sp"/>
 
@@ -218,8 +221,10 @@
             android:id="@+id/login_register_txt_directEnter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
             android:padding="2dp"
+            android:background="?android:attr/selectableItemBackground"
             android:text="随便看看"
             android:textColor="@color/mainGrayTxtColor"
             android:textSize="15sp"/>

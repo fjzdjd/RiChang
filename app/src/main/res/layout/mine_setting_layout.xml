@@ -4,7 +4,7 @@
               android:layout_height="match_parent"
               android:background="@color/background"
               android:orientation="vertical"
-              tools:context="ddw.com.richang.ui.mine.AboutUsActivity">
+              tools:context=".ui.mine.MineSetting">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -15,71 +15,30 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="46dp"
-            android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:background="?android:attr/selectableItemBackground"
             android:onClick="closeCurrentWin"
             android:paddingEnd="10dp"
+            android:paddingLeft="1dp"
             android:paddingRight="10dp"
             android:paddingStart="1dp"
-            android:paddingLeft="1dp"
             android:src="@mipmap/back_icon_orange"/>
 
         <TextView
+            android:id="@+id/choiceness_detail_txt_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="关于我们"
+            android:text="设置"
             android:textColor="@color/mainColor"
             android:textSize="18sp"/>
 
-
-    </RelativeLayout>
-
-    <ImageView
-        android:layout_width="96dp"
-        android:layout_height="96dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="17dp"
-        android:layout_marginTop="25dp"
-        android:src="@mipmap/icon_cir"/>
-
-    <TextView
-        android:id="@+id/about_txt_version"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="15dp"
-        android:text="版本号XXX"
-        android:textColor="@color/black"
-        android:textSize="15sp"/>
-
-    <RelativeLayout
-        android:id="@+id/about_rlt_introduce"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:padding="16dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="产品介绍"
-            android:textColor="@color/black"
-            android:textSize="15sp"/>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="12dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:src="@mipmap/goright"/>
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/about_rlt_weChat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="1dp"
@@ -89,55 +48,106 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="微信平台"
-            android:textColor="@color/black"
-            android:textSize="15sp"/>
+            android:layout_centerVertical="true"
+            android:text="新消息通知"
+            android:textColor="@color/font_black_1"
+            android:textSize="16sp"/>
 
-        <ImageView
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="12dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:src="@mipmap/goright"/>
+            android:drawableRight="@mipmap/go_right"
+            android:gravity="center"
+            android:padding="2dp"
+            android:text="开启"
+            android:textColor="@color/font_black_2"
+            android:textSize="12dp"/>
+
+
     </RelativeLayout>
 
+
     <RelativeLayout
-        android:id="@+id/about_rlt_update"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="2dp"
         android:background="@color/white"
         android:padding="16dp">
 
         <TextView
-            android:id="@+id/about_txt_update"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="版本升级"
-            android:textColor="@color/black"
-            android:textSize="15sp"/>
+            android:layout_centerVertical="true"
+            android:text="摇一摇反馈"
+            android:textColor="@color/font_black_1"
+            android:textSize="16sp"/>
 
-        <ImageView
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="12dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:src="@mipmap/goright"/>
+            android:drawableRight="@mipmap/go_right"
+            android:gravity="center"
+            android:padding="2dp"
+            android:text="开启"
+            android:textColor="@color/font_black_2"
+            android:textSize="12dp"/>
 
     </RelativeLayout>
 
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="25dp"
-        android:gravity="center_horizontal|bottom"
-        android:text="Copyright©2016"
-        android:textColor="@color/mainGrayTxtColor"
-        android:textSize="15sp"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:background="@color/white"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="清除缓存"
+            android:textColor="@color/font_black_1"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:drawableRight="@mipmap/go_right"
+            android:gravity="center"
+            android:padding="2dp"
+            android:text="16M"
+            android:textColor="@color/font_black_2"
+            android:textSize="12dp"/>
+
+    </RelativeLayout>
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:background="@color/white"
+                  android:layout_marginTop="2dp"
+                  android:orientation="vertical">
+
+        <TextView
+            android:onClick="exitLogin"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:gravity="center"
+            android:text="退出登录"
+            android:textColor="@color/font_black_1"
+            android:textSize="16sp"/>
+
+    </LinearLayout>
 
 
 </LinearLayout>
-
-

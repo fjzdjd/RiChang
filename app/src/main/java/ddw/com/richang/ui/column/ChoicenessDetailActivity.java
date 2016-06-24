@@ -55,7 +55,10 @@ public class ChoicenessDetailActivity extends BaseActivity {
         x.view().inject(this);
 
         String album_id = getIntent().getStringExtra("album_id");
+        String album_name = getIntent().getStringExtra("album_name");
         getAlbumAcs(album_id);
+
+        mTitle.setText(album_name);
 
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
 

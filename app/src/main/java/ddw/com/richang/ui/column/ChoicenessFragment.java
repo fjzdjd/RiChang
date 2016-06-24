@@ -77,6 +77,13 @@ public class ChoicenessFragment extends BaseFragment {
 
         mRecyclerView.setAdapter(mAdapter);
 
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+        });
+
         return view;
     }
 
@@ -120,6 +127,7 @@ public class ChoicenessFragment extends BaseFragment {
 
 
     /**
+     * 获取当前界面数据
      * http://appv2.myrichang.com/Home/Industry/getAlbums?ct_id=3&start_id=2
      *
      * @param ct_id    起始专辑编号
@@ -186,7 +194,6 @@ public class ChoicenessFragment extends BaseFragment {
                     }
 
                 });
-
     }
 
 

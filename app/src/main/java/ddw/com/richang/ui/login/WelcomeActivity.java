@@ -4,7 +4,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,11 +12,15 @@ import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.Poi;
 
+import ddw.com.richang.HomeActivity;
 import ddw.com.richang.R;
 import ddw.com.richang.app.RiChangApplication;
 import ddw.com.richang.base.BaseActivity;
+import ddw.com.richang.commons.ConstantData;
+import ddw.com.richang.manager.SharePreferenceManager;
 import ddw.com.richang.service.LocationService;
 import ddw.com.richang.util.LogN;
+import ddw.com.richang.util.StringUtils;
 
 /**
  * 2.0欢饮界面
@@ -47,130 +50,10 @@ public class WelcomeActivity extends BaseActivity implements Runnable {
      * 预留更改
      */
     private ImageView mStartUI;
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
-        setContentView(R.layout.login_welcome_activity_layout);
-
-        initWidgets();
-        initDatas();
-
-        //开启线程
-        new Thread(WelcomeActivity.this).start();
-    }
-
-    /**
-     * 初始化数据
-     */
-    private void initDatas() {
-        //预留后台更改启动画面接口
-//        mStartUI.setBackground();
-    }
-
-    /**
-     * 初始化界面
-     */
-    private void initWidgets() {
-
-        mStartRiChang = (Button) findViewById(R.id.login_welcome_btn_start);
-        mStartUI = (ImageView) findViewById(R.id.login_welcome_img_start);
-
-        mStartRiChang.setOnClickListener(new WelcomeOnClickListener());
-    }
-
-    @Override
-    public void run() {
-        /**
-         * 延迟两秒时间
-         */
-        try {
-            Thread.sleep(2000);
-            //读取SharedPreferences中需要的数据
-
-            SharedPreferences preferences = getSharedPreferences("isFirstUse", MODE_WORLD_READABLE);
-
-            isFirstUse = preferences.getBoolean("isFirstUse", true);
-
-            /**
-             * 如果用户不是第一次使用则直接调转到显示界面,否则调转到引导界面
-             */
-            if (isFirstUse) {
-                riChangActivityManager.startNextActivity(GuideActivity.class);
-            } else {
-                //如果有登录就不跳转登录界面
-                riChangActivityManager.startNextActivity(LoginActivity.class);
-            }
-
-            WelcomeActivity.this.finish();
-            // 实例化Editor对象
-            SharedPreferences.Editor editor = preferences.edit();
-            // 存入数据
-            editor.putBoolean("isFirstUse", false);
-            // 提交修改
-            editor.commit();
-
-        } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-
-    }
-
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        // -----------location config ------------
-        locationService = ((RiChangApplication) getApplication()).locationService;
-        //获取locationservice实例，建议应用中只初始化1个location实例，然后使用，可以参考其他示例的activity，都是通过此种方式获取locationservice实例的
-        locationService.registerListener(mListener);
-
-        locationService.setLocationOption(locationService.getDefaultLocationClientOption());
-
-        locationService.start();// 定位SDK
-
-    }
-
     private LocationService locationService;
-    @Override
-    protected void onStop() {
-        super.onStop();
-        // TODO Auto-generated method stub
-        locationService.unregisterListener(mListener); //注销掉监听
-        locationService.stop(); //停止定位服务
-    }
-
-    /**
-     * welcome界面点击事件
-     */
-    private class WelcomeOnClickListener implements View.OnClickListener {
-
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()) {
-                //开启日常
-                case R.id.login_welcome_btn_start:
-//                    riChangActivityManager.startNextActivity(MainActivity.class);
-//                    WelcomeActivity.this.finish();
-
-                    break;
-
-
-                default:
-                    break;
-            }
-
-        }
-    }
-
     /*****
-     * @see copy funtion to you project
+     * copy funtion to you project
      * 定位结果回调，重写onReceiveLocation方法，可以直接拷贝如下代码到自己工程中修改
-     *
      */
     private BDLocationListener mListener = new BDLocationListener() {
 
@@ -246,9 +129,110 @@ public class WelcomeActivity extends BaseActivity implements Runnable {
                     sb.append("\ndescribe : ");
                     sb.append("无法获取有效定位依据导致定位失败，一般是由于手机的原因，处于飞行模式下一般会造成这种结果，可以试着重启手机");
                 }
-                LogN.d(this,sb.toString());
+                LogN.d(this, sb.toString());
             }
         }
 
     };
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
+        setContentView(R.layout.login_welcome_activity_layout);
+
+        initWidgets();
+        initDatas();
+
+        //开启线程
+        new Thread(WelcomeActivity.this).start();
+    }
+
+    /**
+     * 初始化数据
+     */
+    private void initDatas() {
+        //预留后台更改启动画面接口
+//        mStartUI.setBackground();
+    }
+
+    /**
+     * 初始化界面
+     */
+    private void initWidgets() {
+
+        mStartRiChang = (Button) findViewById(R.id.login_welcome_btn_start);
+        mStartUI = (ImageView) findViewById(R.id.login_welcome_img_start);
+
+    }
+
+    @Override
+    public void run() {
+        /**
+         * 延迟两秒时间
+         */
+        try {
+            Thread.sleep(3000);
+            //读取SharedPreferences中需要的数据
+
+            SharedPreferences preferences = getSharedPreferences("isFirstUse", MODE_WORLD_READABLE);
+
+            isFirstUse = preferences.getBoolean("isFirstUse", true);
+
+            /**
+             * 如果用户不是第一次使用则直接调转到显示界面,否则调转到引导界面
+             */
+            if (isFirstUse) {
+                riChangActivityManager.startNextActivity(GuideActivity.class);
+            } else {
+                //如果有登录就不跳转登录界面
+                if (StringUtils.isEmpty(SharePreferenceManager.getInstance().getString
+                        (ConstantData.USER_ID, ""))){
+                    riChangActivityManager.startNextActivity(LoginActivity.class);
+                }else {
+                    riChangActivityManager.startNextActivity(HomeActivity.class);
+                }
+
+            }
+
+            WelcomeActivity.this.finish();
+            // 实例化Editor对象
+            SharedPreferences.Editor editor = preferences.edit();
+            // 存入数据
+            editor.putBoolean("isFirstUse", false);
+            // 提交修改
+            editor.commit();
+
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // -----------location config ------------
+        locationService = ((RiChangApplication) getApplication()).locationService;
+        //获取locationservice实例，建议应用中只初始化1个location实例，然后使用，可以参考其他示例的activity
+        // ，都是通过此种方式获取locationservice实例的
+        locationService.registerListener(mListener);
+
+        locationService.setLocationOption(locationService.getDefaultLocationClientOption());
+
+        locationService.start();// 定位SDK
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        // TODO Auto-generated method stub
+        locationService.unregisterListener(mListener); //注销掉监听
+        locationService.stop(); //停止定位服务
+    }
+
 }

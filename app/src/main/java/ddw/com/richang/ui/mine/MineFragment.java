@@ -71,7 +71,7 @@ public class MineFragment extends BaseFragment {
         switch (view.getId()) {
             //设置
             case R.id.mine_img_setting:
-
+                startActivity(new Intent(getActivity(), MineSetting.class));
                 break;
 
             //修改信息

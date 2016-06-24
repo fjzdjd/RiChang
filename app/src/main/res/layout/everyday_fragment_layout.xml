@@ -1,119 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent" xmlns:tools="http://schemas.android.com/tools"
-             android:orientation="vertical">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/background"
+              android:orientation="vertical">
 
-    <ddw.com.richang.custom.SmoothListView.SmoothListView
-        android:id="@+id/everyday_fragment_listView"
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="45dp"
-        android:divider="@null"
-        android:dividerHeight="0dp"
-        android:fadingEdge="none"
-        android:background="@color/white"
-        android:footerDividersEnabled="false"
-        android:headerDividersEnabled="false"
-        android:overScrollMode="never"
-        tools:listitem="@layout/item_everyday_list_layout"
-        android:scrollbars="none"/>
+        android:layout_height="45dp"
+        android:background="@color/mainColor"
+        android:visibility="visible">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <!--备份通透栏-->
-        <!--android:background="@color/transparent"-->
-        <RelativeLayout
-            android:id="@+id/rl_bar"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:background="@color/mainColor"
-            android:visibility="visible">
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="13dp">
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="13dp">
-
-                <View
-                    android:id="@+id/view_title_bg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="50dp"
-                    android:layout_marginStart="56dp"
-                    android:background="@drawable/corners_bg"/>
-
-
-                <TextView
-                    android:id="@+id/tv_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:drawableStart="@mipmap/search_icon"
-                    android:text=" 搜索科技、媒体、互联网"
-                    android:textColor="@color/mainGrayTxtColor"
-                    android:textSize="14dp"/>
-
-
-            </FrameLayout>
-
-            <FrameLayout
-                android:id="@+id/fl_action_more"
-                android:layout_width="50dp"
+            <View
+                android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="9dp">
-
-                <View
-                    android:id="@+id/view_action_more_bg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:visibility="invisible"/>
-
-                <TextView
-                    android:id="@+id/everyday_fragment_txt_choiceCity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:drawableRight="@mipmap/arrow_down"
-                    android:gravity="center"
-                    android:text="上海"
-                    android:background="?android:attr/selectableItemBackground"
-                    android:textColor="@color/white"
-                    android:textSize="16dp"/>
-
-            </FrameLayout>
+                android:layout_gravity="center"
+                android:layout_marginEnd="50dp"
+                android:layout_marginLeft="56dp"
+                android:layout_marginRight="56dp"
+                android:layout_marginStart="56dp"
+                android:background="@drawable/corners_bg"/>
 
             <TextView
-                android:id="@+id/everyday_fragment_txt_choiceTag"
+                android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="5dp"
-                android:paddingEnd="5dp"
-                android:text="标签"
+                android:layout_gravity="center"
+                android:drawableLeft="@mipmap/search_icon"
+                android:drawableStart="@mipmap/search_icon"
+                android:text=" 搜索科技、媒体、互联网"
+                android:textColor="@color/mainGrayTxtColor"
+                android:textSize="14dp"/>
+
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_action_more"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="9dp"
+            android:layout_marginStart="9dp">
+
+            <View
+                android:id="@+id/view_action_more_bg"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:visibility="invisible"/>
+
+            <TextView
+                android:id="@+id/everyday_fragment_txt_choiceCity"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
                 android:background="?android:attr/selectableItemBackground"
+                android:drawableRight="@mipmap/arrow_down"
+                android:gravity="center"
+                android:text="北京"
                 android:textColor="@color/white"
                 android:textSize="16dp"/>
 
-        </RelativeLayout>
+        </FrameLayout>
 
-        <!--虚假分类栏-->
-        <ddw.com.richang.custom.CustomUi.FilterView
-            android:id="@+id/everyday_fragment_fv_filter"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/everyday_fragment_txt_choiceTag"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="invisible"/>
-    </LinearLayout>
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:paddingEnd="5dp"
+            android:paddingRight="5dp"
+            android:text="标签"
+            android:textColor="@color/white"
+            android:textSize="16dp"/>
+
+    </RelativeLayout>
 
 
-</FrameLayout>
+    <ddw.com.richang.custom.refresh.PtrClassicFrameLayout
+        android:id="@+id/everyday_refresh_ptr"
+        xmlns:cube_ptr="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        cube_ptr:ptr_duration_to_close="200"
+        cube_ptr:ptr_duration_to_close_header="1000"
+        cube_ptr:ptr_keep_header_when_refresh="true"
+        cube_ptr:ptr_pull_to_fresh="false"
+        cube_ptr:ptr_ratio_of_header_height_to_refresh="1.2"
+        cube_ptr:ptr_resistance="3.5">
+
+    <ListView
+        android:id="@+id/everyday_fragment_listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:divider="@color/background"
+        android:dividerHeight="5dp"
+        android:footerDividersEnabled="true"
+        android:headerDividersEnabled="true"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        tools:listitem="@layout/item_everyday_list_layout"/>
+
+    </ddw.com.richang.custom.refresh.PtrClassicFrameLayout>
+
+</LinearLayout>

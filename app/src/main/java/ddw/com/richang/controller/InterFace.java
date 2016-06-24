@@ -105,6 +105,10 @@ public class InterFace {
      */
     public String sendSMS;
     public String isExist;
+
+    /**
+     * 密码重置
+     */
     public String resetPasswd;
 
     private InterFace() {

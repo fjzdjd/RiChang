@@ -135,6 +135,11 @@
                   android:launchMode="singleTask"
                   android:screenOrientation="portrait"/>
 
+        <activity android:name=".ui.mine.MineSetting"
+                  android:configChanges="keyboardHidden|orientation"
+                  android:launchMode="singleTask"
+                  android:screenOrientation="portrait"/>
+
         <!-- 2.0modify -->
         <activity
             android:name=".Activity.pre.Login"
