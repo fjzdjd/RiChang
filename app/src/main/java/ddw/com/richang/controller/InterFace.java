@@ -20,7 +20,6 @@ public class InterFace {
      */
     public String getUSRInfo;
 
-
     /**
      * 获取精选
      */
@@ -87,6 +86,12 @@ public class InterFace {
      * 获取用户发布，参加，收藏，报名活动
      */
     public String getUsrActivity;
+
+    /**
+     * 获取附近的活动
+     */
+    public String getNearbyAcs;
+
     public String getUsrPlan;
     public String setCity;
 
@@ -146,6 +151,7 @@ public class InterFace {
 
         this.getAlbums = "http://appv2.myrichang.com/Home/Industry/getAlbums";
         this.getAlbumAcs="http://appv2.myrichang.com/Home/Industry/getAlbumAcs";
+        this.getNearbyAcs="http://appv2.myrichang.com/Home/Activity/getNearbyAcs";
     }
 
     public static InterFace getInstance() {

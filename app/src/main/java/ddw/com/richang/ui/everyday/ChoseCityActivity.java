@@ -65,6 +65,8 @@ public class ChoseCityActivity extends BaseActivity {
 
         initWidgets();
 
+        showWaitDialog("", R.color.transparent);
+
         mChoseAdapter = new ChoseAdapter(mJsonCityData);
 
         mGridView.setAdapter(mChoseAdapter);
@@ -132,6 +134,8 @@ public class ChoseCityActivity extends BaseActivity {
                         e.printStackTrace();
                     }
                 }
+
+                dismissWaitDialog();
             }
         });
     }

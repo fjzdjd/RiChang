@@ -16,6 +16,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import ddw.com.richang.base.BaseActivity;
+import ddw.com.richang.model.RiActivityRecommend;
 import ddw.com.richang.ui.agenda.AgendaFragment;
 import ddw.com.richang.ui.column.ColumnFragment;
 import ddw.com.richang.ui.everyday.EverydayFragment;
@@ -85,6 +86,8 @@ public class HomeActivity extends BaseActivity {
         initWidgets();
         initFragment();
 
+
+
     }
 
     /**
@@ -118,6 +121,14 @@ public class HomeActivity extends BaseActivity {
         fragments.add(agendaFragment);
         fragments.add(mineFragment);
 
+        ArrayList<RiActivityRecommend> mJson = (ArrayList<RiActivityRecommend>) getIntent()
+                .getSerializableExtra("mJsonRecommends");
+
+        Bundle bundle=new Bundle();
+        bundle.putSerializable("mJson",mJson);
+        everydayFragment.setArguments(bundle);
+
+
         fragmentTransaction.add(R.id.content, fragments.get(0)).commit();
     }
 
@@ -125,8 +136,8 @@ public class HomeActivity extends BaseActivity {
     /**
      * 切换tab更换展示内容
      *
-     * @param  currentFragment 当前页
-     * @param  index           跳转页
+     * @param currentFragment 当前页
+     * @param index           跳转页
      */
     public void setFootItemSelected(int currentFragment, int index) {
         if (currentFragment != index && fragments != null && fragments.get(index) != null) {

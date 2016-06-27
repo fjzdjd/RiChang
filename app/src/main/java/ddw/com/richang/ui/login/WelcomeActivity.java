@@ -26,8 +26,18 @@ import ddw.com.richang.util.StringUtils;
  * 2.0欢饮界面
  * Created by zzp on 2016/5/12.
  */
-public class WelcomeActivity extends BaseActivity implements Runnable {
+public class WelcomeActivity extends BaseActivity {
 
+
+    /**
+     * 伟度
+     */
+    public static double lattitude;
+
+    /**
+     * 精度
+     */
+    public static double longitute;
 
     private Button mStartRiChang;
     /**
@@ -72,8 +82,10 @@ public class WelcomeActivity extends BaseActivity implements Runnable {
                 sb.append(location.getLocType());
                 sb.append("\nlatitude : ");
                 sb.append(location.getLatitude());
+                lattitude=location.getLatitude();
                 sb.append("\nlontitude : ");
                 sb.append(location.getLongitude());
+                longitute=location.getLongitude();
                 sb.append("\nradius : ");
                 sb.append(location.getRadius());
                 sb.append("\nCountryCode : ");
@@ -130,6 +142,8 @@ public class WelcomeActivity extends BaseActivity implements Runnable {
                     sb.append("无法获取有效定位依据导致定位失败，一般是由于手机的原因，处于飞行模式下一般会造成这种结果，可以试着重启手机");
                 }
                 LogN.d(this, sb.toString());
+
+                initDatas();
             }
         }
 
@@ -143,18 +157,43 @@ public class WelcomeActivity extends BaseActivity implements Runnable {
         setContentView(R.layout.login_welcome_activity_layout);
 
         initWidgets();
-        initDatas();
 
-        //开启线程
-        new Thread(WelcomeActivity.this).start();
+
     }
 
     /**
      * 初始化数据
      */
     private void initDatas() {
-        //预留后台更改启动画面接口
-//        mStartUI.setBackground();
+        //读取SharedPreferences中需要的数据
+
+        SharedPreferences preferences = getSharedPreferences("isFirstUse", MODE_WORLD_READABLE);
+
+        isFirstUse = preferences.getBoolean("isFirstUse", true);
+
+        /**
+         * 如果用户不是第一次使用则直接调转到显示界面,否则调转到引导界面
+         */
+        if (isFirstUse) {
+            riChangActivityManager.startNextActivity(GuideActivity.class);
+        } else {
+            //如果有登录就不跳转登录界面
+            if (StringUtils.isEmpty(SharePreferenceManager.getInstance().getString
+                    (ConstantData.USER_ID, ""))) {
+                riChangActivityManager.startNextActivity(LoginActivity.class);
+            } else {
+                riChangActivityManager.startNextActivity(HomeActivity.class);
+            }
+
+        }
+
+        WelcomeActivity.this.finish();
+        // 实例化Editor对象
+        SharedPreferences.Editor editor = preferences.edit();
+        // 存入数据
+        editor.putBoolean("isFirstUse", false);
+        // 提交修改
+        editor.commit();
     }
 
     /**
@@ -164,51 +203,6 @@ public class WelcomeActivity extends BaseActivity implements Runnable {
 
         mStartRiChang = (Button) findViewById(R.id.login_welcome_btn_start);
         mStartUI = (ImageView) findViewById(R.id.login_welcome_img_start);
-
-    }
-
-    @Override
-    public void run() {
-        /**
-         * 延迟两秒时间
-         */
-        try {
-            Thread.sleep(3000);
-            //读取SharedPreferences中需要的数据
-
-            SharedPreferences preferences = getSharedPreferences("isFirstUse", MODE_WORLD_READABLE);
-
-            isFirstUse = preferences.getBoolean("isFirstUse", true);
-
-            /**
-             * 如果用户不是第一次使用则直接调转到显示界面,否则调转到引导界面
-             */
-            if (isFirstUse) {
-                riChangActivityManager.startNextActivity(GuideActivity.class);
-            } else {
-                //如果有登录就不跳转登录界面
-                if (StringUtils.isEmpty(SharePreferenceManager.getInstance().getString
-                        (ConstantData.USER_ID, ""))){
-                    riChangActivityManager.startNextActivity(LoginActivity.class);
-                }else {
-                    riChangActivityManager.startNextActivity(HomeActivity.class);
-                }
-
-            }
-
-            WelcomeActivity.this.finish();
-            // 实例化Editor对象
-            SharedPreferences.Editor editor = preferences.edit();
-            // 存入数据
-            editor.putBoolean("isFirstUse", false);
-            // 提交修改
-            editor.commit();
-
-        } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
 
     }
 

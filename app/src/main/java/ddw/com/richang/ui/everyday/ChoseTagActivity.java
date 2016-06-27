@@ -71,6 +71,7 @@ public class ChoseTagActivity extends BaseActivity {
         actionBar.hide();
         setContentView(R.layout.everyday_tag_activity_layout_copy);
         initWidgets();
+        showWaitDialog("", R.color.transparent);
         mUserID = SharePreferenceManager.getInstance().getString(ConstantData.USER_ID, "");
 
         mAllChoseAdapter = new ChoseAdapter(mAllTagList, 1);
@@ -385,6 +386,7 @@ public class ChoseTagActivity extends BaseActivity {
                                 e.printStackTrace();
                             }
                         }
+                        dismissWaitDialog();
                     }
                 });
 

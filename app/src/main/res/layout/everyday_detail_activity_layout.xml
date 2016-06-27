@@ -46,15 +46,13 @@
                         android:layout_alignParentStart="true"
                         android:layout_alignParentLeft="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginStart="9dp"
-                        android:layout_marginLeft="9dp"
                         android:onClick="closeCurrentWin"
                         android:paddingBottom="15dp"
                         android:paddingEnd="18dp"
                         android:paddingRight="18dp"
-                        android:paddingStart="1dp"
+                        android:paddingStart="10dp"
                         android:background="?android:attr/selectableItemBackground"
-                        android:paddingLeft="1dp"
+                        android:paddingLeft="10dp"
                         android:paddingTop="12dp"
                         android:src="@drawable/back_icon"/>
 

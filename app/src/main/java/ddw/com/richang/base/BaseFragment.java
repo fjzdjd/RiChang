@@ -67,6 +67,23 @@ public abstract class BaseFragment extends Fragment {
 
     private WaitingAlertDialog waitDialog;
 
+    /**
+     * 显示菊花
+     *
+     * @param textRes 菊花的上的字
+     * @param color   菊花的颜色
+     */
+    public void showWaitDialog(String textRes, int color) {
+        if (null == waitDialog) {
+            waitDialog = new WaitingAlertDialog(getActivity(), textRes, color);
+        } else {
+            waitDialog.setShowText(textRes);
+            if (!waitDialog.isShown()) {
+                waitDialog.showUp();
+            }
+        }
+    }
+
     public void showWaitDialog(int textRes) {
         if (null == waitDialog) {
             waitDialog = new WaitingAlertDialog(getActivity(), textRes);
