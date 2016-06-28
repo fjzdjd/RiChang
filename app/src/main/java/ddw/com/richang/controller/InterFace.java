@@ -58,6 +58,11 @@ public class InterFace {
     public String getRecommendActivity;
 
     /**
+     * 获取推荐的发布者列表
+     */
+    public String getPublisherRecommend;
+
+    /**
      * 设置标签
      */
     public String setTags;
@@ -150,8 +155,10 @@ public class InterFace {
         this.resetPasswd = domain + "/Home/Person/reset";
 
         this.getAlbums = "http://appv2.myrichang.com/Home/Industry/getAlbums";
-        this.getAlbumAcs="http://appv2.myrichang.com/Home/Industry/getAlbumAcs";
-        this.getNearbyAcs="http://appv2.myrichang.com/Home/Activity/getNearbyAcs";
+        this.getAlbumAcs = "http://appv2.myrichang.com/Home/Industry/getAlbumAcs";
+        this.getNearbyAcs = "http://appv2.myrichang.com/Home/Activity/getNearbyAcs";
+        this.getPublisherRecommend = "http://appv2.myrichang" +
+                ".com/Home/UserRelation/getPublisherRecommend";
     }
 
     public static InterFace getInstance() {

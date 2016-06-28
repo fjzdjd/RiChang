@@ -140,6 +140,11 @@
                   android:launchMode="singleTask"
                   android:screenOrientation="portrait"/>
 
+        <activity android:name=".ui.everyday.PublisherDetailActivity"
+                  android:configChanges="keyboardHidden|orientation"
+                  android:launchMode="singleTask"
+                  android:screenOrientation="portrait"/>
+
         <!-- 2.0modify -->
         <activity
             android:name=".Activity.pre.Login"

@@ -6,12 +6,12 @@
               android:background="@color/background"
               android:orientation="vertical">
 
-
     <ddw.com.richang.custom.refresh.PtrClassicFrameLayout
-        android:id="@+id/everyday_publisher_refresh_ptr"
+        android:id="@+id/everyday_publisher_ptr_refresh"
         xmlns:cube_ptr="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="2dp"
         android:background="@color/background"
         cube_ptr:ptr_duration_to_close="200"
         cube_ptr:ptr_duration_to_close_header="1000"
@@ -21,7 +21,7 @@
         cube_ptr:ptr_resistance="3.5">
 
         <ListView
-            android:id="@+id/everyday_publisher_fragment_listView"
+            android:id="@+id/everyday_publisher_recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/white"
@@ -34,5 +34,4 @@
             tools:listitem="@layout/item_publisher_layout"/>
 
     </ddw.com.richang.custom.refresh.PtrClassicFrameLayout>
-
 </LinearLayout>

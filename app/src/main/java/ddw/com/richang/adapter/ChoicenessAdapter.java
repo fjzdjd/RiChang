@@ -29,7 +29,6 @@ public class ChoicenessAdapter extends RecyclerView
     private List<RiGetAlbums> mListData;
 
     public ChoicenessAdapter(Context context, List<RiGetAlbums> listData) {
-
         this.mContext = context;
         this.mListData = listData;
     }
