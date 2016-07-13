@@ -11,10 +11,13 @@
         android:orientation="horizontal"
         android:paddingBottom="5dp"
         android:paddingEnd="1dp"
+        android:paddingRight="1dp"
         android:paddingStart="16dp"
+        android:paddingLeft="16dp"
         android:paddingTop="5dp">
 
         <ddw.com.richang.custom.CustomUi.CustomCircleImageView
+            android:id="@+id/user_img_comment"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:src="@mipmap/icon"/>
@@ -24,6 +27,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
             android:gravity="center_vertical"
             android:orientation="vertical">
 
@@ -33,19 +37,24 @@
                 android:paddingBottom="5dp">
 
                 <TextView
+                    android:id="@+id/user_txt_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
                     android:text="json"
                     android:textColor="@color/font_black_2"
                     android:textSize="13dp"/>
 
 
                 <TextView
+                    android:id="@+id/user_txt_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
                     android:paddingEnd="16dp"
+                    android:paddingRight="16dp"
                     android:text="2016/05/01 14:23"
                     android:textColor="@color/font_black_2"
                     android:textSize="13dp"/>
@@ -54,6 +63,7 @@
 
 
             <TextView
+                android:id="@+id/user_txt_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="国际体验设计协"
@@ -62,6 +72,7 @@
 
 
             <TextView
+                android:id="@+id/user_txt_likeNum"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="end"
@@ -69,10 +80,10 @@
                 android:gravity="center_vertical"
                 android:paddingBottom="5dp"
                 android:paddingEnd="16dp"
+                android:paddingRight="16dp"
                 android:text="88 "
                 android:textColor="@color/mainColor"
                 android:textSize="13dp"/>
-
 
         </LinearLayout>
     </LinearLayout>

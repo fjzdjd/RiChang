@@ -86,8 +86,6 @@ public class HomeActivity extends BaseActivity {
         initWidgets();
         initFragment();
 
-
-
     }
 
     /**

@@ -1,22 +1,26 @@
 package ddw.com.richang.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.xutils.x;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
 import ddw.com.richang.R;
-import ddw.com.richang.custom.SmoothListView.SmoothListView;
-import ddw.com.richang.custom.SmoothListView.SmoothListViewFooter;
 import ddw.com.richang.model.RiActivityRecommend;
+import ddw.com.richang.util.StringUtils;
 
 /**
  * Created by zzp on 2016/6/24.
@@ -95,9 +99,22 @@ public class EverydayAdapter extends BaseAdapter {
             viewHolder.acReadNum.setText(" " + mList.get(position).getAc_read_num());
             viewHolder.acCostTags.setText(" " + "免费活动");
 
+            try {
+                if (StringUtils.compareTime(mList.get(position).getAc_time())){
+                   viewHolder.acBackground.setBackgroundColor(Color.parseColor("#D8D8D8"));
+                }else {
+                    viewHolder.acBackground.setBackgroundColor(Color.WHITE);
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
         }
         return convertView;
     }
+
+
+
 
     /**
      * 适配器布局
@@ -114,6 +131,7 @@ public class EverydayAdapter extends BaseAdapter {
          */
         private final TextView acCostTags;
         private final TextView acReadNum;
+        private final LinearLayout acBackground;
 
         ViewHolder(View view) {
 
@@ -123,6 +141,8 @@ public class EverydayAdapter extends BaseAdapter {
             acPlace = (TextView) view.findViewById(R.id.everyday_adapter_txt_place);
             acCostTags = (TextView) view.findViewById(R.id.everyday_adapter_txt_tag);
             acReadNum = (TextView) view.findViewById(R.id.everyday_adapter_txt_num);
+            acBackground = (LinearLayout) view.findViewById(R.id.everyday_adapter_bg_item);
+
 
         }
 

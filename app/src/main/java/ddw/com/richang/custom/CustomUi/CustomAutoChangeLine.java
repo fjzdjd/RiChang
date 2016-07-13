@@ -76,7 +76,6 @@ public class CustomAutoChangeLine extends ViewGroup {
         int specWidth = MeasureSpec.getSize(widthMeasureSpec);
         int actualWidth = specWidth - SIDE_MARGIN * 2;// 实际宽度
         int childCount = getChildCount();
-        System.out.print("count=" + childCount);
         for (int index = 0; index < childCount; index++) {
             View child = getChildAt(index);
             child.setPadding(PADDING_HOR, PADDING_VERTICAL, PADDING_HOR, PADDING_VERTICAL);

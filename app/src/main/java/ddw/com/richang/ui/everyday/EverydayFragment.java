@@ -25,13 +25,6 @@ import ddw.com.richang.R;
 import ddw.com.richang.base.BaseFragment;
 import ddw.com.richang.commons.ConstantData;
 import ddw.com.richang.manager.SharePreferenceManager;
-import ddw.com.richang.ui.column.ChoicenessFragment;
-import ddw.com.richang.ui.column.ChuangYeFragment;
-import ddw.com.richang.ui.column.ComprehensiveFragment;
-import ddw.com.richang.ui.column.DesignFragment;
-import ddw.com.richang.ui.column.FinanceFragment;
-import ddw.com.richang.ui.column.MediaFragment;
-import ddw.com.richang.ui.column.UniversityFragment;
 import ddw.com.richang.ui.login.LoginActivity;
 import ddw.com.richang.util.CommonUtils;
 import ddw.com.richang.util.LogN;
@@ -81,7 +74,8 @@ public class EverydayFragment extends BaseFragment {
      * 初始化子页面
      */
     private void initChildFragment() {
-        RecommendActivitiesFragment mRecommendActivitiesFragment = new RecommendActivitiesFragment();
+        RecommendActivitiesFragment mRecommendActivitiesFragment = new
+                RecommendActivitiesFragment();
 
         RecommendPublisherFragment mRecommendPublisherFragment = new RecommendPublisherFragment();
 
@@ -103,6 +97,9 @@ public class EverydayFragment extends BaseFragment {
         mTabMenu = (TabLayout) view.findViewById(R.id.everyday_tlt_menu);
         mViewPager = (ViewPager) view.findViewById(R.id.everyday_vpr_pager);
 
+        View mSearch = view.findViewById(R.id.everyday_view_search);
+
+        mSearch.setOnClickListener(new EverydayOnClickListener());
 
         mChoiceCity.setOnClickListener(new EverydayOnClickListener());
         mChoiceTag.setOnClickListener(new EverydayOnClickListener());
@@ -120,7 +117,6 @@ public class EverydayFragment extends BaseFragment {
 
 
         mTabMenu.setupWithViewPager(mViewPager);
-
 
 
         mTabMenu.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -204,6 +200,15 @@ public class EverydayFragment extends BaseFragment {
                     startActivity(new Intent(getActivity(), ChoseCityActivity.class));
 
                     break;
+
+                //搜索
+                case R.id.everyday_view_search:
+
+                    startActivity(new Intent(getActivity(), SearchActivity.class));
+
+                    break;
+
+
                 //选择标签
                 case R.id.everyday_fragment_txt_choiceTag:
 

@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
 public final class StringUtils
@@ -112,6 +115,30 @@ public final class StringUtils
                 .trim();
 
         return returnString;
+    }
+
+
+    /**
+     * 比较时间
+     * @param time1 输入获取的时间
+     * @return
+     * @throws ParseException
+     */
+    public static boolean compareTime(String time1) throws ParseException {
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+
+        Date a = sdf.parse(time1);
+
+        String time2 = sdf.format(new Date());
+
+        Date b = sdf.parse(time2);
+
+        if (a.before(b))
+            return true;
+        else
+            return false;
+
     }
 
     public static String GetNodeData(String src, String node)

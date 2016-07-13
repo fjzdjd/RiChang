@@ -47,6 +47,7 @@ import ddw.com.richang.model.RiActivityRecommend;
 import ddw.com.richang.model.RiBannerData;
 import ddw.com.richang.ui.login.LoginActivity;
 import ddw.com.richang.ui.login.NetworkImageHolderView;
+import ddw.com.richang.ui.login.WelcomeActivity;
 import ddw.com.richang.util.CommonUtils;
 import ddw.com.richang.util.StringUtils;
 
@@ -197,9 +198,12 @@ public class RecommendActivitiesFragment extends BaseFragment {
                     case AbsListView.OnScrollListener.SCROLL_STATE_IDLE:
                         if (view.getLastVisiblePosition() == (view.getCount() - 1)) {
 
-                            mListLoadMore.setVisibility(View.INVISIBLE);
-                            mListLoadMorePb.setVisibility(View.VISIBLE);
-                            getInitDatas();
+                            mListLoadMore.setVisibility(View.VISIBLE);
+
+                            mListLoadMorePb.setVisibility(View.INVISIBLE);
+
+                            mListLoadMore.setText("加载完成");
+//                            getInitDatas();
 
                         }
                         break;
@@ -637,12 +641,17 @@ public class RecommendActivitiesFragment extends BaseFragment {
                 //附近
                 case R.id.everyday_header_txt_nearby:
 
-//                String.valueOf(WelcomeActivity.longitute),String.valueOf(WelcomeActivity
-// .lattitude)
 
                     mBearby.setTextColor(getResources().getColor(R.color.mainColor));
 
-                    getNearbyAcs("3", "114.42467", "30.514070", "1478");
+                    if (StringUtils.isEmpty(String.valueOf(WelcomeActivity.longitute))) {
+                        Toast.makeText(getActivity(), "获取定位失败", Toast.LENGTH_SHORT).show();
+                    } else {
+                        getNearbyAcs(SharePreferenceManager.getInstance().getString(ConstantData
+                                .USER_CITY_ID, ""), String.valueOf(WelcomeActivity.longitute),
+                                String.valueOf
+                                (WelcomeActivity.lattitude), "");
+                    }
 
                     break;
 

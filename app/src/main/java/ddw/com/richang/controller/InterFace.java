@@ -50,6 +50,10 @@ public class InterFace {
      */
     public String getFlash;
     public String getHotSearch;
+
+    /**
+     * 活动搜索
+     */
     public String getSearch;
 
     /**
@@ -100,7 +104,9 @@ public class InterFace {
     public String getUsrPlan;
     public String setCity;
 
-
+    /**
+     * 收藏
+     */
     public String setCollection;
     public String setAccount;
     public String joinPlan;
@@ -120,6 +126,11 @@ public class InterFace {
      * 密码重置
      */
     public String resetPasswd;
+
+    /**
+     * 热门评论
+     */
+    public String getPopularComments;
 
     private InterFace() {
         String domain = "http://app.myrichang.com";
@@ -159,6 +170,7 @@ public class InterFace {
         this.getNearbyAcs = "http://appv2.myrichang.com/Home/Activity/getNearbyAcs";
         this.getPublisherRecommend = "http://appv2.myrichang" +
                 ".com/Home/UserRelation/getPublisherRecommend";
+        this.getPopularComments = "http://appv2.myrichang.com/Home/Comment/getPopularComments";
     }
 
     public static InterFace getInstance() {

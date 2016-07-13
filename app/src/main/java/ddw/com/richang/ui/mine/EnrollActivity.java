@@ -41,7 +41,6 @@ import ddw.com.richang.model.RiGetUserActivity;
 @ContentView(R.layout.mine_enroll_activity_layout)
 public class EnrollActivity extends BaseActivity {
 
-
     @ViewInject(R.id.enroll_slv_list)
     ListView mSwipeListView;
 

@@ -120,30 +120,55 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"/>
 
-        <activity android:name=".ui.mine.PublishActivity"
-                  android:configChanges="keyboardHidden|orientation"
-                  android:launchMode="singleTask"
-                  android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.mine.PublishActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".ui.mine.AboutUsActivity"
-                  android:configChanges="keyboardHidden|orientation"
-                  android:launchMode="singleTask"
-                  android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.mine.AboutUsActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".ui.column.ChoicenessDetailActivity"
-                  android:configChanges="keyboardHidden|orientation"
-                  android:launchMode="singleTask"
-                  android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.column.ChoicenessDetailActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".ui.mine.MineSetting"
-                  android:configChanges="keyboardHidden|orientation"
-                  android:launchMode="singleTask"
-                  android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.mine.MineSetting"
+            android:configChanges="keyboardHidden|orientation"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".ui.everyday.PublisherDetailActivity"
-                  android:configChanges="keyboardHidden|orientation"
-                  android:launchMode="singleTask"
-                  android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.everyday.PublisherDetailActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".ui.everyday.SearchActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".ui.everyday.SearchResultActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".ui.everyday.RemindTimeActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
+
+
 
         <!-- 2.0modify -->
         <activity

@@ -20,12 +20,16 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.image.ImageOptions;
 import org.xutils.x;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import ddw.com.richang.R;
 import ddw.com.richang.base.BaseActivity;
@@ -36,6 +40,7 @@ import ddw.com.richang.controller.view.layout.scrollview.ScrollViewListener;
 import ddw.com.richang.custom.CustomUi.CustomCircleImageView;
 import ddw.com.richang.manager.SharePreferenceManager;
 import ddw.com.richang.model.RiGetActivityDetail;
+import ddw.com.richang.model.RiGetPopularComments;
 import ddw.com.richang.util.DensityUtil;
 import ddw.com.richang.util.StringUtils;
 
@@ -70,6 +75,15 @@ public class ContentDetailActivity extends BaseActivity {
      * 查看更多信息
      */
     private boolean loadingMoreInformationFlag = true;
+    private ImageView mCollection;
+    private String mUserId;
+    private String ac_id;
+    private RiGetActivityDetail mContentDetail;
+    private TextView mRemindMe;
+    /**
+     * 热门评论
+     */
+    private List<RiGetPopularComments> mPopularComments = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle outState) {
@@ -78,13 +92,11 @@ public class ContentDetailActivity extends BaseActivity {
         actionBar.hide();
         showWaitDialog("", R.color.white);
         setContentView(R.layout.everyday_detail_activity_layout);
-        String ac_id = getIntent().getStringExtra("ac_id");
-        getActicityDetail(ac_id,
-                SharePreferenceManager.getInstance().getString(ConstantData.USER_ID, ""));
+        mUserId = SharePreferenceManager.getInstance().getString(ConstantData.USER_ID, "");
+        ac_id = getIntent().getStringExtra("ac_id");
+        getActicityDetail(ac_id, mUserId);
         initWidgets();
-
     }
-
 
     /**
      * 初始化界面
@@ -96,9 +108,12 @@ public class ContentDetailActivity extends BaseActivity {
         mContentTags = (TextView) findViewById(R.id.detail_txt_tags);
         mActivityHot = (TextView) findViewById(R.id.detail_txt_people_watch);
         mActivityTime = (TextView) findViewById(R.id.detail_txt_time);
+        mCollection = (ImageView) findViewById(R.id.detail_img_collect);
         mActivityLocation = (TextView) findViewById(R.id.detail_txt_location);
         mActivitySize = (TextView) findViewById(R.id.detail_txt_size);
         mActivityFare = (TextView) findViewById(R.id.detail_txt_fare);
+        TextView mFocusPublisher = (TextView) findViewById(R.id.detail_txt_focus_publisher);
+        mRemindMe = (TextView) findViewById(R.id.detail_txt_reminder);
         mHeaderTitle = (TextView) findViewById(R.id.detail_txt_header_title);
         mPublisherName = (TextView) findViewById(R.id.detail_txt_publisher_name);
         mHeaderBackground = (RelativeLayout) findViewById(R.id.detail_rlt_header);
@@ -110,7 +125,9 @@ public class ContentDetailActivity extends BaseActivity {
         mViewMoreComment.setText(Html.fromHtml("<u>" + "查看更多" + "</u>"));
         mViewMoreInformation.setText(Html.fromHtml("<u>" + "查看更多" + "</u>"));
         mViewMoreInformation.setOnClickListener(new DetailOnClick());
-
+        mCollection.setOnClickListener(new DetailOnClick());
+        mRemindMe.setOnClickListener(new DetailOnClick());
+        mFocusPublisher.setOnClickListener(new DetailOnClick());
     }
 
     /**
@@ -147,6 +164,76 @@ public class ContentDetailActivity extends BaseActivity {
      */
     public void closeCurrentWin(View v) {
         finish();
+    }
+
+    /**
+     * 获取热门评论
+     *
+     * @param ac_id 活动编号
+     */
+    private void getPopularComments(String ac_id) {
+        RequestParams params = new RequestParams(InterFace.getInstance().getPopularComments);
+        params.addBodyParameter("ac_id", ac_id);
+        // 默认缓存存活时间, 单位:毫秒.(如果服务没有返回有效的max-age或Expires)
+        params.setCacheMaxAge(1000 * 60);
+        Callback.Cancelable cancelable = x.http().post(params,
+                new Callback.CacheCallback<String>() {
+                    private boolean hasError = false;
+                    private String result = null;
+
+                    @Override
+                    public boolean onCache(String result) {
+                        this.result = result;
+                        return false; // true: 信任缓存数据, 不在发起网络请求; false不信任缓存数据.
+                    }
+
+                    @Override
+                    public void onSuccess(String result) {
+                        // 注意: 如果服务返回304 或 onCache 选择了信任缓存, 这时result为null.
+                        if (result != null) {
+                            this.result = result;
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(Throwable ex, boolean isOnCallback) {
+                        hasError = true;
+                        Toast.makeText(x.app(), ex.getMessage(), Toast.LENGTH_LONG).show();
+
+                    }
+
+                    @Override
+                    public void onCancelled(CancelledException cex) {
+                        Toast.makeText(x.app(), "cancelled", Toast.LENGTH_LONG).show();
+
+                    }
+
+                    @Override
+                    public void onFinished() {
+                        if (!hasError && result != null) {
+                            try {
+                                JSONObject jsonObject = new JSONObject(result);
+                                String code = jsonObject.optString("code");
+                                if (code.equals(ConstantData.CODE)) {
+                                    JSONArray jsonArray = jsonObject.getJSONArray("data");
+
+                                    List<RiGetPopularComments> riGetPopularCommentses = JSON
+                                            .parseArray(jsonArray.toString(),
+                                                    RiGetPopularComments.class);
+                                    mPopularComments.addAll(riGetPopularCommentses);
+
+                                }
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+
+                        }
+                    }
+                });
+
     }
 
     /**
@@ -202,8 +289,9 @@ public class ContentDetailActivity extends BaseActivity {
                                 String code = jsonObject.optString("code");
                                 if (code.equals(ConstantData.CODE)) {
 
-                                    RiGetActivityDetail mContentDetail = JSON.parseObject(result,
+                                    mContentDetail = JSON.parseObject(result,
                                             RiGetActivityDetail.class);
+
                                     setWidgetDatas(mContentDetail);
 
                                     changePageHeaderTitleAndColor(mContentDetail);
@@ -237,6 +325,12 @@ public class ContentDetailActivity extends BaseActivity {
         }
 
         mContentTags.setText(buildTags);
+
+        if (data.getData().getAc_collect().equals("1")) {
+            mCollection.setImageResource(R.mipmap.collect_icon_focus);
+        } else {
+            mCollection.setImageResource(R.mipmap.collect_icon);
+        }
 
         mActivityHot.setText(" " + data.getData().getAc_read_num());
 
@@ -287,7 +381,6 @@ public class ContentDetailActivity extends BaseActivity {
      */
     @SuppressLint("JavascriptInterface")
     private void getHtmlCode(String data) {
-
         WebSettings ws = mActivityContentHtml.getSettings();
         ws.setJavaScriptEnabled(true); // 设置支持javascript脚本
         ws.setAllowFileAccess(true); // 允许访问文件
@@ -315,6 +408,92 @@ public class ContentDetailActivity extends BaseActivity {
 
     }
 
+    /**
+     * 活动收藏
+     *
+     * @param usr_id  用户id
+     * @param ac_id   活动id
+     * @param op_type 收藏（1）或取消收藏（2）
+     */
+    private void setActivityCollect(String usr_id, String ac_id, String op_type) {
+        RequestParams params = new RequestParams(InterFace.getInstance().setCollection);
+        params.addBodyParameter("usr_id", usr_id);
+        params.addBodyParameter("ac_id", ac_id);
+        params.addBodyParameter("op_type", op_type);
+        // 默认缓存存活时间, 单位:毫秒.(如果服务没有返回有效的max-age或Expires)
+        params.setCacheMaxAge(1000 * 60);
+        Callback.Cancelable cancelable = x.http().post(params,
+                new Callback.CacheCallback<String>() {
+                    private boolean hasError = false;
+                    private String result = null;
+
+                    @Override
+                    public boolean onCache(String result) {
+                        this.result = result;
+                        return false; // true: 信任缓存数据, 不在发起网络请求; false不信任缓存数据.
+                    }
+
+                    @Override
+                    public void onSuccess(String result) {
+                        // 注意: 如果服务返回304 或 onCache 选择了信任缓存, 这时result为null.
+                        if (result != null) {
+                            this.result = result;
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable ex, boolean isOnCallback) {
+                        hasError = true;
+                        Toast.makeText(ContentDetailActivity.this, "操作失败", Toast
+                                .LENGTH_SHORT).show();
+
+                    }
+
+                    @Override
+                    public void onCancelled(CancelledException cex) {
+                        Toast.makeText(ContentDetailActivity.this, "操作失败", Toast
+                                .LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onFinished() {
+                        if (!hasError && result != null) {
+                            try {
+                                JSONObject jsonObject = new JSONObject(result);
+                                String code = jsonObject.optString("code");
+                                if (code.equals(ConstantData.CODE)) {
+
+                                    if (mContentDetail.getData().getAc_collect().equals("1")) {
+                                        mCollection.setImageResource(R.mipmap.collect_icon);
+                                        Toast.makeText(ContentDetailActivity.this, "取消收藏", Toast
+                                                .LENGTH_SHORT).show();
+                                        mContentDetail.getData().setAc_collect("2");
+                                    } else {
+                                        mCollection.setImageResource(R.mipmap.collect_icon_focus);
+                                        Toast.makeText(ContentDetailActivity.this, "收藏成功", Toast
+                                                .LENGTH_SHORT).show();
+                                        mContentDetail.getData().setAc_collect("1");
+                                    }
+
+                                } else {
+
+                                    Toast.makeText(ContentDetailActivity.this, "操作失败", Toast
+                                            .LENGTH_SHORT).show();
+                                }
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            Toast.makeText(ContentDetailActivity.this, "操作失败", Toast
+                                    .LENGTH_SHORT).show();
+                        }
+
+                    }
+                });
+
+
+    }
 
     /**
      * 详情点击事件
@@ -322,6 +501,7 @@ public class ContentDetailActivity extends BaseActivity {
     private class DetailOnClick implements View.OnClickListener {
         @Override
         public void onClick(View v) {
+            Intent intent = new Intent();
             switch (v.getId()) {
                 //显示更多信息
                 case R.id.detail_txt_more_information:
@@ -334,11 +514,32 @@ public class ContentDetailActivity extends BaseActivity {
                     }
                     break;
 
+                //收藏
+                case R.id.detail_img_collect:
+                    if (mContentDetail.getData().getAc_collect().equals("1")) {
+                        setActivityCollect(mUserId, ac_id, "2");
+                    } else {
+                        setActivityCollect(mUserId, ac_id, "1");
+                    }
+                    break;
 
+                case R.id.detail_txt_reminder:
+
+
+                    intent.putExtra("remindHour", mContentDetail.getData().getAc_time());
+                    riChangActivityManager.startNextActivity(intent, RemindTimeActivity.class);
+
+                    break;
+
+                //关注
+                case R.id.detail_txt_focus_publisher:
+                    intent.putExtra("publisher_id", mContentDetail.getData().getUsr_id());
+                    riChangActivityManager.startNextActivity(intent, PublisherDetailActivity.class);
+
+                    break;
                 default:
                     break;
             }
-
 
         }
     }
@@ -376,29 +577,5 @@ public class ContentDetailActivity extends BaseActivity {
         }
     }
 
-    /**
-     * 热门评论
-     */
-    private class CommentAdapter extends BaseAdapter {
 
-        @Override
-        public int getCount() {
-            return 0;
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return null;
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return 0;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            return null;
-        }
-    }
 }

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/background"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="1dp"
+        android:background="@color/white">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="46dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:background="?android:attr/selectableItemBackground"
+            android:onClick="closeCurrentWin"
+            android:paddingEnd="10dp"
+            android:paddingLeft="1dp"
+            android:paddingRight="10dp"
+            android:paddingStart="1dp"
+            android:src="@mipmap/back_icon_orange"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="提醒时间"
+            android:textColor="@color/mainColor"
+            android:textSize="18sp"/>
+
+
+        <TextView
+            android:id="@+id/remind_txt_confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="?android:attr/selectableItemBackground"
+            android:padding="10dp"
+            android:text="确定"
+            android:textColor="@color/mainColor"
+            android:textSize="15dp"/>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/remind_rlt_never"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="不提醒"
+            android:textColor="@color/font_black_2"
+            android:textSize="15sp"/>
+
+        <ImageView
+            android:id="@+id/remind_img_never"
+            android:layout_width="wrap_content"
+            android:layout_height="14sp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/select_icon"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/remind_rlt_oneH"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:padding="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="前一小时"
+            android:textColor="@color/font_black_2"
+            android:textSize="15sp"/>
+        <ImageView
+            android:id="@+id/remind_img_oneH"
+            android:layout_width="wrap_content"
+            android:layout_height="14sp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/select_icon"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/remind_rlt_oneD"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:padding="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="前一天"
+            android:textColor="@color/font_black_2"
+            android:textSize="15sp"/>
+        <ImageView
+            android:id="@+id/remind_img_oneD"
+            android:layout_width="wrap_content"
+            android:layout_height="14sp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/select_icon"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/remind_rlt_threeD"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:padding="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="前三天"
+            android:textColor="@color/font_black_2"
+            android:textSize="15sp"/>
+        <ImageView
+            android:id="@+id/remind_img_threeD"
+            android:layout_width="wrap_content"
+            android:layout_height="14sp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/select_icon"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:padding="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="提醒时间"
+            android:textColor="@color/font_black_2"
+            android:textSize="15sp"/>
+        <TextView
+            android:id="@+id/remind_txt_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:text="8点"
+            android:textColor="@color/font_black_2"
+            android:textSize="15sp"/>
+    </RelativeLayout>
+
+</LinearLayout>

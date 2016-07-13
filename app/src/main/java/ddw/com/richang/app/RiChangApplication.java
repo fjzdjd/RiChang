@@ -1,21 +1,9 @@
 package ddw.com.richang.app;
 
 import android.app.Application;
-import android.os.Environment;
-import android.util.Log;
 
 import org.xutils.x;
 
-import java.io.File;
-
-import ddw.com.richang.controller.data.imgloader.cache.disc.impl.UnlimitedDiskCache;
-import ddw.com.richang.controller.data.imgloader.cache.disc.naming.Md5FileNameGenerator;
-import ddw.com.richang.controller.data.imgloader.cache.memory.impl.UsingFreqLimitedMemoryCache;
-import ddw.com.richang.controller.data.imgloader.core.DisplayImageOptions;
-import ddw.com.richang.controller.data.imgloader.core.ImageLoader;
-import ddw.com.richang.controller.data.imgloader.core.ImageLoaderConfiguration;
-import ddw.com.richang.controller.data.imgloader.core.assist.QueueProcessingType;
-import ddw.com.richang.controller.data.imgloader.core.download.BaseImageDownloader;
 import ddw.com.richang.manager.SharePreferenceManager;
 import ddw.com.richang.service.LocationService;
 

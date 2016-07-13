@@ -1,7 +1,9 @@
 package ddw.com.richang.ui.everyday;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.ActionBar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,6 +40,11 @@ import ddw.com.richang.util.LogN;
  * Created by zzp on 2016/5/26.
  */
 public class ChoseTagActivity extends BaseActivity {
+
+    /**
+     * 选择城市 发送广播更新主界面数据
+     */
+    public static String mBroadcastRegistFlag = "choseCityActivity";
 
     /**
      * 我的标签GridView
@@ -297,11 +304,19 @@ public class ChoseTagActivity extends BaseActivity {
                                 String msg = jsonObject.optString("msg");
                                 if (code.equals(ConstantData.CODE)) {
 
+                                    //发送应用内广播更新主界面数据
+                                    Intent intent = new Intent();
+                                    intent.setAction(mBroadcastRegistFlag);
+                                    intent.putExtra(mBroadcastRegistFlag, "choseCity");
+                                    LocalBroadcastManager.getInstance(ChoseTagActivity.this)
+                                            .sendBroadcast(intent);
+
                                     finish();
 
                                 } else {
 
-                                    Toast.makeText(ChoseTagActivity.this, msg, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(ChoseTagActivity.this, msg, Toast
+                                            .LENGTH_SHORT).show();
 
                                 }
 
