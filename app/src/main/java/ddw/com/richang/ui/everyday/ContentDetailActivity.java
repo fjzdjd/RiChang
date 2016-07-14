@@ -334,8 +334,10 @@ public class ContentDetailActivity extends BaseActivity {
                                 if (code.equals(ConstantData.CODE)) {
 
 
+
                                 } else {
 
+                                    Toast.makeText(ContentDetailActivity.this,"报名失败!",Toast.LENGTH_SHORT).show();
 
                                 }
 
