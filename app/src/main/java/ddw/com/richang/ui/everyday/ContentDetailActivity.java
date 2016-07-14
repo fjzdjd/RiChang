@@ -4,15 +4,14 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.ActionBar;
 import android.text.Html;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -28,7 +27,6 @@ import org.xutils.http.RequestParams;
 import org.xutils.image.ImageOptions;
 import org.xutils.x;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import ddw.com.richang.R;
@@ -37,7 +35,6 @@ import ddw.com.richang.commons.ConstantData;
 import ddw.com.richang.controller.InterFace;
 import ddw.com.richang.controller.view.layout.scrollview.ObScrollView;
 import ddw.com.richang.controller.view.layout.scrollview.ScrollViewListener;
-import ddw.com.richang.custom.CustomUi.CustomCircleImageView;
 import ddw.com.richang.manager.SharePreferenceManager;
 import ddw.com.richang.model.RiGetActivityDetail;
 import ddw.com.richang.model.RiGetPopularComments;
@@ -62,7 +59,7 @@ public class ContentDetailActivity extends BaseActivity {
     private TextView mHeaderTitle;
     private WebView mActivityContentHtml;
     private TextView mPublisherName;
-    private CustomCircleImageView mPublisherPic;
+    private ImageView mPublisherPic;
 
     /**
      * 组合标签
@@ -80,10 +77,13 @@ public class ContentDetailActivity extends BaseActivity {
     private String ac_id;
     private RiGetActivityDetail mContentDetail;
     private TextView mRemindMe;
-    /**
-     * 热门评论
-     */
-    private List<RiGetPopularComments> mPopularComments = new ArrayList<>();
+
+    private ImageView mUserPic;
+    private TextView mUserName;
+    private TextView mPublishTime;
+    private TextView mTitle;
+    private TextView mLikeNum;
+    private ImageOptions options;
 
     @Override
     protected void onCreate(Bundle outState) {
@@ -92,10 +92,15 @@ public class ContentDetailActivity extends BaseActivity {
         actionBar.hide();
         showWaitDialog("", R.color.white);
         setContentView(R.layout.everyday_detail_activity_layout);
+
+        options = new ImageOptions.Builder().setLoadingDrawableId(R.mipmap.imggrey)
+                .setLoadingDrawableId(R.mipmap.imggrey).setUseMemCache(true).setCircular(true)
+                .build();
         mUserId = SharePreferenceManager.getInstance().getString(ConstantData.USER_ID, "");
         ac_id = getIntent().getStringExtra("ac_id");
         getActicityDetail(ac_id, mUserId);
         initWidgets();
+        getPopularComments(ac_id);
     }
 
     /**
@@ -118,16 +123,32 @@ public class ContentDetailActivity extends BaseActivity {
         mPublisherName = (TextView) findViewById(R.id.detail_txt_publisher_name);
         mHeaderBackground = (RelativeLayout) findViewById(R.id.detail_rlt_header);
         mActivityContentHtml = (WebView) findViewById(R.id.detail_txt_activity_content);
-        mPublisherPic = (CustomCircleImageView) findViewById(R.id.detail_img_publisher_pic);
+        mPublisherPic = (ImageView) findViewById(R.id.detail_img_publisher_pic);
         mScrollViewContent = (ObScrollView) findViewById(R.id.detail_slv_content);
         mViewMoreInformation = (TextView) findViewById(R.id.detail_txt_more_information);
         TextView mViewMoreComment = (TextView) findViewById(R.id.detail_txt_comment_more);
-        mViewMoreComment.setText(Html.fromHtml("<u>" + "查看更多" + "</u>"));
+        mViewMoreComment.setText(Html.fromHtml("<u>" + "查看更多评论" + "</u>"));
         mViewMoreInformation.setText(Html.fromHtml("<u>" + "查看更多" + "</u>"));
         mViewMoreInformation.setOnClickListener(new DetailOnClick());
         mCollection.setOnClickListener(new DetailOnClick());
         mRemindMe.setOnClickListener(new DetailOnClick());
         mFocusPublisher.setOnClickListener(new DetailOnClick());
+
+        mUserPic = (ImageView) findViewById(R.id.user_img_comment);
+
+
+        mUserName = (TextView) findViewById(R.id.user_txt_name);
+
+
+        mPublishTime = (TextView) findViewById(R.id.user_txt_time);
+
+
+        mTitle = (TextView) findViewById(R.id.user_txt_title);
+
+
+        mLikeNum = (TextView) findViewById(R.id.user_txt_likeNum);
+
+
     }
 
     /**
@@ -218,11 +239,37 @@ public class ContentDetailActivity extends BaseActivity {
                                 if (code.equals(ConstantData.CODE)) {
                                     JSONArray jsonArray = jsonObject.getJSONArray("data");
 
-                                    List<RiGetPopularComments> riGetPopularCommentses = JSON
+                                    List<RiGetPopularComments> riGetPopularComments = JSON
                                             .parseArray(jsonArray.toString(),
                                                     RiGetPopularComments.class);
-                                    mPopularComments.addAll(riGetPopularCommentses);
+                                    if (StringUtils.isEmpty(riGetPopularComments.get(0)
+                                            .getComment_id())) {
+                                        findViewById(R.id.comment_txt_visible).setVisibility(View
+                                                .VISIBLE);
+                                        findViewById(R.id.comment_llt_visible).setVisibility(View
+                                                .GONE);
+                                    } else {
+                                        x.image().bind(mUserPic, riGetPopularComments.get(0)
+                                                .getUsr_pic(), options);
 
+                                        mUserName.setText(riGetPopularComments.get(0).getUsr_name
+                                                ());
+
+                                        mPublishTime.setText(riGetPopularComments.get(0)
+                                                .getComment_time());
+
+                                        mTitle.setText(riGetPopularComments.get(0)
+                                                .getComment_content
+                                                ());
+
+                                        mLikeNum.setText(riGetPopularComments.get(0)
+                                                .getComment_praise_num());
+                                    }
+
+                                } else {
+                                    findViewById(R.id.comment_txt_visible).setVisibility(View
+                                            .VISIBLE);
+                                    findViewById(R.id.comment_llt_visible).setVisibility(View.GONE);
                                 }
 
                             } catch (JSONException e) {
@@ -233,6 +280,77 @@ public class ContentDetailActivity extends BaseActivity {
                         }
                     }
                 });
+    }
+
+
+    /**
+     * 用户报名活动
+     * @param usr_id 用户id
+     * @param ac_id 活动id
+     */
+    private void enrollActivity(String usr_id, String ac_id) {
+        RequestParams params = new RequestParams(InterFace.getInstance().enrollActivity);
+        params.addBodyParameter("usr_id", usr_id);
+        params.addBodyParameter("ac_id", ac_id);
+        Callback.Cancelable cancelable = x.http().post(params,
+                new Callback.CacheCallback<String>() {
+                    private boolean hasError = false;
+                    private String result = null;
+
+                    @Override
+                    public boolean onCache(String result) {
+                        this.result = result;
+                        return false; // true: 信任缓存数据, 不在发起网络请求; false不信任缓存数据.
+                    }
+
+                    @Override
+                    public void onSuccess(String result) {
+                        // 注意: 如果服务返回304 或 onCache 选择了信任缓存, 这时result为null.
+                        if (result != null) {
+                            this.result = result;
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable ex, boolean isOnCallback) {
+                        hasError = true;
+                        Toast.makeText(x.app(), ex.getMessage(), Toast.LENGTH_LONG).show();
+
+                    }
+
+                    @Override
+                    public void onCancelled(CancelledException cex) {
+                        Toast.makeText(x.app(), "cancelled", Toast.LENGTH_LONG).show();
+
+                    }
+
+                    @Override
+                    public void onFinished() {
+                        if (!hasError && result != null) {
+                            try {
+                                JSONObject jsonObject = new JSONObject(result);
+                                String code = jsonObject.optString("code");
+                                String msg = jsonObject.optString("msg");
+                                if (code.equals(ConstantData.CODE)) {
+
+
+                                } else {
+
+
+                                }
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+
+
+
+                    }
+
+                });
+
 
     }
 
@@ -367,7 +485,7 @@ public class ContentDetailActivity extends BaseActivity {
 
         mActivityFare.setText(data.getData().getAc_pay().trim());
 
-        x.image().bind(mPublisherPic, data.getData().getUsr_pic());
+        x.image().bind(mPublisherPic, data.getData().getUsr_pic(), options);
 
         mPublisherName.setText(data.getData().getUsr_name());
 

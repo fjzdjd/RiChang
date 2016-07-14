@@ -122,6 +122,13 @@ public class InterFace {
     public String sendSMS;
     public String isExist;
 
+
+
+    /**
+     * 加入行程
+     */
+    public String enrollActivity;
+
     /**
      * 密码重置
      */
@@ -171,6 +178,8 @@ public class InterFace {
         this.getPublisherRecommend = "http://appv2.myrichang" +
                 ".com/Home/UserRelation/getPublisherRecommend";
         this.getPopularComments = "http://appv2.myrichang.com/Home/Comment/getPopularComments";
+        this.enrollActivity="http://appv2.myrichang.com/Home/Activity/enrollActivity";
+
     }
 
     public static InterFace getInstance() {

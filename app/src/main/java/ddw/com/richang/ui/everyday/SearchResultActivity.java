@@ -48,7 +48,6 @@ public class SearchResultActivity extends BaseActivity {
         actionBar.hide();
         x.view().inject(this);
 
-
         getActivitySearch(getIntent().getStringExtra("keywords"), "", "", SharePreferenceManager
                 .getInstance().getString(ConstantData.USER_CITY_ID, ""));
 

@@ -262,7 +262,6 @@ public class ChoseTagActivity extends BaseActivity {
         RequestParams params = new RequestParams(InterFace.getInstance().setTags);
         params.addBodyParameter("usr_id", usr_id);
         params.addBodyParameter("tags[]", postTags);
-        LogN.d(this, params.toString());
         Callback.Cancelable cancelable = x.http().post(params,
                 new Callback.CacheCallback<String>() {
                     private boolean hasError = false;
