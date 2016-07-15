@@ -357,6 +357,7 @@ public class ContentDetailActivity extends BaseActivity {
                                             (ContentDetailActivity.this, "提示",
                                                     view, new View.OnClickListener() {
 
+<<<<<<< HEAD
                                                         @Override
                                                         public void onClick(View v) {
 
@@ -364,6 +365,12 @@ public class ContentDetailActivity extends BaseActivity {
 
                                                         }
                                                     });
+=======
+
+                                } else {
+
+                                    Toast.makeText(ContentDetailActivity.this,"报名失败!",Toast.LENGTH_SHORT).show();
+>>>>>>> origin/master
 
                                 } else {
                                     Toast.makeText(ContentDetailActivity.this, "报名失败,请查看是否重复报名!",
