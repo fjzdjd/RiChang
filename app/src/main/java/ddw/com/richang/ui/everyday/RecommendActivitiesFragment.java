@@ -648,9 +648,10 @@ public class RecommendActivitiesFragment extends BaseFragment {
                         Toast.makeText(getActivity(), "获取定位失败", Toast.LENGTH_SHORT).show();
                     } else {
                         getNearbyAcs(SharePreferenceManager.getInstance().getString(ConstantData
-                                .USER_CITY_ID, ""), String.valueOf(WelcomeActivity.longitute),
+                                        .USER_CITY_ID, ""), String.valueOf(WelcomeActivity
+                                        .longitute),
                                 String.valueOf
-                                (WelcomeActivity.lattitude), "");
+                                        (WelcomeActivity.lattitude), "");
                     }
 
                     break;

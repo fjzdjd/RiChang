@@ -109,7 +109,12 @@ public class InterFace {
      */
     public String setCollection;
     public String setAccount;
+
+    /**
+     * 加入行程
+     */
     public String joinPlan;
+
     public String setPlan;
     public String addPlan;
     public String feedBack;
@@ -123,9 +128,8 @@ public class InterFace {
     public String isExist;
 
 
-
     /**
-     * 加入行程
+     * 报名
      */
     public String enrollActivity;
 
@@ -138,6 +142,12 @@ public class InterFace {
      * 热门评论
      */
     public String getPopularComments;
+
+    /**
+     * 获取所有评论
+     */
+    public String getAllComments;
+
 
     private InterFace() {
         String domain = "http://app.myrichang.com";
@@ -178,7 +188,8 @@ public class InterFace {
         this.getPublisherRecommend = "http://appv2.myrichang" +
                 ".com/Home/UserRelation/getPublisherRecommend";
         this.getPopularComments = "http://appv2.myrichang.com/Home/Comment/getPopularComments";
-        this.enrollActivity="http://appv2.myrichang.com/Home/Activity/enrollActivity";
+        this.enrollActivity = "http://appv2.myrichang.com/Home/Activity/enrollActivity";
+        this.getAllComments="http://appv2.myrichang.com/Home/Comment/getAllComments";
 
     }
 

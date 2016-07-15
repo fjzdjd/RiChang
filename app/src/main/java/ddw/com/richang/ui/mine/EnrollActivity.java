@@ -182,7 +182,7 @@ public class EnrollActivity extends BaseActivity {
         TextView txt = new TextView(EnrollActivity.this);
         txt.setLayoutParams(params);
         txt.setLines(1);
-        txt.setTextSize(15);
+        txt.setTextSize(16);
         txt.setPadding(36, 15, 36, 0);
         txt.setText(str);
         return txt;

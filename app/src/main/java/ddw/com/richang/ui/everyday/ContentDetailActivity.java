@@ -4,11 +4,11 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.ActionBar;
 import android.text.Html;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -35,6 +35,7 @@ import ddw.com.richang.commons.ConstantData;
 import ddw.com.richang.controller.InterFace;
 import ddw.com.richang.controller.view.layout.scrollview.ObScrollView;
 import ddw.com.richang.controller.view.layout.scrollview.ScrollViewListener;
+import ddw.com.richang.custom.CustomUi.WarmAlertDialog;
 import ddw.com.richang.manager.SharePreferenceManager;
 import ddw.com.richang.model.RiGetActivityDetail;
 import ddw.com.richang.model.RiGetPopularComments;
@@ -84,6 +85,8 @@ public class ContentDetailActivity extends BaseActivity {
     private TextView mTitle;
     private TextView mLikeNum;
     private ImageOptions options;
+    private TextView mAddAgenda;
+    private TextView mEnrollMine;
 
     @Override
     protected void onCreate(Bundle outState) {
@@ -117,6 +120,8 @@ public class ContentDetailActivity extends BaseActivity {
         mActivityLocation = (TextView) findViewById(R.id.detail_txt_location);
         mActivitySize = (TextView) findViewById(R.id.detail_txt_size);
         mActivityFare = (TextView) findViewById(R.id.detail_txt_fare);
+        mAddAgenda = (TextView) findViewById(R.id.detail_txt_add_agenda);
+        mEnrollMine = (TextView) findViewById(R.id.detail_txt_enroll);
         TextView mFocusPublisher = (TextView) findViewById(R.id.detail_txt_focus_publisher);
         mRemindMe = (TextView) findViewById(R.id.detail_txt_reminder);
         mHeaderTitle = (TextView) findViewById(R.id.detail_txt_header_title);
@@ -127,25 +132,19 @@ public class ContentDetailActivity extends BaseActivity {
         mScrollViewContent = (ObScrollView) findViewById(R.id.detail_slv_content);
         mViewMoreInformation = (TextView) findViewById(R.id.detail_txt_more_information);
         TextView mViewMoreComment = (TextView) findViewById(R.id.detail_txt_comment_more);
-        mViewMoreComment.setText(Html.fromHtml("<u>" + "查看更多评论" + "</u>"));
+        mViewMoreComment.setText(Html.fromHtml("<u>" + "查看或添加评论" + "</u>"));
         mViewMoreInformation.setText(Html.fromHtml("<u>" + "查看更多" + "</u>"));
         mViewMoreInformation.setOnClickListener(new DetailOnClick());
         mCollection.setOnClickListener(new DetailOnClick());
         mRemindMe.setOnClickListener(new DetailOnClick());
         mFocusPublisher.setOnClickListener(new DetailOnClick());
-
+        mAddAgenda.setOnClickListener(new DetailOnClick());
+        mEnrollMine.setOnClickListener(new DetailOnClick());
+        mViewMoreComment.setOnClickListener(new DetailOnClick());
         mUserPic = (ImageView) findViewById(R.id.user_img_comment);
-
-
         mUserName = (TextView) findViewById(R.id.user_txt_name);
-
-
         mPublishTime = (TextView) findViewById(R.id.user_txt_time);
-
-
         mTitle = (TextView) findViewById(R.id.user_txt_title);
-
-
         mLikeNum = (TextView) findViewById(R.id.user_txt_likeNum);
 
 
@@ -248,6 +247,7 @@ public class ContentDetailActivity extends BaseActivity {
                                                 .VISIBLE);
                                         findViewById(R.id.comment_llt_visible).setVisibility(View
                                                 .GONE);
+                                        mUserPic.setVisibility(View.GONE);
                                     } else {
                                         x.image().bind(mUserPic, riGetPopularComments.get(0)
                                                 .getUsr_pic(), options);
@@ -260,7 +260,7 @@ public class ContentDetailActivity extends BaseActivity {
 
                                         mTitle.setText(riGetPopularComments.get(0)
                                                 .getComment_content
-                                                ());
+                                                        ());
 
                                         mLikeNum.setText(riGetPopularComments.get(0)
                                                 .getComment_praise_num());
@@ -270,6 +270,7 @@ public class ContentDetailActivity extends BaseActivity {
                                     findViewById(R.id.comment_txt_visible).setVisibility(View
                                             .VISIBLE);
                                     findViewById(R.id.comment_llt_visible).setVisibility(View.GONE);
+                                    mUserPic.setVisibility(View.GONE);
                                 }
 
                             } catch (JSONException e) {
@@ -284,11 +285,30 @@ public class ContentDetailActivity extends BaseActivity {
 
 
     /**
-     * 用户报名活动
-     * @param usr_id 用户id
-     * @param ac_id 活动id
+     * 给对话框添加文字
+     *
+     * @return
      */
-    private void enrollActivity(String usr_id, String ac_id) {
+    private TextView getTextView() {
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup
+                .LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        TextView txt = new TextView(ContentDetailActivity.this);
+        txt.setLayoutParams(params);
+        txt.setTextSize(16);
+        txt.setPadding(36, 15, 36, 0);
+        txt.setText(Html.fromHtml("恭喜你!报名成功,你可以把该活动" + "<font color='#FF850E'>加入行程</font>" +
+                "中哦~"));
+        return txt;
+    }
+
+
+    /**
+     * 用户报名活动
+     *
+     * @param usr_id 用户id
+     * @param ac_id  活动id
+     */
+    private void enrollActivity(String usr_id, final String ac_id) {
         RequestParams params = new RequestParams(InterFace.getInstance().enrollActivity);
         params.addBodyParameter("usr_id", usr_id);
         params.addBodyParameter("ac_id", ac_id);
@@ -330,13 +350,25 @@ public class ContentDetailActivity extends BaseActivity {
                             try {
                                 JSONObject jsonObject = new JSONObject(result);
                                 String code = jsonObject.optString("code");
-                                String msg = jsonObject.optString("msg");
                                 if (code.equals(ConstantData.CODE)) {
 
+                                    TextView view = getTextView();
+                                    WarmAlertDialog.getInstance().initDialog
+                                            (ContentDetailActivity.this, "提示",
+                                                    view, new View.OnClickListener() {
+
+                                                        @Override
+                                                        public void onClick(View v) {
+
+                                                            joinTrip(mUserId, ac_id, "1");
+
+                                                        }
+                                                    });
 
                                 } else {
-
-
+                                    Toast.makeText(ContentDetailActivity.this, "报名失败,请查看是否重复报名!",
+                                            Toast
+                                                    .LENGTH_SHORT).show();
                                 }
 
                             } catch (JSONException e) {
@@ -346,6 +378,77 @@ public class ContentDetailActivity extends BaseActivity {
                         }
 
 
+                    }
+
+                });
+    }
+
+
+    /**
+     * 加入行程
+     *
+     * @param usr_id  用户id
+     * @param ac_id   活动id
+     * @param op_type 加入行程（1）
+     */
+    private void joinTrip(String usr_id, String ac_id, String op_type) {
+        RequestParams params = new RequestParams(InterFace.getInstance().joinPlan);
+        params.addBodyParameter("usr_id", usr_id);
+        params.addBodyParameter("ac_id", ac_id);
+        params.addBodyParameter("op_type", op_type);
+        Callback.Cancelable cancelable = x.http().post(params,
+                new Callback.CacheCallback<String>() {
+                    private boolean hasError = false;
+                    private String result = null;
+
+                    @Override
+                    public boolean onCache(String result) {
+                        this.result = result;
+                        return false; // true: 信任缓存数据, 不在发起网络请求; false不信任缓存数据.
+                    }
+
+                    @Override
+                    public void onSuccess(String result) {
+                        // 注意: 如果服务返回304 或 onCache 选择了信任缓存, 这时result为null.
+                        if (result != null) {
+                            this.result = result;
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable ex, boolean isOnCallback) {
+                        hasError = true;
+                        Toast.makeText(x.app(), ex.getMessage(), Toast.LENGTH_LONG).show();
+
+                    }
+
+                    @Override
+                    public void onCancelled(CancelledException cex) {
+                        Toast.makeText(x.app(), "cancelled", Toast.LENGTH_LONG).show();
+
+                    }
+
+                    @Override
+                    public void onFinished() {
+                        if (!hasError && result != null) {
+                            try {
+                                JSONObject jsonObject = new JSONObject(result);
+                                String code = jsonObject.optString("code");
+                                if (code.equals(ConstantData.CODE)) {
+                                    Toast.makeText(ContentDetailActivity.this, "加入成功", Toast
+                                            .LENGTH_SHORT).show();
+                                    mAddAgenda.setText("已加入行程");
+                                } else {
+                                    Toast.makeText(ContentDetailActivity.this, "加入失败", Toast
+                                            .LENGTH_SHORT).show();
+                                }
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+
 
                     }
 
@@ -353,6 +456,7 @@ public class ContentDetailActivity extends BaseActivity {
 
 
     }
+
 
     /**
      * 获取页面数据
@@ -436,7 +540,8 @@ public class ContentDetailActivity extends BaseActivity {
     private void setWidgetDatas(RiGetActivityDetail data) {
 
         mContentTitle.setText(data.getData().getAc_title());
-
+        if (mContentDetail.getData().getPlan().equals("1"))
+            mAddAgenda.setText("已加入行程");
         for (int i = 0; i < data.getData().getAc_tags().size(); i++) {
             if (!StringUtils.isEmpty(data.getData().getAc_tags().get(i).getTag_name()))
                 buildTags += data.getData().getAc_tags().get(i).getTag_name() + " ";
@@ -641,9 +746,8 @@ public class ContentDetailActivity extends BaseActivity {
                     }
                     break;
 
+                //提醒我
                 case R.id.detail_txt_reminder:
-
-
                     intent.putExtra("remindHour", mContentDetail.getData().getAc_time());
                     riChangActivityManager.startNextActivity(intent, RemindTimeActivity.class);
 
@@ -653,6 +757,29 @@ public class ContentDetailActivity extends BaseActivity {
                 case R.id.detail_txt_focus_publisher:
                     intent.putExtra("publisher_id", mContentDetail.getData().getUsr_id());
                     riChangActivityManager.startNextActivity(intent, PublisherDetailActivity.class);
+
+                    break;
+
+                //加入行程
+                case R.id.detail_txt_add_agenda:
+
+                    if (!mContentDetail.getData().getPlan().equals("1"))
+                        joinTrip(mUserId, ac_id, "1");
+
+                    break;
+
+                //我要报名
+                case R.id.detail_txt_enroll:
+
+                    enrollActivity(mUserId, ac_id);
+
+                    break;
+
+                //查看和添加评论
+                case R.id.detail_txt_comment_more:
+
+                    intent.putExtra("ac_id", ac_id);
+                    riChangActivityManager.startNextActivity(intent, AllCommentsActivity.class);
 
                     break;
                 default:
